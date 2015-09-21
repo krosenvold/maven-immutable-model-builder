@@ -13,13 +13,12 @@ public class RootBuilder
     private int depth;
 
 
-    public Build build( XMLStreamReader2 node )
+    public Project build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
 
-        Build build = null;
-
+        Project build1 = null;
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
             int eventType = node.next();
@@ -29,7 +28,7 @@ public class RootBuilder
                     String localName = node.getLocalName();
                     if ( "project".equals( localName ) )
                     {
-                        return projectBuilder.build( node );
+                        build1 = projectBuilder.build( node );
                     }
                     else
                     {
@@ -37,6 +36,6 @@ public class RootBuilder
                     }
             }
         }
-        return build;
+        return build1;
     }
 }

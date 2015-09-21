@@ -36,8 +36,6 @@ class PluginsBuilder
 
             }
         }
-
         return new Plugins( plugins );
-
     }
 }
