@@ -23,7 +23,7 @@ under the License.
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>st</groupId>
+  <groupId>gid</groupId>
   <artifactId>art</artifactId>
   <version>101-SNAPSHOT</version>
 
@@ -33,13 +33,3 @@ under the License.
       <plugin>
         <groupId>A-G</groupId>
         <artifactId>A</artifactId>
-        <version>1.0</version>
-      </plugin>
-      <plugin>
-        <groupId>B-G</groupId>
-        <artifactId>B</artifactId>
-        <version>2.0</version>
-      </plugin>
-    </plugins>
-  </build>
-</project>
