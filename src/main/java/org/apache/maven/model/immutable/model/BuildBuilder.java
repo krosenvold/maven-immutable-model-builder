@@ -1,29 +1,38 @@
 package org.apache.maven.model.immutable.model;
 
-import org.apache.maven.model.immutable.ModelElement;
 import org.codehaus.stax2.XMLStreamReader2;
 
-/**
- * Created by kristian on 20.09.15.
- */
-public class BuildBuilder
-    implements Builder<Build>
+import javax.xml.stream.XMLStreamException;
+
+class BuildBuilder
 {
     private final PluginsBuilder pluginsBuilder = new PluginsBuilder();
 
-    public Builder getBuilderFor( String tagName )
+    public Build build( XMLStreamReader2 node )
+        throws XMLStreamException
     {
-        if ( tagName.equals( "plugins" ) )
-        {
-            return pluginsBuilder;
-        }
-        throw new RuntimeException( "Unsupported child tag" + tagName );
-    }
+        int startLevel = node.getDepth();
 
-    @Override
-    public Build from( XMLStreamReader2 node, Iterable<ModelElement> kids, String nodeText )
-    {
-        ModelElement next = kids.iterator().next();
-        return new Build( (Plugins) next );
+        Plugins plugins = null;
+
+        while ( node.hasNext() && node.getDepth() >= startLevel )
+        {
+            int eventType = node.next();
+            switch ( eventType )
+            {
+                case XMLStreamReader2.START_ELEMENT:
+                    String localName = node.getLocalName();
+                    if ( "plugins".equals( localName ) )
+                    {
+                        plugins = pluginsBuilder.build( node );
+                    }
+                    else
+                    {
+                        throw new RuntimeException( "Unsupported child tag" + localName );
+                    }
+            }
+        }
+        return new Build( plugins );
+
     }
 }

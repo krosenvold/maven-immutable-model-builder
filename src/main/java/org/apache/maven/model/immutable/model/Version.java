@@ -9,7 +9,11 @@ public class Version
 
     public Version( String version )
     {
-
         this.version = version;
+    }
+
+    public String getVersion()
+    {
+        return version;
     }
 }

@@ -2,21 +2,15 @@ package org.apache.maven.model.immutable.model;
 
 import org.codehaus.stax2.XMLStreamReader2;
 
-/**
- * Created by kristian on 20.09.15.
- */
-public class GroupIdBuilder
-    implements Builder<GroupId>
+import javax.xml.stream.XMLStreamException;
+
+class GroupIdBuilder
+    extends LeafBuilder
 {
-    @Override
-    public Builder getBuilderFor( String tagName )
+    public GroupId build( XMLStreamReader2 node )
+        throws XMLStreamException
     {
-        throw new RuntimeException( "Unsupported child tag" + tagName );
+        return new GroupId( singleTextValue( node ) );
     }
 
-    @Override
-    public GroupId from( XMLStreamReader2 node, Iterable kids, String nodeText )
-    {
-        return new GroupId( nodeText );
-    }
 }

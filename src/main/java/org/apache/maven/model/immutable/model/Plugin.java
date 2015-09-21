@@ -8,9 +8,9 @@ import org.apache.maven.model.immutable.ModelElement;
 public class Plugin
     extends ModelElement
 {
-    private final ArtifactId artifactId;
-
     private final GroupId groupId;
+
+    private final ArtifactId artifactId;
 
     private final Version version;
 
@@ -21,44 +21,9 @@ public class Plugin
         this.version = version;
     }
 
-    public Plugin( Iterable<ModelElement> modelElements )
+    @Override
+    public String toString()
     {
-        this( selectArtifact( modelElements ), selectGroupId( modelElements ), selectVersion( modelElements ) );
-    }
-
-    static ArtifactId selectArtifact( Iterable<ModelElement> modelElements )
-    {
-        for ( ModelElement modelElement : modelElements )
-        {
-            if ( modelElement instanceof ArtifactId )
-            {
-                return (ArtifactId) modelElement;
-            }
-        }
-        return null;
-    }
-
-    static GroupId selectGroupId( Iterable<ModelElement> modelElements )
-    {
-        for ( ModelElement modelElement : modelElements )
-        {
-            if ( modelElement instanceof GroupId )
-            {
-                return (GroupId) modelElement;
-            }
-        }
-        return null;
-    }
-
-    static Version selectVersion( Iterable<ModelElement> modelElements )
-    {
-        for ( ModelElement modelElement : modelElements )
-        {
-            if ( modelElement instanceof Version )
-            {
-                return (Version) modelElement;
-            }
-        }
-        return null;
+        return groupId.getGroupId() + ":" + artifactId.getArtifactId() + ":" + version.getVersion();
     }
 }

@@ -15,4 +15,9 @@ public class GroupId
     {
         this.groupId = groupId;
     }
+
+    public String getGroupId()
+    {
+        return groupId;
+    }
 }

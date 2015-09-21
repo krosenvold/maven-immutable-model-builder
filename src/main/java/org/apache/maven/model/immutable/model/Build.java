@@ -15,4 +15,9 @@ public class Build
     {
         this.plugins = plugins;
     }
+
+    public Plugins getPlugins()
+    {
+        return plugins;
+    }
 }

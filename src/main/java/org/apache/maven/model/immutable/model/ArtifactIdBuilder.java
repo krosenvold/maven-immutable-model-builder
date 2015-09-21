@@ -1,21 +1,16 @@
 package org.apache.maven.model.immutable.model;
 
-import org.apache.maven.model.immutable.ModelElement;
 import org.codehaus.stax2.XMLStreamReader2;
 
-public class ArtifactIdBuilder
-    implements Builder<ArtifactId>
-{
-    @Override
-    public Builder getBuilderFor( String tagName )
-    {
-        throw new RuntimeException( "Unsupported model" );
-    }
+import javax.xml.stream.XMLStreamException;
 
-    @Override
-    public ArtifactId from( XMLStreamReader2 node, Iterable<ModelElement> kids, String nodeText )
+class ArtifactIdBuilder
+    extends LeafBuilder
+{
+    public ArtifactId build( XMLStreamReader2 node )
+        throws XMLStreamException
     {
-        return new ArtifactId( nodeText );
+        return new ArtifactId( singleTextValue( node ) );
     }
 
 }

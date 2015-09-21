@@ -1,23 +1,15 @@
 package org.apache.maven.model.immutable.model;
 
-import org.apache.maven.model.immutable.ModelElement;
 import org.codehaus.stax2.XMLStreamReader2;
 
-/**
- * Created by kristian on 20.09.15.
- */
-public class VersionBuilder
-    implements Builder<Version>
-{
-    @Override
-    public Builder getBuilderFor( String tagName )
-    {
-        return null;
-    }
+import javax.xml.stream.XMLStreamException;
 
-    @Override
-    public Version from( XMLStreamReader2 node, Iterable<ModelElement> kids, String nodeText )
+class VersionBuilder
+    extends LeafBuilder
+{
+    public Version build( XMLStreamReader2 node )
+        throws XMLStreamException
     {
-        return new Version( nodeText );
+        return new Version( singleTextValue( node ) );
     }
 }

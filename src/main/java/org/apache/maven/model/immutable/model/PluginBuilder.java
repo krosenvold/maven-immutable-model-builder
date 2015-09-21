@@ -1,10 +1,10 @@
 package org.apache.maven.model.immutable.model;
 
-import org.apache.maven.model.immutable.ModelElement;
 import org.codehaus.stax2.XMLStreamReader2;
 
-public class PluginBuilder
-    implements Builder<Plugin>
+import javax.xml.stream.XMLStreamException;
+
+class PluginBuilder
 {
     private final GroupIdBuilder groupIdBuilder = new GroupIdBuilder();
 
@@ -13,27 +13,36 @@ public class PluginBuilder
     private final VersionBuilder versionBuilder = new VersionBuilder();
 
 
-    @Override
-    public Builder getBuilderFor( String tagName )
+    public Plugin build( XMLStreamReader2 node )
+        throws XMLStreamException
     {
-        if ( "groupId".equals( tagName ) )
-        {
-            return groupIdBuilder;
-        }
-        if ( "artifactId".equals( tagName ) )
-        {
-            return artifactIdBuilder;
-        }
-        if ( "version".equals( tagName ) )
-        {
-            return versionBuilder;
-        }
-        throw new RuntimeException( "Unsupported model" );
-    }
+        int startLevel = node.getDepth();
+        GroupId groupId = null;
+        ArtifactId artifactId = null;
+        Version version = null;
 
-    @Override
-    public Plugin from( XMLStreamReader2 node, Iterable<ModelElement> kids, String nodeText )
-    {
-        return new Plugin( kids );
+        while ( node.hasNext() && node.getDepth() >= startLevel )
+        {
+            int eventType = node.next();
+            switch ( eventType )
+            {
+                case XMLStreamReader2.START_ELEMENT:
+                    String localName = node.getLocalName();
+                    if ( "groupId".equals( localName ) )
+                    {
+                        groupId = groupIdBuilder.build( node );
+                    }
+                    if ( "artifactId".equals( localName ) )
+                    {
+                        artifactId = artifactIdBuilder.build( node );
+                    }
+                    if ( "version".equals( localName ) )
+                    {
+                        version = versionBuilder.build( node );
+                    }
+            }
+        }
+
+        return new Plugin( artifactId, groupId, version );
     }
 }

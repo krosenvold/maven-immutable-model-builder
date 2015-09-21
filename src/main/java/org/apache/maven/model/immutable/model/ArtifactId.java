@@ -8,8 +8,16 @@ import org.apache.maven.model.immutable.ModelElement;
 public class ArtifactId
     extends ModelElement
 {
+    private final String artifactId;
+
     public ArtifactId( String artifactId )
     {
+        this.artifactId = artifactId;
+    }
+
+    public String getArtifactId()
+    {
+        return artifactId;
     }
 }
 
