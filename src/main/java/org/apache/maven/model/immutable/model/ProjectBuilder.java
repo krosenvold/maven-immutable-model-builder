@@ -17,7 +17,6 @@ class ProjectBuilder
 
     private final ModelVersionBuilder modelVersionBuilder = new ModelVersionBuilder();
 
-
     public Project build( XMLStreamReader2 node )
         throws XMLStreamException
     {
