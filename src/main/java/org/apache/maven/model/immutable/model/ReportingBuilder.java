@@ -14,7 +14,7 @@ public class ReportingBuilder
     {
         int startLevel = node.getDepth();
 
-        Plugins build = pluginsBuilder.build( node );
+        Plugins build = null;
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {

@@ -11,11 +11,18 @@ public class Plugin
 
     private final Version version;
 
-    public Plugin( ArtifactId artifactId, GroupId groupId, Version version )
+    private final String configuration;
+
+    private final String reportSets;
+
+
+    public Plugin( ArtifactId artifactId, GroupId groupId, Version version, String configuration, String reportSets )
     {
         this.artifactId = artifactId;
         this.groupId = groupId;
         this.version = version;
+        this.configuration = configuration;
+        this.reportSets = reportSets;
     }
 
     @Override

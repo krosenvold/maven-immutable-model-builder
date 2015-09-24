@@ -13,6 +13,8 @@ class PluginBuilder
     private final LeafBuilder versionBuilder = new LeafBuilder();
 
 
+    XmlBuilder xmlBuilder = new XmlBuilder();
+
     public Plugin build( XMLStreamReader2 node )
         throws XMLStreamException
     {
@@ -20,6 +22,9 @@ class PluginBuilder
         GroupId groupId = null;
         ArtifactId artifactId = null;
         Version version = null;
+        String configuration = null;
+        String reportSets = null;
+
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
@@ -39,10 +44,16 @@ class PluginBuilder
                         case "version":
                             version = new Version( versionBuilder.singleTextValue( node ) );
                             break;
+                        case "configuration":
+                            configuration = xmlBuilder.build( node ) ;
+                            break;
+                        case "reportSets":
+                            reportSets = xmlBuilder.build( node ) ;
+                            break;
                     }
             }
         }
 
-        return new Plugin( artifactId, groupId, version );
+        return new Plugin( artifactId, groupId, version, configuration, reportSets );
     }
 }

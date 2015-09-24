@@ -2,7 +2,10 @@ package org.apache.maven.model.immutable.model;
 
 import org.codehaus.stax2.XMLStreamReader2;
 
+import javax.xml.bind.PropertyException;
 import javax.xml.stream.XMLStreamException;
+import java.util.List;
+import java.util.Properties;
 
 class ProjectBuilder
     extends BaseBuilder
@@ -23,6 +26,20 @@ class ProjectBuilder
 
     private final ReportingBuilder reportingBuilder = new ReportingBuilder();
 
+    private final ParentBuilder parentBuilder = new ParentBuilder();
+
+    private final PropertiesBuilder propertiesBuilder = new PropertiesBuilder();
+
+    private final ModulesBuilder modulesBuilder = new ModulesBuilder();
+
+    private final ScmBuilder scmBuilder = new ScmBuilder();
+
+    private final IssueManagementBuilder issueManagementBuilder = new IssueManagementBuilder();
+
+    private final CiManagementBuilder ciManagementBuilder = new CiManagementBuilder();
+
+    private final DistributionManagementBuilder  distributionManagementBuilder = new DistributionManagementBuilder();
+
     public Project build( XMLStreamReader2 node )
         throws XMLStreamException
     {
@@ -38,6 +55,16 @@ class ProjectBuilder
         ProjectUrl url = null;
         MailingLists mailingLists = null;
         Reporting reporting = null;
+        Parent parent = null;
+        String packaging = null;
+        String inceptionYear = null;
+        Properties properties = null;
+        List<String> modules = null;
+        Scm scm;
+        IssueManagement issueManagement;
+        CiManagement ciManagement;
+        DistributionManagement distributionManagement;
+
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
@@ -78,8 +105,35 @@ class ProjectBuilder
                         case "reporting":
                             reporting = reportingBuilder.build( node );
                             break;
+                        case "parent":
+                            parent = parentBuilder.build( node );
+                            break;
+                        case "packaging":
+                            packaging =  leafBuilder.singleTextValue( node );
+                            break;
+                        case "inceptionYear":
+                            inceptionYear =  leafBuilder.singleTextValue( node );
+                            break;
+                        case "properties":
+                            properties =  propertiesBuilder.build( node );
+                            break;
+                        case "modules":
+                            modules = modulesBuilder.build( node );
+                            break;
+                        case "scm":
+                            scm = scmBuilder.build( node );
+                            break;
+                        case "issueManagement":
+                            issueManagement = issueManagementBuilder.build( node );
+                            break;
+                        case "ciManagement":
+                            ciManagement = ciManagementBuilder.build( node );
+                            break;
+                        case "distributionManagement":
+                            distributionManagement = distributionManagementBuilder.build( node );
+                            break;
                         default:
-                            throw new RuntimeException( "Unsupported child tag" + localName );
+                            throw new RuntimeException( "Unsupported child tag " + localName );
                     }
             }
         }

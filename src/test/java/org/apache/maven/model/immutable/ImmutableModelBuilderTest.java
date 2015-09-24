@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class ImmutableModelBuilderTest
 {
@@ -24,14 +25,24 @@ public class ImmutableModelBuilderTest
     {
         ImmutableModelBuilder imb = new ImmutableModelBuilder();
         Project project = imb.readProject( "/immutable/simpletest.xml" );
-        Plugin pluginA = project.getBuild().getPlugins().getPlugins().get( 0 );
-        Plugin pluginB = project.getBuild().getPlugins().getPlugins().get( 1 );
+        Plugin pluginA = project.getBuild()
+                                .getPlugins()
+                                .getPlugins()
+                                .get( 0 );
+        Plugin pluginB = project.getBuild()
+                                .getPlugins()
+                                .getPlugins()
+                                .get( 1 );
         assertEquals( "A-G:A:1.0", pluginA.toString() );
         assertEquals( "B-G:B:2.0", pluginB.toString() );
-        assertEquals( "4.0.0", project.getModelVersion().getVersion() );
-        assertEquals( "gid", project.getGroupId().getGroupId() );
-        assertEquals( "art", project.getArtifactId().getArtifactId() );
-        assertEquals( "101-SNAPSHOT", project.getVersion().getVersion() );
+        assertEquals( "4.0.0", project.getModelVersion()
+                                      .getVersion() );
+        assertEquals( "gid", project.getGroupId()
+                                    .getGroupId() );
+        assertEquals( "art", project.getArtifactId()
+                                    .getArtifactId() );
+        assertEquals( "101-SNAPSHOT", project.getVersion()
+                                             .getVersion() );
     }
 
     @Test( expected = java.io.EOFException.class )
@@ -50,14 +61,24 @@ public class ImmutableModelBuilderTest
     {
         ImmutableModelBuilder imb = new ImmutableModelBuilder();
         Project project = imb.readProject( "/immutable/simple-malformed-plugins.xml" );
-        Plugin pluginA = project.getBuild().getPlugins().getPlugins().get( 0 );
-        Plugin pluginB = project.getBuild().getPlugins().getPlugins().get( 1 );
+        Plugin pluginA = project.getBuild()
+                                .getPlugins()
+                                .getPlugins()
+                                .get( 0 );
+        Plugin pluginB = project.getBuild()
+                                .getPlugins()
+                                .getPlugins()
+                                .get( 1 );
         assertEquals( "A-G:A:1.0", pluginA.toString() );
         assertEquals( "B-G:B:2.0", pluginB.toString() );
-        assertEquals( "4.0.0", project.getModelVersion().getVersion() );
-        assertEquals( "gid", project.getGroupId().getGroupId() );
-        assertEquals( "art", project.getArtifactId().getArtifactId() );
-        assertEquals( "101-SNAPSHOT", project.getVersion().getVersion() );
+        assertEquals( "4.0.0", project.getModelVersion()
+                                      .getVersion() );
+        assertEquals( "gid", project.getGroupId()
+                                    .getGroupId() );
+        assertEquals( "art", project.getArtifactId()
+                                    .getArtifactId() );
+        assertEquals( "101-SNAPSHOT", project.getVersion()
+                                             .getVersion() );
     }
 
     @Test
@@ -72,6 +93,24 @@ public class ImmutableModelBuilderTest
         second();
         first();
         second();
+    }
+
+    @Test
+    public void moreCOmplex()
+        throws IOException, XMLStreamException
+    {
+        ImmutableModelBuilder imb = new ImmutableModelBuilder();
+        Project project = imb.readProject( "/immutable/plugin-configuration-parent.xml" );
+        assertNotNull( project );
+    }
+
+    @Test
+    public void mavencorePom()
+        throws IOException, XMLStreamException
+    {
+        ImmutableModelBuilder imb = new ImmutableModelBuilder();
+        Project project = imb.readProject( "/immutable/maven-core.xml" );
+        assertNotNull( project );
     }
 
     private void second()
@@ -108,7 +147,8 @@ public class ImmutableModelBuilderTest
     private Model readModel( String name )
         throws IOException, XmlPullParserException
     {
-        InputStream resourceAsStream = this.getClass().getResourceAsStream( name );
+        InputStream resourceAsStream = this.getClass()
+                                           .getResourceAsStream( name );
         MavenXpp3ReaderEx org = new MavenXpp3ReaderEx();
         try
         {

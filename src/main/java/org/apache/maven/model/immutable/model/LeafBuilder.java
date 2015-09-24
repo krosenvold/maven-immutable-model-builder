@@ -6,6 +6,8 @@ import javax.xml.stream.XMLStreamException;
 
 class LeafBuilder
 {
+
+    public static LeafBuilder INSTANCE = new LeafBuilder();
     protected String singleTextValue( XMLStreamReader2 node )
         throws XMLStreamException
     {

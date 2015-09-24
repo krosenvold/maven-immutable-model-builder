@@ -6,19 +6,17 @@ import javax.xml.stream.XMLStreamException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MailingListsBuilder
-    extends BaseBuilder
-
+public class ModulesBuilder
 {
-    private final MailingListBuilder listBuilder = new MailingListBuilder();
+    private final LeafBuilder propVal = new LeafBuilder();
 
 
-    public MailingLists build( XMLStreamReader2 node )
+    public List<String> build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
 
-        List<MailingList> lists = new ArrayList<>();
+        List<String> modules = new ArrayList<>();
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
@@ -27,17 +25,20 @@ public class MailingListsBuilder
             {
                 case XMLStreamReader2.START_ELEMENT:
                     String localName = node.getLocalName();
-                    if ( "mailingList".equals( node.getLocalName() ) )
+                    switch ( localName )
                     {
-                        lists.add( listBuilder.build( node ) );
+                        case "module":
+                            modules.add( propVal.singleTextValue( node ) );
+                            break;
+                        default:
+                            throw new RuntimeException( "Unsupported child tag" + localName );
                     }
-                    else
-                    {
-                        throw new IllegalArgumentException( "Unsupported tag " + localName );
-                    }
-
             }
+
         }
-        return new MailingLists( lists );
+
+
+        return modules;
     }
+
 }
