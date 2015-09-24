@@ -96,6 +96,20 @@ public class ImmutableModelBuilderTest
     }
 
     @Test
+    public void simpleBM2()
+        throws IOException, XMLStreamException, XmlPullParserException
+    {
+        first();
+        first();
+        first();
+        first();
+        second();
+        second();
+        second();
+        second();
+    }
+
+    @Test
     public void moreCOmplex()
         throws IOException, XMLStreamException
     {

@@ -6,14 +6,7 @@ import javax.xml.stream.XMLStreamException;
 
 class ParentBuilder
 {
-    private final LeafBuilder groupIdBuilder = new LeafBuilder();
-
-    private final LeafBuilder artifactIdBuilder = new LeafBuilder();
-
     private final LeafBuilder rp = new LeafBuilder();
-
-
-    XmlBuilder xmlBuilder = new XmlBuilder();
 
     public Parent build( XMLStreamReader2 node )
         throws XMLStreamException

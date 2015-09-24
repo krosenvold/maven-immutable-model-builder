@@ -3,8 +3,6 @@ package org.apache.maven.model.immutable.model;
 import org.codehaus.stax2.XMLStreamReader2;
 
 import javax.xml.stream.XMLStreamException;
-import java.util.List;
-import java.util.Properties;
 
 class ScmBuilder
     extends BaseBuilder

@@ -2,7 +2,6 @@ package org.apache.maven.model.immutable.model;
 
 import org.codehaus.stax2.XMLStreamReader2;
 
-import javax.xml.bind.PropertyException;
 import javax.xml.stream.XMLStreamException;
 import java.util.List;
 import java.util.Properties;
@@ -40,6 +39,16 @@ class ProjectBuilder
 
     private final DistributionManagementBuilder  distributionManagementBuilder = new DistributionManagementBuilder();
 
+    private final ContributorsBuilder contributorsBuilder = new ContributorsBuilder();
+
+    private final PrerequisitesBuilder prerequisitesBuilder = new PrerequisitesBuilder();
+
+    private final DependencyManagementBuilder dependencyManagementBuilder = new DependencyManagementBuilder();
+
+    private final DependenciesBuilder dependenciesBuilder = new DependenciesBuilder();
+
+    private final ProfilesBuilder profilesBuilder = new ProfilesBuilder( build );
+
     public Project build( XMLStreamReader2 node )
         throws XMLStreamException
     {
@@ -64,6 +73,11 @@ class ProjectBuilder
         IssueManagement issueManagement;
         CiManagement ciManagement;
         DistributionManagement distributionManagement;
+        List<Contributor> contributors;
+        Properties prerequisites;
+        List<Dependency> dependencyManagement;
+        List<Dependency> dependencies;
+        List<Profile> profiles;
 
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
@@ -132,6 +146,26 @@ class ProjectBuilder
                         case "distributionManagement":
                             distributionManagement = distributionManagementBuilder.build( node );
                             break;
+                        case "contributors":
+                            contributors = contributorsBuilder.build( node );
+                            break;
+                        case "prerequisites":
+                            prerequisites = prerequisitesBuilder.build( node );
+                            break;
+                        case "dependencyManagement":
+                            dependencyManagement = dependencyManagementBuilder.build( node );
+                            break;
+                        case "dependencies":
+                            dependencies = dependenciesBuilder.build( node );
+                            break;
+                        case "profiles":
+                            profiles = profilesBuilder.build( node );
+                            break;
+
+
+
+
+
                         default:
                             throw new RuntimeException( "Unsupported child tag " + localName );
                     }

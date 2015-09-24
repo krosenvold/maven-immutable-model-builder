@@ -1,17 +1,16 @@
 package org.apache.maven.model.immutable.model;
 
-import java.util.Stack;
+import org.codehaus.stax2.XMLStreamReader2;
 
 import javax.xml.stream.XMLStreamException;
-
-import org.codehaus.stax2.XMLStreamReader2;
+import java.util.Stack;
 
 public class XmlBuilder {
 
-	private final StringBuilder sb = new StringBuilder();
 	public String build( XMLStreamReader2 node )
 			throws XMLStreamException
 	{
+		final StringBuilder sb = new StringBuilder();
 		int startLevel = node.getDepth();
 		Stack<String> elems = new Stack<>();
 

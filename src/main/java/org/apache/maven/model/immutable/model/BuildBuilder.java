@@ -8,12 +8,15 @@ class BuildBuilder
 {
     private final PluginsBuilder pluginsBuilder = new PluginsBuilder();
 
+    private final PluginManagementBuilder pluginManagementBuilder = new PluginManagementBuilder( pluginsBuilder );
+
     public Build build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
 
         Plugins plugins = null;
+        Plugins pluginManagement = null;
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
@@ -22,17 +25,22 @@ class BuildBuilder
             {
                 case XMLStreamReader2.START_ELEMENT:
                     String localName = node.getLocalName();
-                    if ( "plugins".equals( localName ) )
+                    switch ( localName )
                     {
-                        plugins = pluginsBuilder.build( node );
-                    }
-                    else
-                    {
-                        throw new RuntimeException( "Unsupported child tag" + localName );
+                        case "plugins":
+                            plugins = pluginsBuilder.build( node );
+                            break;
+
+                        case "pluginManagement":
+                            pluginManagement = pluginManagementBuilder.build( node );
+                            break;
+                        default:
+                            throw new RuntimeException( "Unsupported child tag" + localName );
+
                     }
             }
         }
-        return new Build( plugins );
+        return new Build( plugins, pluginManagement );
 
     }
 }

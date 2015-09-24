@@ -11,7 +11,7 @@ public class Build
 {
     private final Plugins plugins;
 
-    public Build( Plugins plugins )
+    public Build( Plugins plugins, Plugins pluginManagement )
     {
         this.plugins = plugins;
     }
