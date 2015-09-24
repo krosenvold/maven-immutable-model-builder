@@ -128,6 +128,9 @@ public class ImmutableModelBuilderTest
         assertNotNull( project );
     }
 
+    // TOOD: Test Case sensitvity of tagnames ?
+    // TODO: Test more malformed poms
+
     private void xpp3read()
         throws IOException, XmlPullParserException
     {
