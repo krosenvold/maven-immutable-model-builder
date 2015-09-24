@@ -20,6 +20,9 @@ class ProjectBuilder
     private final LeafBuilder leafBuilder = new LeafBuilder();
 
     private final MailingListsBuilder mailingListsBuilder = new MailingListsBuilder();
+
+    private final ReportingBuilder reportingBuilder = new ReportingBuilder();
+
     public Project build( XMLStreamReader2 node )
         throws XMLStreamException
     {
@@ -34,6 +37,7 @@ class ProjectBuilder
         ProjectDescription description = null;
         ProjectUrl url = null;
         MailingLists mailingLists = null;
+        Reporting reporting = null;
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
@@ -70,6 +74,9 @@ class ProjectBuilder
                             break;
                         case "mailingLists":
                             mailingLists = mailingListsBuilder.build( node );
+                            break;
+                        case "reporting":
+                            reporting = reportingBuilder.build( node );
                             break;
                         default:
                             throw new RuntimeException( "Unsupported child tag" + localName );

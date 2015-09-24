@@ -6,6 +6,7 @@ import org.apache.maven.model.immutable.model.Plugin;
 import org.apache.maven.model.immutable.model.Project;
 import org.apache.maven.model.io.xpp3.MavenXpp3ReaderEx;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.xml.stream.XMLStreamException;
@@ -43,6 +44,7 @@ public class ImmutableModelBuilderTest
 
 
     @Test
+    @Ignore
     public void malformed_plugins()
         throws Exception
     {
