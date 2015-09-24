@@ -15,8 +15,11 @@ class ProjectBuilder
 
     private final VersionBuilder versionBuilder = new VersionBuilder();
 
-    private final ModelVersionBuilder modelVersionBuilder = new ModelVersionBuilder();
+    private final LeafBuilder modelVersionBuilder = new LeafBuilder();
 
+    private final LeafBuilder leafBuilder = new LeafBuilder();
+
+    private final MailingListsBuilder mailingListsBuilder = new MailingListsBuilder();
     public Project build( XMLStreamReader2 node )
         throws XMLStreamException
     {
@@ -27,6 +30,10 @@ class ProjectBuilder
         GroupId groupId = null;
         ArtifactId artifactId = null;
         Version version = null;
+        ProjectName name = null;
+        ProjectDescription description = null;
+        ProjectUrl url = null;
+        MailingLists mailingLists = null;
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
@@ -41,16 +48,28 @@ class ProjectBuilder
                             build = this.build.build( node );
                             break;
                         case "modelVersion":
-                            modelVersion = modelVersionBuilder.build( node );
+                            modelVersion = new ModelVersion( modelVersionBuilder.singleTextValue( node ) );
                             break;
                         case "groupId":
-                            groupId = groupIdBuilder.build( node );
+                            groupId = new GroupId( groupIdBuilder.singleTextValue( node ) );
                             break;
                         case "artifactId":
-                            artifactId = artifactIdBuilder.build( node );
+                            artifactId = new ArtifactId( artifactIdBuilder.singleTextValue( node ) );
                             break;
                         case "version":
-                            version = versionBuilder.build( node );
+                            version = new Version( versionBuilder.singleTextValue( node ) );
+                            break;
+                        case "name":
+                            name = new ProjectName( leafBuilder.singleTextValue( node ) );
+                            break;
+                        case "description":
+                            description = new ProjectDescription( leafBuilder.singleTextValue( node ) );
+                            break;
+                        case "url":
+                            url = new ProjectUrl( leafBuilder.singleTextValue( node ) );
+                            break;
+                        case "mailingLists":
+                            mailingLists = mailingListsBuilder.build( node );
                             break;
                         default:
                             throw new RuntimeException( "Unsupported child tag" + localName );

@@ -6,11 +6,11 @@ import javax.xml.stream.XMLStreamException;
 
 class PluginBuilder
 {
-    private final GroupIdBuilder groupIdBuilder = new GroupIdBuilder();
+    private final LeafBuilder groupIdBuilder = new LeafBuilder();
 
-    private final ArtifactIdBuilder artifactIdBuilder = new ArtifactIdBuilder();
+    private final LeafBuilder artifactIdBuilder = new LeafBuilder();
 
-    private final VersionBuilder versionBuilder = new VersionBuilder();
+    private final LeafBuilder versionBuilder = new LeafBuilder();
 
 
     public Plugin build( XMLStreamReader2 node )
@@ -28,17 +28,17 @@ class PluginBuilder
             {
                 case XMLStreamReader2.START_ELEMENT:
                     String localName = node.getLocalName();
-                    if ( "groupId".equals( localName ) )
+                    switch ( localName )
                     {
-                        groupId = groupIdBuilder.build( node );
-                    }
-                    if ( "artifactId".equals( localName ) )
-                    {
-                        artifactId = artifactIdBuilder.build( node );
-                    }
-                    if ( "version".equals( localName ) )
-                    {
-                        version = versionBuilder.build( node );
+                        case "groupId":
+                            groupId = new GroupId( groupIdBuilder.singleTextValue( node ) );
+                            break;
+                        case "artifactId":
+                            artifactId = new ArtifactId( artifactIdBuilder.singleTextValue( node ) );
+                            break;
+                        case "version":
+                            version = new Version( versionBuilder.singleTextValue( node ) );
+                            break;
                     }
             }
         }
