@@ -85,14 +85,14 @@ public class ImmutableModelBuilderTest
     public void simpleBM()
         throws IOException, XMLStreamException, XmlPullParserException
     {
-        first();
-        second();
-        first();
-        second();
-        first();
-        second();
-        first();
-        second();
+        staxRead();
+        xpp3read();
+        staxRead();
+        xpp3read();
+        staxRead();
+        xpp3read();
+        staxRead();
+        xpp3read();
     }
 
     @Test
@@ -101,12 +101,12 @@ public class ImmutableModelBuilderTest
     {
         for ( int i = 0; i < 10; i++ )
         {
-            second();
+            xpp3read();
         }
         System.gc();
         for ( int i = 0; i < 10; i++ )
         {
-            first();
+            staxRead();
         }
     }
 
@@ -128,7 +128,7 @@ public class ImmutableModelBuilderTest
         assertNotNull( project );
     }
 
-    private void second()
+    private void xpp3read()
         throws IOException, XmlPullParserException
     {
         long start;
@@ -145,7 +145,7 @@ public class ImmutableModelBuilderTest
 
     ImmutableModelBuilder imb = new ImmutableModelBuilder();
 
-    private void first()
+    private void staxRead()
         throws XMLStreamException, IOException
     {
         long start = System.currentTimeMillis();
