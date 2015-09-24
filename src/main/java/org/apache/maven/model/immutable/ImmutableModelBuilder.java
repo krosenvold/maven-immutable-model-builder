@@ -10,7 +10,7 @@ import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class ImmutableModelBuilder
+class ImmutableModelBuilder
 {
 
     XMLInputFactory2 xmlInputFactory = (XMLInputFactory2) XMLInputFactory.newInstance();

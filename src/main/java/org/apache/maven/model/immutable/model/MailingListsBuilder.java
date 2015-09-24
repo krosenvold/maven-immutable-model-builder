@@ -6,7 +6,7 @@ import javax.xml.stream.XMLStreamException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MailingListsBuilder
+class MailingListsBuilder
     extends BaseBuilder
 
 {

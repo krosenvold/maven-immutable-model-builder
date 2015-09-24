@@ -4,7 +4,7 @@ import org.codehaus.stax2.XMLStreamReader2;
 
 import javax.xml.stream.XMLStreamException;
 
-public class ProfileBuilder
+class ProfileBuilder
 {
     private final LeafBuilder groupIdBuilder = new LeafBuilder();
 

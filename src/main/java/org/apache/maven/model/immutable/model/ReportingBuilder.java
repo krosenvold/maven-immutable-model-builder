@@ -4,7 +4,7 @@ import org.codehaus.stax2.XMLStreamReader2;
 
 import javax.xml.stream.XMLStreamException;
 
-public class ReportingBuilder
+class ReportingBuilder
 {
 
     PluginsBuilder pluginsBuilder = new PluginsBuilder();

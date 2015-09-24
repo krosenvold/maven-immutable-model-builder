@@ -162,16 +162,10 @@ public class ImmutableModelBuilderTest
     private Model readModel( String name )
         throws IOException, XmlPullParserException
     {
-        InputStream resourceAsStream = this.getClass()
-                                           .getResourceAsStream( name );
         MavenXpp3ReaderEx org = new MavenXpp3ReaderEx();
-        try
+        try ( InputStream resourceAsStream = this.getClass().getResourceAsStream( name ) )
         {
             return org.read( resourceAsStream, true, new InputSource() );
-        }
-        finally
-        {
-            resourceAsStream.close();
         }
     }
 

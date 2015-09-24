@@ -4,7 +4,7 @@ import org.codehaus.stax2.XMLStreamReader2;
 
 import javax.xml.stream.XMLStreamException;
 
-public class PluginManagementBuilder
+class PluginManagementBuilder
 {
 
     private final PluginsBuilder pluginBuilder;

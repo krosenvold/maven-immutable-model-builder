@@ -11,14 +11,6 @@ class ProjectBuilder
 {
     private final BuildBuilder build = new BuildBuilder();
 
-    private final GroupIdBuilder groupIdBuilder = new GroupIdBuilder();
-
-    private final ArtifactIdBuilder artifactIdBuilder = new ArtifactIdBuilder();
-
-    private final VersionBuilder versionBuilder = new VersionBuilder();
-
-    private final LeafBuilder modelVersionBuilder = new LeafBuilder();
-
     private final LeafBuilder leafBuilder = new LeafBuilder();
 
     private final MailingListsBuilder mailingListsBuilder = new MailingListsBuilder();
@@ -94,16 +86,16 @@ class ProjectBuilder
                             build = this.build.build( node );
                             break;
                         case "modelVersion":
-                            modelVersion = new ModelVersion( modelVersionBuilder.singleTextValue( node ) );
+                            modelVersion = new ModelVersion( leafBuilder.singleTextValue( node ) );
                             break;
                         case "groupId":
-                            groupId = new GroupId( groupIdBuilder.singleTextValue( node ) );
+                            groupId = new GroupId( leafBuilder.singleTextValue( node ) );
                             break;
                         case "artifactId":
-                            artifactId = new ArtifactId( artifactIdBuilder.singleTextValue( node ) );
+                            artifactId = new ArtifactId( leafBuilder.singleTextValue( node ) );
                             break;
                         case "version":
-                            version = new Version( versionBuilder.singleTextValue( node ) );
+                            version = new Version( leafBuilder.singleTextValue( node ) );
                             break;
                         case "name":
                             name = new ProjectName( leafBuilder.singleTextValue( node ) );

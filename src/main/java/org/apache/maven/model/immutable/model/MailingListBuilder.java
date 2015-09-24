@@ -7,7 +7,7 @@ import javax.xml.stream.XMLStreamException;
 /**
  * Created by kristian on 24.09.15.
  */
-public class MailingListBuilder
+class MailingListBuilder
     extends BaseBuilder<MailingList>
 {
     private final LeafBuilder leafBuilder = new LeafBuilder();

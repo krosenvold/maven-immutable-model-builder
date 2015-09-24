@@ -8,7 +8,7 @@ import java.util.Properties;
 /**
  * Created by kristian on 24.09.15.
  */
-public class ActivationBuilder
+class ActivationBuilder
 {
     private final PropertiesBuilder propertiesBuilder = new PropertiesBuilder();
 

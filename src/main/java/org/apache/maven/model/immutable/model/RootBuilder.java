@@ -8,11 +8,6 @@ public class RootBuilder
 {
     private final ProjectBuilder projectBuilder = new ProjectBuilder();
 
-    private Project project;
-
-    private int depth;
-
-
     public Project build( XMLStreamReader2 node )
         throws XMLStreamException
     {

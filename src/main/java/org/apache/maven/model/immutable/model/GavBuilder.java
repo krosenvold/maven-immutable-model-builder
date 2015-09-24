@@ -6,11 +6,11 @@ import javax.xml.stream.XMLStreamException;
 
 class GavBuilder
 {
-    GroupId groupId = null;
+    private GroupId groupId = null;
 
-    ArtifactId artifactId = null;
+    private ArtifactId artifactId = null;
 
-    Version version = null;
+    private Version version = null;
 
     private final LeafBuilder groupIdBuilder = new LeafBuilder();
 

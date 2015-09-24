@@ -7,7 +7,7 @@ import javax.xml.stream.XMLStreamException;
 /**
  * Created by kristian on 24.09.15.
  */
-public class DependencyBuilder
+class DependencyBuilder
 {
     private final LeafBuilder groupIdBuilder = new LeafBuilder();
 

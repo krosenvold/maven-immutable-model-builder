@@ -4,7 +4,7 @@ import org.codehaus.stax2.XMLStreamReader2;
 
 import javax.xml.stream.XMLStreamException;
 
-public class ContributorBuilder
+class ContributorBuilder
     extends BaseBuilder
 {
     private final LeafBuilder leafBuilder = new LeafBuilder();
