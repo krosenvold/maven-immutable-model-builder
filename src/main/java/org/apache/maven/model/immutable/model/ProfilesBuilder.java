@@ -13,9 +13,9 @@ public class ProfilesBuilder
 {
     private final ProfileBuilder profileBuilder;
 
-    public ProfilesBuilder( BuildBuilder build )
+    public ProfilesBuilder( BuildBuilder build, ReportingBuilder reportingBuilder )
     {
-        profileBuilder = new ProfileBuilder( build );
+        profileBuilder = new ProfileBuilder( build, reportingBuilder );
 
     }
 

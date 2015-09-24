@@ -11,13 +11,14 @@ public class ProfileBuilder
 
     private final BuildBuilder buildBuilder;
 
-    private final ReportingBuilder reportingBuilder = new ReportingBuilder();
+    private final ReportingBuilder reportingBuilder;
 
     private final ActivationBuilder activationBuilder = new ActivationBuilder();
 
-    public ProfileBuilder( BuildBuilder build )
+    public ProfileBuilder( BuildBuilder build, ReportingBuilder reportingBuilder )
     {
         this.buildBuilder = build;
+        this.reportingBuilder = reportingBuilder;
     }
 
 

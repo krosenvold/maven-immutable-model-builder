@@ -99,14 +99,15 @@ public class ImmutableModelBuilderTest
     public void simpleBM2()
         throws IOException, XMLStreamException, XmlPullParserException
     {
-        first();
-        first();
-        first();
-        first();
-        second();
-        second();
-        second();
-        second();
+        for ( int i = 0; i < 10; i++ )
+        {
+            second();
+        }
+        System.gc();
+        for ( int i = 0; i < 10; i++ )
+        {
+            first();
+        }
     }
 
     @Test

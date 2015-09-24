@@ -43,11 +43,12 @@ class ProjectBuilder
 
     private final PrerequisitesBuilder prerequisitesBuilder = new PrerequisitesBuilder();
 
-    private final DependencyManagementBuilder dependencyManagementBuilder = new DependencyManagementBuilder();
-
     private final DependenciesBuilder dependenciesBuilder = new DependenciesBuilder();
 
-    private final ProfilesBuilder profilesBuilder = new ProfilesBuilder( build );
+    private final DependencyManagementBuilder dependencyManagementBuilder =
+        new DependencyManagementBuilder( dependenciesBuilder );
+
+    private final ProfilesBuilder profilesBuilder = new ProfilesBuilder( build, reportingBuilder );
 
     public Project build( XMLStreamReader2 node )
         throws XMLStreamException

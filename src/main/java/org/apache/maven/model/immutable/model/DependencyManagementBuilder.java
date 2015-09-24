@@ -11,7 +11,12 @@ import java.util.List;
 public class DependencyManagementBuilder
 {
 
-    private final DependenciesBuilder pluginBuilder = new DependenciesBuilder();
+    private final DependenciesBuilder dependenciesBuilder;
+
+    public DependencyManagementBuilder( DependenciesBuilder dependenciesBuilder )
+    {
+        this.dependenciesBuilder = dependenciesBuilder;
+    }
 
 
     public List<Dependency> build( XMLStreamReader2 node )
@@ -28,7 +33,7 @@ public class DependencyManagementBuilder
                     String localName = node.getLocalName();
                     if ( "dependencies".equals( node.getLocalName() ) )
                     {
-                        return pluginBuilder.build( node );
+                        return dependenciesBuilder.build( node );
                     }
                     else
                     {
