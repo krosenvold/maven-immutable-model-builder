@@ -12,6 +12,7 @@ import org.junit.Test;
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -19,6 +20,7 @@ import static org.junit.Assert.assertNotNull;
 public class ImmutableModelBuilderTest
 {
 
+    private final URL simpleTest = this.getClass().getResource( "/immutable/simpletest.xml" );
     @Test
     public void testBuildModel()
         throws Exception
@@ -140,7 +142,7 @@ public class ImmutableModelBuilderTest
         hc = 0;
         for ( int i = 0; i < 1000; i++ )
         {
-            Model model = readModel( "/immutable/simpletest.xml" );
+            Model model = readModel( simpleTest );
             hc += model.hashCode();
         }
         System.out.println( "xpp3 = " + ( System.currentTimeMillis() - start ) + "hc = " + hc );
@@ -155,7 +157,7 @@ public class ImmutableModelBuilderTest
         long hc = 0;
         for ( int i = 0; i < 1000; i++ )
         {
-            Project project = imb.readProject( "/immutable/simpletest.xml" );
+            Project project = imb.readProject( simpleTest );
             hc += project.hashCode();
         }
         System.out.println( "stax = " + ( System.currentTimeMillis() - start ) + "hc = " + hc );
@@ -172,5 +174,14 @@ public class ImmutableModelBuilderTest
         }
     }
 
+    private Model readModel( URL name )
+        throws IOException, XmlPullParserException
+    {
+        MavenXpp3ReaderEx org = new MavenXpp3ReaderEx();
+        try ( InputStream resourceAsStream = name.openStream() )
+        {
+            return org.read( resourceAsStream, true, new InputSource() );
+        }
+    }
 
 }

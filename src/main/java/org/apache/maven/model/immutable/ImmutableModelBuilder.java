@@ -9,13 +9,14 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 class ImmutableModelBuilder
 {
 
     XMLInputFactory2 xmlInputFactory = (XMLInputFactory2) XMLInputFactory.newInstance();
 
-    public Project buildModel( InputStream source )
+    private Project buildModel( InputStream source )
         throws XMLStreamException
     {
         XMLStreamReader2 streamReader = (XMLStreamReader2) xmlInputFactory.createXMLStreamReader( source );
@@ -32,5 +33,14 @@ class ImmutableModelBuilder
         return project;
     }
 
+    public Project readProject( URL name )
+        throws XMLStreamException, IOException
+    {
+        try ( InputStream resourceAsStream2 = name.openStream() )
+        {
+            Project project = buildModel( resourceAsStream2 );
+            return project;
+        }
+    }
 
 }
