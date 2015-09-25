@@ -1,10 +1,10 @@
 package org.apache.maven.model.immutable.model;
 
-public class ImmModelVersion
+public class ImmModelVersion2
 {
     private final String version;
 
-    public ImmModelVersion( String version )
+    public ImmModelVersion2( String version )
     {
         this.version = version;
     }

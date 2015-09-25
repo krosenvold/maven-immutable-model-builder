@@ -3,7 +3,7 @@ package org.apache.maven.model.immutable;
 import org.apache.maven.model.InputSource;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.Parent;
-import org.apache.maven.model.immutable.model.ImmPlugin;
+import org.apache.maven.model.immutable.model.ImmPlugin2;
 import org.apache.maven.model.immutable.model.ImmProject;
 import org.apache.maven.model.io.xpp3.MavenXpp3ReaderEx;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
@@ -22,8 +22,7 @@ import static org.junit.Assert.assertNotNull;
 public class ImmutableModelBuilderTest
 {
 
-    private final URL simpleTest = this.getClass()
-                                       .getResource( "/immutable/simpletest.xml" );
+    private final URL simpleTest = this.getClass().getResource( "/immutable/simpletest.xml" );
 
     @Test
     public void testBuildModel()
@@ -31,24 +30,14 @@ public class ImmutableModelBuilderTest
     {
         ImmutableModelBuilder imb = new ImmutableModelBuilder();
         ImmProject project = imb.readProject( "/immutable/simpletest.xml" );
-        ImmPlugin pluginA = project.getBuild()
-                                .getPlugins()
-                                .getPlugins()
-                                .get( 0 );
-        ImmPlugin pluginB = project.getBuild()
-                                .getPlugins()
-                                .getPlugins()
-                                .get( 1 );
+        ImmPlugin2 pluginA = project.getBuild().getPlugins().getPlugins().get( 0 );
+        ImmPlugin2 pluginB = project.getBuild().getPlugins().getPlugins().get( 1 );
         assertEquals( "A-G:A:1.0", pluginA.toString() );
         assertEquals( "B-G:B:2.0", pluginB.toString() );
-        assertEquals( "4.0.0", project.getModelVersion()
-                                      .getVersion() );
-        assertEquals( "gid", project.getGroupId()
-                                    .getGroupId() );
-        assertEquals( "art", project.getArtifactId()
-                                    .getArtifactId() );
-        assertEquals( "101-SNAPSHOT", project.getVersion()
-                                             .getVersion() );
+        assertEquals( "4.0.0", project.getModelVersion().getVersion() );
+        assertEquals( "gid", project.getGroupId().getGroupId() );
+        assertEquals( "art", project.getArtifactId().getArtifactId() );
+        assertEquals( "101-SNAPSHOT", project.getVersion().getVersion() );
     }
 
     @Test( expected = java.io.EOFException.class )
@@ -67,24 +56,14 @@ public class ImmutableModelBuilderTest
     {
         ImmutableModelBuilder imb = new ImmutableModelBuilder();
         ImmProject project = imb.readProject( "/immutable/simple-malformed-plugins.xml" );
-        ImmPlugin pluginA = project.getBuild()
-                                .getPlugins()
-                                .getPlugins()
-                                .get( 0 );
-        ImmPlugin pluginB = project.getBuild()
-                                .getPlugins()
-                                .getPlugins()
-                                .get( 1 );
+        ImmPlugin2 pluginA = project.getBuild().getPlugins().getPlugins().get( 0 );
+        ImmPlugin2 pluginB = project.getBuild().getPlugins().getPlugins().get( 1 );
         assertEquals( "A-G:A:1.0", pluginA.toString() );
         assertEquals( "B-G:B:2.0", pluginB.toString() );
-        assertEquals( "4.0.0", project.getModelVersion()
-                                      .getVersion() );
-        assertEquals( "gid", project.getGroupId()
-                                    .getGroupId() );
-        assertEquals( "art", project.getArtifactId()
-                                    .getArtifactId() );
-        assertEquals( "101-SNAPSHOT", project.getVersion()
-                                             .getVersion() );
+        assertEquals( "4.0.0", project.getModelVersion().getVersion() );
+        assertEquals( "gid", project.getGroupId().getGroupId() );
+        assertEquals( "art", project.getArtifactId().getArtifactId() );
+        assertEquals( "101-SNAPSHOT", project.getVersion().getVersion() );
     }
 
     @Test
@@ -145,62 +124,63 @@ public class ImmutableModelBuilderTest
 
     private void assertCoreModel( Model model )
     {
-        assertEquals( "maven", model.getArtifactId());
-        assertEquals( "zz", model.getGroupId());
-        assertEquals( "3.3.7-SNAPSHOT", model.getVersion());
-        assertEquals( "pom", model.getPackaging());
-        assertEquals("Apache Maven Not", model.getName());
-        assertEquals("DescrA", model.getDescription());
-        assertEquals("http://maven.apache.org/ref/${project.version}/", model.getUrl());
-        assertEquals("2001", model.getInceptionYear());
+        assertEquals( "maven", model.getArtifactId() );
+        assertEquals( "zz", model.getGroupId() );
+        assertEquals( "3.3.7-SNAPSHOT", model.getVersion() );
+        assertEquals( "pom", model.getPackaging() );
+        assertEquals( "Apache Maven Not", model.getName() );
+        assertEquals( "DescrA", model.getDescription() );
+        assertEquals( "http://maven.apache.org/ref/${project.version}/", model.getUrl() );
+        assertEquals( "2001", model.getInceptionYear() );
         assertParent( model.getParent() );
         assertProperties( model );
         assertModules( model );
         assertScm( model );
         assertIssueManagement( model );
-        assertCiManagement( model);
+        assertCiManagement( model );
     }
 
     private void assertIssueManagement( Model model )
     {
-        assertEquals("jira", model.getIssueManagement().getSystem());
-        assertEquals("https://issues.apache.org/jira/browse/MNG", model.getIssueManagement().getUrl());
+        assertEquals( "jira", model.getIssueManagement().getSystem() );
+        assertEquals( "https://issues.apache.org/jira/browse/MNG", model.getIssueManagement().getUrl() );
     }
 
     private void assertDistributionManagement( Model model )
     {
-        assertEquals("http://maven.apache.org/download.html", model.getDistributionManagement().getDownloadUrl());
-        assertEquals("https://issues.apache.org/jira/browse/MNG", model.getIssueManagement().getUrl());
+        assertEquals( "http://maven.apache.org/download.html", model.getDistributionManagement().getDownloadUrl() );
+        assertEquals( "https://issues.apache.org/jira/browse/MNG", model.getIssueManagement().getUrl() );
     }
 
     private void assertCiManagement( Model model )
     {
-        assertEquals("Jenkins", model.getCiManagement().getSystem());
-        assertEquals("https://builds.apache.org/job/maven-3.x/", model.getCiManagement().getUrl());
+        assertEquals( "Jenkins", model.getCiManagement().getSystem() );
+        assertEquals( "https://builds.apache.org/job/maven-3.x/", model.getCiManagement().getUrl() );
     }
 
     private void assertScm( Model model )
     {
-        assertEquals( "scm:git:https://git-wip-us.apache.org/repos/asf/maven.git", model.getScm().getConnection());
-        assertEquals( "scm:git!:https://git-wip-us.apache.org/repos/asf/maven.git", model.getScm().getDeveloperConnection());
-        assertEquals( "https://github.com/apache/maven/tree/${project.scm.tag}", model.getScm().getUrl());
-        assertEquals( "master", model.getScm().getTag());
+        assertEquals( "scm:git:https://git-wip-us.apache.org/repos/asf/maven.git", model.getScm().getConnection() );
+        assertEquals( "scm:git!:https://git-wip-us.apache.org/repos/asf/maven.git",
+                      model.getScm().getDeveloperConnection() );
+        assertEquals( "https://github.com/apache/maven/tree/${project.scm.tag}", model.getScm().getUrl() );
+        assertEquals( "master", model.getScm().getTag() );
     }
 
     private void assertModules( Model model )
     {
-        assertEquals( 13, model.getModules().size());
-        assertEquals( "maven-plugin-api", model.getModules().get(0));
-        assertEquals( "apache-maven", model.getModules().get(12));
+        assertEquals( 13, model.getModules().size() );
+        assertEquals( "maven-plugin-api", model.getModules().get( 0 ) );
+        assertEquals( "apache-maven", model.getModules().get( 12 ) );
     }
 
     private void assertProperties( Model model )
     {
         final Properties properties = model.getProperties();
-        assertEquals( 25, properties.size());
-        assertEquals( "1.8", properties.get("maven.compiler.source")); // wishful thinking
-        assertEquals( "2.5.2", properties.get("classWorldsVersion"));
-        assertEquals( "**/package-info.java", properties.get("checkstyle.excludes"));
+        assertEquals( 25, properties.size() );
+        assertEquals( "1.8", properties.get( "maven.compiler.source" ) ); // wishful thinking
+        assertEquals( "2.5.2", properties.get( "classWorldsVersion" ) );
+        assertEquals( "**/package-info.java", properties.get( "checkstyle.excludes" ) );
     }
 
     private void assertParent( Parent parent )
@@ -249,8 +229,7 @@ public class ImmutableModelBuilderTest
         throws IOException, XmlPullParserException
     {
         MavenXpp3ReaderEx org = new MavenXpp3ReaderEx();
-        try (InputStream resourceAsStream = this.getClass()
-                                                .getResourceAsStream( name ))
+        try ( InputStream resourceAsStream = this.getClass().getResourceAsStream( name ) )
         {
             return org.read( resourceAsStream, true, new InputSource() );
         }
@@ -260,7 +239,7 @@ public class ImmutableModelBuilderTest
         throws IOException, XmlPullParserException
     {
         MavenXpp3ReaderEx org = new MavenXpp3ReaderEx();
-        try (InputStream resourceAsStream = name.openStream())
+        try ( InputStream resourceAsStream = name.openStream() )
         {
             return org.read( resourceAsStream, true, new InputSource() );
         }

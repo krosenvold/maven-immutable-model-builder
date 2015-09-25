@@ -48,7 +48,7 @@ class ProjectBuilder
         int startLevel = node.getDepth();
 
         ImmBuild build = null;
-        ImmModelVersion modelVersion = null;
+        ImmModelVersion2 modelVersion = null;
         ImmGroupId groupId = null;
         ImmArtifactId artifactId = null;
         ImmVersion version = null;
@@ -86,7 +86,7 @@ class ProjectBuilder
                             build = this.build.build( node );
                             break;
                         case "modelVersion":
-                            modelVersion = new ImmModelVersion( leafBuilder.singleTextValue( node ) );
+                            modelVersion = new ImmModelVersion2( leafBuilder.singleTextValue( node ) );
                             break;
                         case "groupId":
                             groupId = new ImmGroupId( leafBuilder.singleTextValue( node ) );

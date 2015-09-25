@@ -7,9 +7,9 @@ import java.util.List;
 public class ImmPlugins
     extends ModelElement
 {
-    private final List<ImmPlugin> plugins;
+    private final List<ImmPlugin2> plugins;
 
-    public ImmPlugins( List<ImmPlugin> plugins )
+    public ImmPlugins( List<ImmPlugin2> plugins )
     {
         this.plugins = plugins;
     }
@@ -19,7 +19,7 @@ public class ImmPlugins
         return plugins.size();
     }
 
-    public List<ImmPlugin> getPlugins()
+    public List<ImmPlugin2> getPlugins()
     {
         return plugins;
     }

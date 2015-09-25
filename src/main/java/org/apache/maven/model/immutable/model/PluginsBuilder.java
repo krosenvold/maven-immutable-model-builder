@@ -16,7 +16,7 @@ class PluginsBuilder
     {
         int startLevel = node.getDepth();
 
-        List<ImmPlugin> plugins = new ArrayList<>();
+        List<ImmPlugin2> plugins = new ArrayList<>();
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {

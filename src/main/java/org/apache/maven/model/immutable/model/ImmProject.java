@@ -8,7 +8,7 @@ public class ImmProject
 
     private final ImmBuild build;
 
-    private final ImmModelVersion modelVersion;
+    private final ImmModelVersion2 modelVersion;
 
     private final ImmGroupId groupId;
 
@@ -16,7 +16,7 @@ public class ImmProject
 
     private final ImmVersion version;
 
-    public ImmProject( ImmBuild build, ImmModelVersion modelVersion, ImmGroupId groupId, ImmArtifactId artifactId,
+    public ImmProject( ImmBuild build, ImmModelVersion2 modelVersion, ImmGroupId groupId, ImmArtifactId artifactId,
                        ImmVersion version )
     {
         this.build = build;
@@ -31,7 +31,7 @@ public class ImmProject
         return build;
     }
 
-    public ImmModelVersion getModelVersion()
+    public ImmModelVersion2 getModelVersion()
     {
         return modelVersion;
     }
