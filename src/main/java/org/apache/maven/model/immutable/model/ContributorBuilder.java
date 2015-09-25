@@ -28,6 +28,7 @@ class ContributorBuilder
         String url = null;
         String organization = null;
         String organizationUrl = null;
+        String timeZone = null;
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
@@ -53,12 +54,15 @@ class ContributorBuilder
                         case "organizationUrl":
                             organizationUrl = leafBuilder.singleTextValue( node ) ;
                             break;
+                        case "timezone":
+                            timeZone = leafBuilder.singleTextValue( node ) ;
+                            break;
                         default:
                             throw new RuntimeException( "Unsupported child tag " + localName );
                     }
             }
         }
-        return new Contributor( name, email, url, organization, organizationUrl );
+        return new Contributor( name, email, url, organization, organizationUrl,timeZone );
 
     }
 }

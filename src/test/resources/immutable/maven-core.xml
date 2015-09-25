@@ -98,7 +98,6 @@
   </ciManagement>
   <distributionManagement>
     <downloadUrl>http://maven.apache.org/download.html</downloadUrl>
-    <status>well done</status>
     <site>
       <id>apache.website</id>
       <url>scm:svn:https://svn.apache.org/repos/infra/websites/production/maven/components/${maven.site.path}</url>
@@ -372,7 +371,7 @@
   <!--bootstrap-start-comment-->
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
+      <groupId>junit.org</groupId>
       <artifactId>junit</artifactId>
       <version>${junitVersion}</version>
       <scope>test</scope>
@@ -445,6 +444,11 @@
               </goals>
             </execution>
           </executions>
+          <configuration>
+            <lifecycleMappingMetadata>
+              foo
+            </lifecycleMappingMetadata>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.felix</groupId>
@@ -567,6 +571,15 @@
   <profiles>
     <profile>
       <id>apache-release</id>
+      <activation>
+        <jdk>1.9</jdk>
+        <file><exists>foo.txt</exists><missing>bar.txt</missing></file>
+        <activeByDefault>false</activeByDefault>
+        <os><arch>i386</arch><family>debian</family><name>raspian</name><version>1.0</version></os>
+        <property>
+          <name>maven.repo.local</name>
+        </property>
+      </activation>
       <build>
         <plugins>
           <plugin>

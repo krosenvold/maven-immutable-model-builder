@@ -12,7 +12,8 @@ public class Contributor
 
     private final String organizationUrl;
 
-    public Contributor( String name, String email, String url, String organization, String organizationUrl )
+    public Contributor( String name, String email, String url, String organization, String organizationUrl,
+                        String timeZone )
     {
 
         this.name = name;
