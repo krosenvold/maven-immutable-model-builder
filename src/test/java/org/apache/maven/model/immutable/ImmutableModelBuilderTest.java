@@ -1,5 +1,8 @@
 package org.apache.maven.model.immutable;
 
+import org.apache.maven.model.Contributor;
+import org.apache.maven.model.Dependency;
+import org.apache.maven.model.DistributionManagement;
 import org.apache.maven.model.InputSource;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.Parent;
@@ -14,6 +17,7 @@ import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.List;
 import java.util.Properties;
 
 import static org.junit.Assert.assertEquals;
@@ -138,6 +142,42 @@ public class ImmutableModelBuilderTest
         assertScm( model );
         assertIssueManagement( model );
         assertCiManagement( model );
+        assertCiManagement( model);
+        assertDistributionManagement( model);
+        assertContributors( model );
+        assertEquals("2.2.1", model.getPrerequisites().getMaven());
+        assertDependencyManagement( model );
+
+    }
+
+    private void assertDependencyManagement( Model model )
+    {
+        final List<Dependency> dependencies = model.getDependencyManagement()
+                                                   .getDependencies();
+        assertEquals( 36, dependencies.size() );
+        final Dependency d1 = dependencies.get( 0 );
+        assertEquals( "org.apache.maven", d1.getGroupId() );
+        assertEquals( "maven-model", d1.getArtifactId() );
+        assertEquals( "${project.version}", d1.getVersion() );
+        assertEquals( "foo", d1.getExclusions().get(0).getGroupId() );
+        assertEquals( "bar", d1.getExclusions().get(0).getArtifactId() );
+        assertEquals( "fud", d1.getClassifier() );
+        assertEquals( "jar", d1.getType() );
+        assertEquals( "abc", d1.getSystemPath() );
+        assertEquals( "true", d1.getOptional() );
+    }
+
+    private void assertContributors( Model model )
+    {
+        assertEquals(7, model.getContributors().size());
+        final Contributor c1 = model.getContributors().get( 0 );
+        assertEquals( "Stuart McCulloch", c1.getName() );
+        assertEquals( "stuart@test.com", c1.getEmail());
+        assertEquals( "anOrg", c1.getOrganization());
+        assertEquals( "http://anOrg.org", c1.getOrganizationUrl());
+        assertEquals( "-7", c1.getTimezone());
+        assertEquals( "http://me", c1.getUrl());
+        assertEquals("Phil Pratt-Szeliga (MNG-5645)", model.getContributors().get(6).getName());
     }
 
     private void assertIssueManagement( Model model )
@@ -148,8 +188,15 @@ public class ImmutableModelBuilderTest
 
     private void assertDistributionManagement( Model model )
     {
-        assertEquals( "http://maven.apache.org/download.html", model.getDistributionManagement().getDownloadUrl() );
-        assertEquals( "https://issues.apache.org/jira/browse/MNG", model.getIssueManagement().getUrl() );
+        final DistributionManagement distMgmt = model.getDistributionManagement();
+        assertEquals( "http://maven.apache.org/download.html", distMgmt
+                                                                    .getDownloadUrl());
+        assertEquals( "well done", distMgmt
+                                        .getStatus());
+        assertEquals( "apache.website", distMgmt
+                                             .getSite().getId());
+        assertEquals( "scm:svn:https://svn.apache.org/repos/infra/websites/production/maven/components/${maven.site.path}", distMgmt
+                                                                                                                                 .getSite().getUrl());
     }
 
     private void assertCiManagement( Model model )
