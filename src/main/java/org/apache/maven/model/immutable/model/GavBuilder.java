@@ -6,11 +6,11 @@ import javax.xml.stream.XMLStreamException;
 
 class GavBuilder
 {
-    private GroupId groupId = null;
+    private ImmGroupId groupId = null;
 
-    private ArtifactId artifactId = null;
+    private ImmArtifactId artifactId = null;
 
-    private Version version = null;
+    private ImmVersion version = null;
 
     private final LeafBuilder groupIdBuilder = new LeafBuilder();
 
@@ -26,20 +26,21 @@ class GavBuilder
         switch ( localName )
         {
             case "groupId":
-                groupId = new GroupId( groupIdBuilder.singleTextValue( node ) );
+                groupId = new ImmGroupId( groupIdBuilder.singleTextValue( node ) );
                 return true;
             case "artifactId":
-                artifactId = new ArtifactId( artifactIdBuilder.singleTextValue( node ) );
+                artifactId = new ImmArtifactId( artifactIdBuilder.singleTextValue( node ) );
                 return true;
             case "version":
-                version = new Version( versionBuilder.singleTextValue( node ) );
+                version = new ImmVersion( versionBuilder.singleTextValue( node ) );
                 return true;
             default:
                 return false;
         }
     }
 
-    public Gav gav(){
+    public Gav gav()
+    {
         return new Gav( groupId, artifactId, version );
     }
 

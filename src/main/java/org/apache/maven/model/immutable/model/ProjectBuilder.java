@@ -42,35 +42,35 @@ class ProjectBuilder
 
     private final ProfilesBuilder profilesBuilder = new ProfilesBuilder( build, reportingBuilder );
 
-    public Project build( XMLStreamReader2 node )
+    public ImmProject build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
 
-        Build build = null;
-        ModelVersion modelVersion = null;
-        GroupId groupId = null;
-        ArtifactId artifactId = null;
-        Version version = null;
-        ProjectName name = null;
-        ProjectDescription description = null;
-        ProjectUrl url = null;
-        MailingLists mailingLists = null;
-        Reporting reporting = null;
-        Parent parent = null;
+        ImmBuild build = null;
+        ImmModelVersion modelVersion = null;
+        ImmGroupId groupId = null;
+        ImmArtifactId artifactId = null;
+        ImmVersion version = null;
+        ImmProjectName name = null;
+        ImmProjectDescription description = null;
+        ImmProjectUrl url = null;
+        ImmMailingLists mailingLists = null;
+        ImmReporting reporting = null;
+        ImmParent parent = null;
         String packaging = null;
         String inceptionYear = null;
         Properties properties = null;
         List<String> modules = null;
-        Scm scm;
-        IssueManagement issueManagement;
+        ImmScm scm;
+        ImmIssueManagement issueManagement;
         CiManagement ciManagement;
         DistributionManagement distributionManagement;
         List<Contributor> contributors;
         Properties prerequisites;
-        List<Dependency> dependencyManagement;
-        List<Dependency> dependencies;
-        List<Profile> profiles;
+        List<ImmDependency> dependencyManagement;
+        List<ImmDependency> dependencies;
+        List<ImmProfile> profiles;
 
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
@@ -86,25 +86,25 @@ class ProjectBuilder
                             build = this.build.build( node );
                             break;
                         case "modelVersion":
-                            modelVersion = new ModelVersion( leafBuilder.singleTextValue( node ) );
+                            modelVersion = new ImmModelVersion( leafBuilder.singleTextValue( node ) );
                             break;
                         case "groupId":
-                            groupId = new GroupId( leafBuilder.singleTextValue( node ) );
+                            groupId = new ImmGroupId( leafBuilder.singleTextValue( node ) );
                             break;
                         case "artifactId":
-                            artifactId = new ArtifactId( leafBuilder.singleTextValue( node ) );
+                            artifactId = new ImmArtifactId( leafBuilder.singleTextValue( node ) );
                             break;
                         case "version":
-                            version = new Version( leafBuilder.singleTextValue( node ) );
+                            version = new ImmVersion( leafBuilder.singleTextValue( node ) );
                             break;
                         case "name":
-                            name = new ProjectName( leafBuilder.singleTextValue( node ) );
+                            name = new ImmProjectName( leafBuilder.singleTextValue( node ) );
                             break;
                         case "description":
-                            description = new ProjectDescription( leafBuilder.singleTextValue( node ) );
+                            description = new ImmProjectDescription( leafBuilder.singleTextValue( node ) );
                             break;
                         case "url":
-                            url = new ProjectUrl( leafBuilder.singleTextValue( node ) );
+                            url = new ImmProjectUrl( leafBuilder.singleTextValue( node ) );
                             break;
                         case "mailingLists":
                             mailingLists = mailingListsBuilder.build( node );
@@ -164,7 +164,7 @@ class ProjectBuilder
                     }
             }
         }
-        return new Project( build, modelVersion, groupId, artifactId, version );
+        return new ImmProject( build, modelVersion, groupId, artifactId, version );
 
     }
 }

@@ -4,12 +4,12 @@ import org.apache.maven.model.immutable.ModelElement;
 
 import java.util.List;
 
-public class Plugins
+public class ImmPlugins
     extends ModelElement
 {
-    private final List<Plugin> plugins;
+    private final List<ImmPlugin> plugins;
 
-    public Plugins( List<Plugin> plugins )
+    public ImmPlugins( List<ImmPlugin> plugins )
     {
         this.plugins = plugins;
     }
@@ -19,7 +19,7 @@ public class Plugins
         return plugins.size();
     }
 
-    public List<Plugin> getPlugins()
+    public List<ImmPlugin> getPlugins()
     {
         return plugins;
     }

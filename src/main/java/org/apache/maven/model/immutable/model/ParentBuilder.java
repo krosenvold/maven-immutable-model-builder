@@ -8,7 +8,7 @@ class ParentBuilder
 {
     private final LeafBuilder rp = new LeafBuilder();
 
-    public Parent build( XMLStreamReader2 node )
+    public ImmParent build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
@@ -38,6 +38,6 @@ class ParentBuilder
             }
 
         }
-        return new Parent( relativePath, gavBuilder.gav() );
+        return new ImmParent( relativePath, gavBuilder.gav() );
     }
 }

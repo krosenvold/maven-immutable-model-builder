@@ -9,12 +9,12 @@ class ReportingBuilder
 
     PluginsBuilder pluginsBuilder = new PluginsBuilder();
 
-    public Reporting build( XMLStreamReader2 node )
+    public ImmReporting build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
 
-        Plugins build = null;
+        ImmPlugins build = null;
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
@@ -34,7 +34,7 @@ class ReportingBuilder
 
             }
         }
-        return new Reporting( build );
+        return new ImmReporting( build );
     }
 
 }

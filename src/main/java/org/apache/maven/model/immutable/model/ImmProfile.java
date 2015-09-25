@@ -1,13 +1,11 @@
 package org.apache.maven.model.immutable.model;
 
-import java.util.Properties;
-
 /**
  * Created by kristian on 24.09.15.
  */
-public class Activation
+public class ImmProfile
 {
-    public Activation( Properties properties )
+    public ImmProfile( String id, ImmBuild build, ImmReporting reporting )
     {
 
     }

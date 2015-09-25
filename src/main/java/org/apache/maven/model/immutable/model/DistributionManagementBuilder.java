@@ -17,7 +17,7 @@ class DistributionManagementBuilder
     {
         int startLevel = node.getDepth();
 
-        Site site = null;
+        ImmSite site = null;
         String downloadUrl = null;
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
@@ -34,7 +34,7 @@ class DistributionManagementBuilder
                             site = this.siteBuilder.build( node );
                             break;
                         case "downloadUrl":
-                            downloadUrl = leafBuilder.singleTextValue( node ) ;
+                            downloadUrl = leafBuilder.singleTextValue( node );
                             break;
                         default:
                             throw new RuntimeException( "Unsupported child tag " + localName );

@@ -5,12 +5,12 @@ import org.apache.maven.model.immutable.ModelElement;
 /**
  * Created by kristian on 20.09.15.
  */
-public class ArtifactId
+public class ImmArtifactId
     extends ModelElement
 {
     private final String artifactId;
 
-    public ArtifactId( String artifactId )
+    public ImmArtifactId( String artifactId )
     {
         this.artifactId = artifactId;
     }

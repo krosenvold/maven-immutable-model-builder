@@ -8,11 +8,11 @@ import javax.xml.stream.XMLStreamException;
  * Created by kristian on 24.09.15.
  */
 class MailingListBuilder
-    extends BaseBuilder<MailingList>
+    extends BaseBuilder<ImmMailingList>
 {
     private final LeafBuilder leafBuilder = new LeafBuilder();
 
-    public MailingList build( XMLStreamReader2 node )
+    public ImmMailingList build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
@@ -46,6 +46,6 @@ class MailingListBuilder
             }
         }
 
-        return new MailingList( name, post, subscribe, unsubscribe );
+        return new ImmMailingList( name, post, subscribe, unsubscribe );
     }
 }

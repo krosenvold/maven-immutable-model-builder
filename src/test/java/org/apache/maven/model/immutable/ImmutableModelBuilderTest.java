@@ -3,8 +3,8 @@ package org.apache.maven.model.immutable;
 import org.apache.maven.model.InputSource;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.Parent;
-import org.apache.maven.model.immutable.model.Plugin;
-import org.apache.maven.model.immutable.model.Project;
+import org.apache.maven.model.immutable.model.ImmPlugin;
+import org.apache.maven.model.immutable.model.ImmProject;
 import org.apache.maven.model.io.xpp3.MavenXpp3ReaderEx;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.junit.Ignore;
@@ -30,12 +30,12 @@ public class ImmutableModelBuilderTest
         throws Exception
     {
         ImmutableModelBuilder imb = new ImmutableModelBuilder();
-        Project project = imb.readProject( "/immutable/simpletest.xml" );
-        Plugin pluginA = project.getBuild()
+        ImmProject project = imb.readProject( "/immutable/simpletest.xml" );
+        ImmPlugin pluginA = project.getBuild()
                                 .getPlugins()
                                 .getPlugins()
                                 .get( 0 );
-        Plugin pluginB = project.getBuild()
+        ImmPlugin pluginB = project.getBuild()
                                 .getPlugins()
                                 .getPlugins()
                                 .get( 1 );
@@ -66,12 +66,12 @@ public class ImmutableModelBuilderTest
         throws Exception
     {
         ImmutableModelBuilder imb = new ImmutableModelBuilder();
-        Project project = imb.readProject( "/immutable/simple-malformed-plugins.xml" );
-        Plugin pluginA = project.getBuild()
+        ImmProject project = imb.readProject( "/immutable/simple-malformed-plugins.xml" );
+        ImmPlugin pluginA = project.getBuild()
                                 .getPlugins()
                                 .getPlugins()
                                 .get( 0 );
-        Plugin pluginB = project.getBuild()
+        ImmPlugin pluginB = project.getBuild()
                                 .getPlugins()
                                 .getPlugins()
                                 .get( 1 );
@@ -121,7 +121,7 @@ public class ImmutableModelBuilderTest
         throws IOException, XMLStreamException
     {
         ImmutableModelBuilder imb = new ImmutableModelBuilder();
-        Project project = imb.readProject( "/immutable/plugin-configuration-parent.xml" );
+        ImmProject project = imb.readProject( "/immutable/plugin-configuration-parent.xml" );
         assertNotNull( project );
     }
 
@@ -130,7 +130,7 @@ public class ImmutableModelBuilderTest
         throws IOException, XMLStreamException
     {
         ImmutableModelBuilder imb = new ImmutableModelBuilder();
-        Project project = imb.readProject( "/immutable/maven-core.xml" );
+        ImmProject project = imb.readProject( "/immutable/maven-core.xml" );
         assertNotNull( project );
     }
 
@@ -238,7 +238,7 @@ public class ImmutableModelBuilderTest
         long hc = 0;
         for ( int i = 0; i < 1000; i++ )
         {
-            Project project = imb.readProject( simpleTest );
+            ImmProject project = imb.readProject( simpleTest );
             hc += project.hashCode();
         }
         System.out.println( "stax = " + ( System.currentTimeMillis() - start ) + "hc = " + hc );

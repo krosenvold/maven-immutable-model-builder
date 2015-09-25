@@ -15,7 +15,7 @@ class PluginManagementBuilder
     }
 
 
-    public Plugins build( XMLStreamReader2 node )
+    public ImmPlugins build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();

@@ -3,12 +3,12 @@ package org.apache.maven.model.immutable.model;
 /**
  * Created by kristian on 24.09.15.
  */
-public class ProjectName
+public class ImmProjectName
 {
 
     private final String name;
 
-    public ProjectName( String name )
+    public ImmProjectName( String name )
     {
         this.name = name;
     }

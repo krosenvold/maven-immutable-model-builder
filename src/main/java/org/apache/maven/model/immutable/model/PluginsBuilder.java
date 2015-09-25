@@ -11,12 +11,12 @@ class PluginsBuilder
     private final PluginBuilder pluginBuilder = new PluginBuilder();
 
 
-    public Plugins build( XMLStreamReader2 node )
+    public ImmPlugins build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
 
-        List<Plugin> plugins = new ArrayList<>();
+        List<ImmPlugin> plugins = new ArrayList<>();
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
@@ -36,6 +36,6 @@ class PluginsBuilder
 
             }
         }
-        return new Plugins( plugins );
+        return new ImmPlugins( plugins );
     }
 }

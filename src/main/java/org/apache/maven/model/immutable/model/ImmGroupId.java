@@ -3,15 +3,15 @@ package org.apache.maven.model.immutable.model;
 import org.apache.maven.model.immutable.ModelElement;
 
 /**
- * Created by kristian on 20.09.15.
+ * @author Kristian Rosenvold krosenvold@apache.org
  */
-public class GroupId
+public class ImmGroupId
     extends ModelElement
 {
 
     private final String groupId;
 
-    public GroupId( String groupId )
+    public ImmGroupId( String groupId )
     {
         this.groupId = groupId;
     }

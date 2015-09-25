@@ -2,21 +2,22 @@ package org.apache.maven.model.immutable.model;
 
 import org.apache.maven.model.immutable.ModelElement;
 
-public class Plugin
+public class ImmPlugin
     extends ModelElement
 {
-    private final GroupId groupId;
+    private final ImmGroupId groupId;
 
-    private final ArtifactId artifactId;
+    private final ImmArtifactId artifactId;
 
-    private final Version version;
+    private final ImmVersion version;
 
     private final String configuration;
 
     private final String reportSets;
 
 
-    public Plugin( ArtifactId artifactId, GroupId groupId, Version version, String configuration, String reportSets )
+    public ImmPlugin( ImmArtifactId artifactId, ImmGroupId groupId, ImmVersion version, String configuration,
+                      String reportSets )
     {
         this.artifactId = artifactId;
         this.groupId = groupId;

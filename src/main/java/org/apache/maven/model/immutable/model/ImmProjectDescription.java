@@ -3,11 +3,11 @@ package org.apache.maven.model.immutable.model;
 /**
  * Created by kristian on 24.09.15.
  */
-public class ProjectDescription
+public class ImmProjectDescription
 {
     private final String description;
 
-    public ProjectDescription( String description )
+    public ImmProjectDescription( String description )
     {
         this.description = description;
     }

@@ -10,7 +10,7 @@ class ScmBuilder
     private final LeafBuilder leafBuilder = new LeafBuilder();
 
 
-    public Scm build( XMLStreamReader2 node )
+    public ImmScm build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
@@ -19,7 +19,6 @@ class ScmBuilder
         String developerConnection = null;
         String url = null;
         String tag = null;
-
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
@@ -38,7 +37,7 @@ class ScmBuilder
                             developerConnection = leafBuilder.singleTextValue( node );
                             break;
                         case "url":
-                            url = leafBuilder.singleTextValue( node ) ;
+                            url = leafBuilder.singleTextValue( node );
                             break;
                         case "tag":
                             tag = leafBuilder.singleTextValue( node );
@@ -48,7 +47,7 @@ class ScmBuilder
                     }
             }
         }
-        return new Scm( connection, developerConnection, url, tag );
+        return new ImmScm( connection, developerConnection, url, tag );
 
     }
 }

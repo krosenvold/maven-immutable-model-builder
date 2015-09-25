@@ -1,6 +1,6 @@
 package org.apache.maven.model.immutable.model;
 
-public class Scm
+public class ImmScm
 {
     private final String connection;
 
@@ -11,7 +11,7 @@ public class Scm
     private final String tag;
 
 
-    public Scm( String connection, String developerConnection, String url, String tag )
+    public ImmScm( String connection, String developerConnection, String url, String tag )
     {
 
         this.connection = connection;

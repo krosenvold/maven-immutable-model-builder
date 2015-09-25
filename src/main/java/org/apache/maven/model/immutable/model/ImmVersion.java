@@ -1,10 +1,13 @@
 package org.apache.maven.model.immutable.model;
 
-public class ModelVersion
+import org.apache.maven.model.immutable.ModelElement;
+
+public class ImmVersion
+    extends ModelElement
 {
     private final String version;
 
-    public ModelVersion( String version )
+    public ImmVersion( String version )
     {
         this.version = version;
     }
@@ -13,5 +16,4 @@ public class ModelVersion
     {
         return version;
     }
-
 }

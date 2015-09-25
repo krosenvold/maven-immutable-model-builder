@@ -9,7 +9,7 @@ class SiteBuilder
 {
     private final LeafBuilder leafBuilder = LeafBuilder.INSTANCE;
 
-    public Site build( XMLStreamReader2 node )
+    public ImmSite build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
@@ -31,14 +31,14 @@ class SiteBuilder
                             connection = this.leafBuilder.singleTextValue( node );
                             break;
                         case "url":
-                            url = leafBuilder.singleTextValue( node ) ;
+                            url = leafBuilder.singleTextValue( node );
                             break;
                         default:
                             throw new RuntimeException( "Unsupported child tag " + localName );
                     }
             }
         }
-        return new Site( connection, url );
+        return new ImmSite( connection, url );
 
     }
 }

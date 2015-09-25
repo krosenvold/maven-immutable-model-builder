@@ -1,12 +1,12 @@
 package org.apache.maven.model.immutable.model;
 
-public class Dependency
+public class ImmDependency
 {
-    private final GroupId groupId;
+    private final ImmGroupId groupId;
 
-    private final ArtifactId artifactId;
+    private final ImmArtifactId artifactId;
 
-    private final Version version;
+    private final ImmVersion version;
 
     private final String classifier;
 
@@ -18,8 +18,8 @@ public class Dependency
 
     private final String scope;
 
-    public Dependency( GroupId groupId, ArtifactId artifactId, Version version, String classifier, String type,
-                       String systemPath, String optional, String scope )
+    public ImmDependency( ImmGroupId groupId, ImmArtifactId artifactId, ImmVersion version, String classifier,
+                          String type, String systemPath, String optional, String scope )
     {
         this.groupId = groupId;
         this.artifactId = artifactId;

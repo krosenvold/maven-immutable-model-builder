@@ -13,12 +13,12 @@ class MailingListsBuilder
     private final MailingListBuilder listBuilder = new MailingListBuilder();
 
 
-    public MailingLists build( XMLStreamReader2 node )
+    public ImmMailingLists build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
 
-        List<MailingList> lists = new ArrayList<>();
+        List<ImmMailingList> lists = new ArrayList<>();
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
@@ -38,6 +38,6 @@ class MailingListsBuilder
 
             }
         }
-        return new MailingLists( lists );
+        return new ImmMailingLists( lists );
     }
 }

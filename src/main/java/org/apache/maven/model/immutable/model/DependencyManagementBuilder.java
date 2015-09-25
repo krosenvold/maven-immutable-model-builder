@@ -19,7 +19,7 @@ class DependencyManagementBuilder
     }
 
 
-    public List<Dependency> build( XMLStreamReader2 node )
+    public List<ImmDependency> build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();

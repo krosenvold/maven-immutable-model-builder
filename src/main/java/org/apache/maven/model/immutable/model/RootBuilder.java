@@ -8,12 +8,12 @@ public class RootBuilder
 {
     private final ProjectBuilder projectBuilder = new ProjectBuilder();
 
-    public Project build( XMLStreamReader2 node )
+    public ImmProject build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
 
-        Project build1 = null;
+        ImmProject build1 = null;
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
             int eventType = node.next();

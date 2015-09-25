@@ -10,7 +10,7 @@ class IssueManagementBuilder
     private final LeafBuilder leafBuilder = new LeafBuilder();
 
 
-    public IssueManagement build( XMLStreamReader2 node )
+    public ImmIssueManagement build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
@@ -32,14 +32,14 @@ class IssueManagementBuilder
                             connection = this.leafBuilder.singleTextValue( node );
                             break;
                         case "url":
-                            url = leafBuilder.singleTextValue( node ) ;
+                            url = leafBuilder.singleTextValue( node );
                             break;
                         default:
                             throw new RuntimeException( "Unsupported child tag " + localName );
                     }
             }
         }
-        return new IssueManagement( connection, url );
+        return new ImmIssueManagement( connection, url );
 
     }
 }

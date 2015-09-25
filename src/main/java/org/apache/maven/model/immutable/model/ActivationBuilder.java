@@ -13,7 +13,7 @@ class ActivationBuilder
     private final PropertiesBuilder propertiesBuilder = new PropertiesBuilder();
 
 
-    public Activation build( XMLStreamReader2 node )
+    public ImmActivation build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
@@ -38,6 +38,6 @@ class ActivationBuilder
             }
         }
 
-        return new Activation( properties );
+        return new ImmActivation( properties );
     }
 }

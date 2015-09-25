@@ -5,18 +5,18 @@ import org.apache.maven.model.immutable.ModelElement;
 /**
  * Created by kristian on 20.09.15.
  */
-public class Build
+public class ImmBuild
     extends ModelElement
 
 {
-    private final Plugins plugins;
+    private final ImmPlugins plugins;
 
-    public Build( Plugins plugins, Plugins pluginManagement )
+    public ImmBuild( ImmPlugins plugins, ImmPlugins pluginManagement )
     {
         this.plugins = plugins;
     }
 
-    public Plugins getPlugins()
+    public ImmPlugins getPlugins()
     {
         return plugins;
     }

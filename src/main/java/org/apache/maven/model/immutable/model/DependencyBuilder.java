@@ -16,13 +16,13 @@ class DependencyBuilder
     private final LeafBuilder versionBuilder = new LeafBuilder();
 
 
-    public Dependency build( XMLStreamReader2 node )
+    public ImmDependency build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
-        GroupId groupId = null;
-        ArtifactId artifactId = null;
-        Version version = null;
+        ImmGroupId groupId = null;
+        ImmArtifactId artifactId = null;
+        ImmVersion version = null;
         String classifier = null;
         String scope = null;
         String systemPath = null;
@@ -43,13 +43,13 @@ class DependencyBuilder
                     switch ( localName )
                     {
                         case "groupId":
-                            groupId = new GroupId( groupIdBuilder.singleTextValue( node ) );
+                            groupId = new ImmGroupId( groupIdBuilder.singleTextValue( node ) );
                             break;
                         case "artifactId":
-                            artifactId = new ArtifactId( artifactIdBuilder.singleTextValue( node ) );
+                            artifactId = new ImmArtifactId( artifactIdBuilder.singleTextValue( node ) );
                             break;
                         case "version":
-                            version = new Version( versionBuilder.singleTextValue( node ) );
+                            version = new ImmVersion( versionBuilder.singleTextValue( node ) );
                             break;
                         case "type":
                             type = versionBuilder.singleTextValue( node );
@@ -70,6 +70,6 @@ class DependencyBuilder
             }
         }
 
-        return new Dependency( groupId, artifactId, version, classifier, type, systemPath, optional, scope );
+        return new ImmDependency( groupId, artifactId, version, classifier, type, systemPath, optional, scope );
     }
 }

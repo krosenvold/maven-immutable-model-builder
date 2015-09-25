@@ -11,12 +11,12 @@ class DependenciesBuilder
     private final DependencyBuilder dependencyBuilder = new DependencyBuilder();
 
 
-    public List<Dependency> build( XMLStreamReader2 node )
+    public List<ImmDependency> build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
 
-        List<Dependency> plugins = new ArrayList<>();
+        List<ImmDependency> plugins = new ArrayList<>();
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {

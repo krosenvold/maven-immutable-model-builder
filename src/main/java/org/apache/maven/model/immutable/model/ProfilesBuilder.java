@@ -20,12 +20,12 @@ public class ProfilesBuilder
     }
 
 
-    public List<Profile> build( XMLStreamReader2 node )
+    public List<ImmProfile> build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
 
-        List<Profile> profiles = new ArrayList<>();
+        List<ImmProfile> profiles = new ArrayList<>();
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {

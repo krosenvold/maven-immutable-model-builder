@@ -15,13 +15,13 @@ class PluginBuilder
     XmlBuilder xmlBuilder = new XmlBuilder();
 
 
-    public Plugin build( XMLStreamReader2 node )
+    public ImmPlugin build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
-        GroupId groupId = null;
-        ArtifactId artifactId = null;
-        Version version = null;
+        ImmGroupId groupId = null;
+        ImmArtifactId artifactId = null;
+        ImmVersion version = null;
         String configuration = null;
         String reportSets = null;
 
@@ -36,13 +36,13 @@ class PluginBuilder
                     switch ( localName )
                     {
                         case "groupId":
-                            groupId = new GroupId( groupIdBuilder.singleTextValue( node ) );
+                            groupId = new ImmGroupId( groupIdBuilder.singleTextValue( node ) );
                             break;
                         case "artifactId":
-                            artifactId = new ArtifactId( artifactIdBuilder.singleTextValue( node ) );
+                            artifactId = new ImmArtifactId( artifactIdBuilder.singleTextValue( node ) );
                             break;
                         case "version":
-                            version = new Version( versionBuilder.singleTextValue( node ) );
+                            version = new ImmVersion( versionBuilder.singleTextValue( node ) );
                             break;
                         case "configuration":
                             configuration = xmlBuilder.build( node ) ;
@@ -54,6 +54,6 @@ class PluginBuilder
             }
         }
 
-        return new Plugin( artifactId, groupId, version, configuration, reportSets );
+        return new ImmPlugin( artifactId, groupId, version, configuration, reportSets );
     }
 }

@@ -10,13 +10,13 @@ class BuildBuilder
 
     private final PluginManagementBuilder pluginManagementBuilder = new PluginManagementBuilder( pluginsBuilder );
 
-    public Build build( XMLStreamReader2 node )
+    public ImmBuild build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
 
-        Plugins plugins = null;
-        Plugins pluginManagement = null;
+        ImmPlugins plugins = null;
+        ImmPlugins pluginManagement = null;
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
@@ -40,7 +40,7 @@ class BuildBuilder
                     }
             }
         }
-        return new Build( plugins, pluginManagement );
+        return new ImmBuild( plugins, pluginManagement );
 
     }
 }

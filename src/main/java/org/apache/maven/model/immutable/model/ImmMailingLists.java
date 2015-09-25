@@ -5,16 +5,16 @@ import java.util.List;
 /**
  * Created by kristian on 24.09.15.
  */
-public class MailingLists
+public class ImmMailingLists
 {
-    List<MailingList> lists;
+    List<ImmMailingList> lists;
 
-    public MailingLists( List<MailingList> lists )
+    public ImmMailingLists( List<ImmMailingList> lists )
     {
         this.lists = lists;
     }
 
-    public List<MailingList> getLists()
+    public List<ImmMailingList> getLists()
     {
         return lists;
     }

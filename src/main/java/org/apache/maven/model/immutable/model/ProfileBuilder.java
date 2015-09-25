@@ -22,14 +22,14 @@ class ProfileBuilder
     }
 
 
-    public Profile build( XMLStreamReader2 node )
+    public ImmProfile build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
-        Build build = null;
+        ImmBuild build = null;
         String id = null;
-        Reporting reporting = null;
-        Activation activation = null;
+        ImmReporting reporting = null;
+        ImmActivation activation = null;
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
@@ -58,6 +58,6 @@ class ProfileBuilder
             }
         }
 
-        return new Profile( id, build, reporting );
+        return new ImmProfile( id, build, reporting );
     }
 }
