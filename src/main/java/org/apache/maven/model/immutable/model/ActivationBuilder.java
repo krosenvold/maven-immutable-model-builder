@@ -22,7 +22,7 @@ class ActivationBuilder
         Properties properties = null;
         String jdk = null;
         File file = null;
-        Os os = null;
+        ImmOs os = null;
         String activeByDefault = null;
 
         while ( node.hasNext() && node.getDepth() >= startLevel )

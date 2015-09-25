@@ -7,7 +7,7 @@ import java.util.Properties;
  */
 public class ImmActivation
 {
-    public ImmActivation( Properties properties, String jdk, File file, String activeByDefault, Os os )
+    public ImmActivation( Properties properties, String jdk, File file, String activeByDefault, ImmOs os )
     {
 
     }

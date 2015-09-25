@@ -9,7 +9,7 @@ public class OsBuilder
     private final LeafBuilder leafBuilder = new LeafBuilder();
 
 
-    public Os build( XMLStreamReader2 node )
+    public ImmOs build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
@@ -48,6 +48,6 @@ public class OsBuilder
             }
         }
 
-        return new Os( family, name, arch, version);
+        return new ImmOs( family, name, arch, version);
     }
 }
