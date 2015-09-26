@@ -35,7 +35,7 @@ public class ImmProject
 
     private final String packaging;
 
-    private final ImmMailingLists mailingLists;
+    private final List<ImmMailingList> mailingLists;
 
     private final ImmParent parent;
 
@@ -50,7 +50,7 @@ public class ImmProject
     public ImmProject( ModelBaseState modelBaseState, GavState gavState, ImmBuild build, ImmModelVersion2 modelVersion,
                        ImmGroupId groupId, ImmArtifactId artifactId, ImmVersion version, Properties prerequisites,
                        List<Contributor> contributors, CiManagement ciManagement, ImmIssueManagement issueManagement,
-                       ImmScm scm, String year, String packaging, ImmMailingLists mailingLists, ImmParent parent,
+                       ImmScm scm, String year, String packaging, List<ImmMailingList> mailingLists, ImmParent parent,
                        ImmProjectName name, ImmProjectDescription description, ImmProjectUrl url,
                        List<ImmProfile> profiles )
     {

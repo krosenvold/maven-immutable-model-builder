@@ -4,11 +4,8 @@ import org.codehaus.stax2.XMLStreamReader2;
 
 import javax.xml.stream.XMLStreamException;
 
-/**
- * Created by kristian on 24.09.15.
- */
 class MailingListBuilder
-    extends BaseBuilder<ImmMailingList>
+    implements ItemBuilder<ImmMailingList>
 {
     private final LeafBuilder leafBuilder = new LeafBuilder();
 

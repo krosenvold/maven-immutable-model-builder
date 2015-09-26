@@ -13,7 +13,8 @@ class ProjectBuilder
 
     private final LeafBuilder leafBuilder = new LeafBuilder();
 
-    private final MailingListsBuilder mailingListsBuilder = new MailingListsBuilder();
+    private final GenericListBuilder<ImmMailingList> mailingListsBuilder =
+        new GenericListBuilder<>( "mailingList", new MailingListBuilder() );
 
     private final ParentBuilder parentBuilder = new ParentBuilder();
 
@@ -48,7 +49,7 @@ class ProjectBuilder
         ImmProjectName name = null;
         ImmProjectDescription description = null;
         ImmProjectUrl url = null;
-        ImmMailingLists mailingLists = null;
+        List<ImmMailingList> mailingLists = null;
         ImmParent parent = null;
         String packaging = null;
         String inceptionYear = null;
