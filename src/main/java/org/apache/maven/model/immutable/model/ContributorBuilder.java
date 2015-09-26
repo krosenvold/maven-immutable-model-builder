@@ -5,7 +5,7 @@ import org.codehaus.stax2.XMLStreamReader2;
 import javax.xml.stream.XMLStreamException;
 
 class ContributorBuilder
-    implements ItemBuilder<Contributor>
+    implements ItemBuilder<ImmContributor>
 {
     private final LeafBuilder leafBuilder = new LeafBuilder();
 
@@ -18,7 +18,7 @@ class ContributorBuilder
 
      */
 
-    public Contributor build( XMLStreamReader2 node )
+    public ImmContributor build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
@@ -62,7 +62,7 @@ class ContributorBuilder
                     }
             }
         }
-        return new Contributor( name, email, url, organization, organizationUrl,timeZone );
+        return new ImmContributor( name, email, url, organization, organizationUrl, timeZone );
 
     }
 }

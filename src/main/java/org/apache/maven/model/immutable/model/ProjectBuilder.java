@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Properties;
 
 class ProjectBuilder
-    extends BaseBuilder
+    implements ItemBuilder<ImmProject>
 {
-    private final BuildBuilder build = new BuildBuilder();
+    private final BuilderBuild build = new BuilderBuild();
 
     private final LeafBuilder leafBuilder = new LeafBuilder();
 
@@ -24,7 +24,7 @@ class ProjectBuilder
 
     private final CiManagementBuilder ciManagementBuilder = new CiManagementBuilder();
 
-    private final GenericListBuilder<Contributor> contributorsBuilder =
+    private final GenericListBuilder<ImmContributor> contributorsBuilder =
         new GenericListBuilder<>( "contributor", new ContributorBuilder() );
 
     private final PrerequisitesBuilder prerequisitesBuilder = new PrerequisitesBuilder();
@@ -59,14 +59,13 @@ class ProjectBuilder
         String inceptionYear = null;
         ImmScm scm = null;
         ImmIssueManagement issueManagement = null;
-        CiManagement ciManagement = null;
-        List<Contributor> contributors = null;
+        ImmCiManagement ciManagement = null;
+        List<ImmContributor> contributors = null;
         Properties prerequisites = null;
         List<ImmProfile> profiles = null;
 
         ModelBaseState mbState = new ModelBaseState();
         GavState gavState = new GavState();
-
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {

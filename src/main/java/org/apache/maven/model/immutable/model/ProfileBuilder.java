@@ -11,11 +11,11 @@ class ProfileBuilder
     private final LeafBuilder groupIdBuilder = new LeafBuilder();
 
 
-    private final BuildBuilder buildBuilder;
+    private final BuilderBuild buildBuilder;
 
     private final ReportingBuilder reportingBuilder;
 
-    private final ActivationBuilder activationBuilder = new ActivationBuilder();
+    private final BuilderActivation activationBuilder = new BuilderActivation();
 
     private final GenericListBuilder<ImmDependency> dependenciesBuilder =
         new GenericListBuilder<>( "dependency", new DependencyBuilder() );
@@ -25,7 +25,7 @@ class ProfileBuilder
     private final DependencyManagementBuilder dependencyManagementBuilder =
         new DependencyManagementBuilder( dependenciesBuilder );
 
-    public ProfileBuilder( BuildBuilder build, ReportingBuilder reportingBuilder )
+    public ProfileBuilder( BuilderBuild build, ReportingBuilder reportingBuilder )
     {
         this.buildBuilder = build;
         this.reportingBuilder = reportingBuilder;

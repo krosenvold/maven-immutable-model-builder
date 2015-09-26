@@ -5,7 +5,7 @@ import org.codehaus.stax2.XMLStreamReader2;
 import javax.xml.stream.XMLStreamException;
 import java.util.List;
 
-class BuildBuilder
+class BuilderBuild
 {
 
     private final GenericListBuilder<ImmPlugin> pluginsBuilder =

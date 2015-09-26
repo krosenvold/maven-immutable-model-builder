@@ -4,9 +4,9 @@ import org.codehaus.stax2.XMLStreamReader2;
 
 import javax.xml.stream.XMLStreamException;
 
-class ActivationBuilder
+class BuilderActivation
 {
-    private final ActivationPropertiesBuilder propertiesBuilder = new ActivationPropertiesBuilder();
+    private final BuilderActivationProperties propertiesBuilder = new BuilderActivationProperties();
 
     private final LeafBuilder leafBuilder = new LeafBuilder();
 

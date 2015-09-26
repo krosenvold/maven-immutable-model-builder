@@ -5,12 +5,12 @@ import org.codehaus.stax2.XMLStreamReader2;
 import javax.xml.stream.XMLStreamException;
 
 class CiManagementBuilder
-    extends BaseBuilder
+    implements ItemBuilder<ImmCiManagement>
 {
     private final LeafBuilder leafBuilder = new LeafBuilder();
 
 
-    public CiManagement build( XMLStreamReader2 node )
+    public ImmCiManagement build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
@@ -39,7 +39,7 @@ class CiManagementBuilder
                     }
             }
         }
-        return new CiManagement( connection, url );
+        return new ImmCiManagement( connection, url );
 
     }
 }

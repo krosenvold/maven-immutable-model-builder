@@ -5,7 +5,7 @@ import org.codehaus.stax2.XMLStreamReader2;
 import javax.xml.stream.XMLStreamException;
 
 class DistributionManagementBuilder
-    extends BaseBuilder
+    implements ItemBuilder<ImmDistributionManagement>
 {
     private final LeafBuilder leafBuilder = new LeafBuilder();
 

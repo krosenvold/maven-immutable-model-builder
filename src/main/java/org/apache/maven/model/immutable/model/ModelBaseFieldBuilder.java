@@ -5,7 +5,6 @@ import org.codehaus.stax2.XMLStreamReader2;
 import javax.xml.stream.XMLStreamException;
 
 class ModelBaseFieldBuilder
-    extends BaseBuilder
 {
     private final ReportingBuilder reportingBuilder = new ReportingBuilder();
 

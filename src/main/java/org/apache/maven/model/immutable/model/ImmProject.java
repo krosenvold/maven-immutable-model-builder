@@ -23,9 +23,9 @@ public class ImmProject
 
     private final Properties prerequisites;
 
-    private final List<Contributor> contributors;
+    private final List<ImmContributor> contributors;
 
-    private final CiManagement ciManagement;
+    private final ImmCiManagement ciManagement;
 
     private final ImmIssueManagement issueManagement;
 
@@ -49,7 +49,8 @@ public class ImmProject
 
     public ImmProject( ModelBaseState modelBaseState, GavState gavState, ImmBuild build, ImmModelVersion2 modelVersion,
                        ImmGroupId groupId, ImmArtifactId artifactId, ImmVersion version, Properties prerequisites,
-                       List<Contributor> contributors, CiManagement ciManagement, ImmIssueManagement issueManagement,
+                       List<ImmContributor> contributors, ImmCiManagement ciManagement,
+                       ImmIssueManagement issueManagement,
                        ImmScm scm, String year, String packaging, List<ImmMailingList> mailingLists, ImmParent parent,
                        ImmProjectName name, ImmProjectDescription description, ImmProjectUrl url,
                        List<ImmProfile> profiles )

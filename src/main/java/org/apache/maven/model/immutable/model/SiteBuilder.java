@@ -5,7 +5,7 @@ import org.codehaus.stax2.XMLStreamReader2;
 import javax.xml.stream.XMLStreamException;
 
 class SiteBuilder
-    extends BaseBuilder
+    implements ItemBuilder<ImmSite>
 {
     private final LeafBuilder leafBuilder = LeafBuilder.INSTANCE;
 

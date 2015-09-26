@@ -4,7 +4,7 @@ import org.codehaus.stax2.XMLStreamReader2;
 
 import javax.xml.stream.XMLStreamException;
 
-class ActivationPropertiesBuilder
+class BuilderActivationProperties
 {
     private final LeafBuilder propVal = new LeafBuilder();
 

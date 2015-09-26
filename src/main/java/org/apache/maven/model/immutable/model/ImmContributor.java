@@ -1,6 +1,6 @@
 package org.apache.maven.model.immutable.model;
 
-public class Contributor
+public class ImmContributor
 {
     private final String name;
 
@@ -12,8 +12,8 @@ public class Contributor
 
     private final String organizationUrl;
 
-    public Contributor( String name, String email, String url, String organization, String organizationUrl,
-                        String timeZone )
+    public ImmContributor( String name, String email, String url, String organization, String organizationUrl,
+                           String timeZone )
     {
 
         this.name = name;

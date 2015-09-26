@@ -1,12 +1,12 @@
 package org.apache.maven.model.immutable.model;
 
-public class CiManagement
+public class ImmCiManagement
 {
     private final String connection;
 
     private final String url;
 
-    public CiManagement( String connection, String url )
+    public ImmCiManagement( String connection, String url )
     {
 
         this.connection = connection;
