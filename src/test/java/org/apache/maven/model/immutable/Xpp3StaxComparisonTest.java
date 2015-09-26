@@ -39,20 +39,6 @@ public class Xpp3StaxComparisonTest
 
 
     @Test
-    public void simpleBM()
-        throws IOException, XMLStreamException, XmlPullParserException
-    {
-        staxRead();
-        xpp3read();
-        staxRead();
-        xpp3read();
-        staxRead();
-        xpp3read();
-        staxRead();
-        xpp3read();
-    }
-
-    @Test
     public void simpleBM2()
         throws IOException, XMLStreamException, XmlPullParserException
     {
