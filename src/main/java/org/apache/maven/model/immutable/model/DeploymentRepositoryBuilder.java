@@ -22,12 +22,10 @@ class DeploymentRepositoryBuilder
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
-            int eventType = node.next();
-            switch ( eventType )
+            switch ( node.next() )
             {
                 case XMLStreamReader2.START_ELEMENT:
-                    String localName = node.getLocalName();
-                    switch ( localName )
+                    switch ( node.getLocalName() )
                     {
                         case "uniqueVersion":
                             uniqueVersion = leafBuilder.build( node );
@@ -44,10 +42,12 @@ class DeploymentRepositoryBuilder
                         case "layout":
                             layout = leafBuilder.build( node );
                             break;
+                        default:
+                            throw new RuntimeException( "Unsupported child tag" + node.getLocalName() );
+
                     }
             }
         }
-
         return new ImmDeploymentRepository( id, name, url, layout, uniqueVersion );
     }
 }

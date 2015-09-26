@@ -26,8 +26,7 @@ class BuilderActivation
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
-            int eventType = node.next();
-            switch ( eventType )
+            switch ( node.next() )
             {
                 case XMLStreamReader2.START_ELEMENT:
                     String localName = node.getLocalName();

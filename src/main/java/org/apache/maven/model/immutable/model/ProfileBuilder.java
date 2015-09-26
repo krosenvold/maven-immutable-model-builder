@@ -48,14 +48,12 @@ class ProfileBuilder
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
-            int eventType = node.next();
-            switch ( eventType )
+            switch ( node.next() )
             {
                 case XMLStreamReader2.START_ELEMENT:
-                    String localName = node.getLocalName();
                     if ( !modelBaseFieldBuilder.build( node, mbState ) )
                     {
-                        switch ( localName )
+                        switch ( node.getLocalName() )
                         {
                             case "id":
                                 id = groupIdBuilder.build( node );
@@ -75,9 +73,8 @@ class ProfileBuilder
                             case "dependencies":
                                 dependencies = dependenciesBuilder.build( node );
                                 break;
-
                             default:
-                                throw new RuntimeException( "Unsupported child tag " + localName );
+                                throw new RuntimeException( "Unsupported child tag " + node.getLocalName() );
                         }
                     }
             }

@@ -6,7 +6,7 @@ import javax.xml.stream.XMLStreamException;
 import java.util.ArrayList;
 import java.util.List;
 
-class GenericListBuilder<T>
+final class GenericListBuilder<T>
 {
     private final String elementName;
 
@@ -18,7 +18,7 @@ class GenericListBuilder<T>
         this.itemBuilder = itemBuilder;
     }
 
-    public List<T> build( XMLStreamReader2 node )
+    public final List<T> build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
@@ -27,19 +27,17 @@ class GenericListBuilder<T>
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
-            int eventType = node.next();
-            switch ( eventType )
+            switch ( node.next() )
             {
                 case XMLStreamReader2.START_ELEMENT:
-                    String localName = node.getLocalName();
-                    if ( elementName.equals( localName ) )
+                    if ( elementName.equals( node.getLocalName() ) )
                     {
                         result.add( itemBuilder.build( node ) );
                     }
                     else
                     {
                         throw new IllegalArgumentException(
-                            "Unsupported tag " + localName + ", expected" + elementName );
+                            "Unsupported tag " + node.getLocalName() + ", expected" + elementName );
                     }
 
             }

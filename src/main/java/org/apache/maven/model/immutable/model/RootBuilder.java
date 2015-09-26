@@ -16,18 +16,16 @@ public class RootBuilder
         ImmProject build1 = null;
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
-            int eventType = node.next();
-            switch ( eventType )
+            switch ( node.next() )
             {
                 case XMLStreamReader2.START_ELEMENT:
-                    String localName = node.getLocalName();
-                    if ( "project".equals( localName ) )
+                    if ( "project".equals( node.getLocalName() ) )
                     {
                         build1 = projectBuilder.build( node );
                     }
                     else
                     {
-                        throw new RuntimeException( "Unsupported child tag" + localName );
+                        throw new RuntimeException( "Unsupported child tag" + node.getLocalName() );
                     }
             }
         }

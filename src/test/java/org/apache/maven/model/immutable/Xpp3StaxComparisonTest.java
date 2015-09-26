@@ -45,7 +45,7 @@ public class Xpp3StaxComparisonTest
     {
         for ( int i = 0; i < 10; i++ )
         {
-            xpp3read( NUM_READS );
+            //          xpp3read( NUM_READS );
         }
         System.gc();
         for ( int i = 0; i < 10; i++ )
@@ -58,7 +58,7 @@ public class Xpp3StaxComparisonTest
     private void final_test()
         throws IOException, XmlPullParserException, XMLStreamException
     {
-        xpp3read( NUM_READS + 11 );
+        //      xpp3read( NUM_READS + 11 );
         staxRead( NUM_READS + 11 );
     }
 

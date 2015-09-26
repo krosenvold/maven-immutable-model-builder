@@ -20,12 +20,10 @@ class MailingListBuilder
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
-            int eventType = node.next();
-            switch ( eventType )
+            switch ( node.next() )
             {
                 case XMLStreamReader2.START_ELEMENT:
-                    String localName = node.getLocalName();
-                    switch ( localName )
+                    switch ( node.getLocalName() )
                     {
                         case "name":
                             name = leafBuilder.build( node );
@@ -39,6 +37,9 @@ class MailingListBuilder
                         case "unsubscribe":
                             unsubscribe = leafBuilder.build( node );
                             break;
+                        default:
+                            throw new IllegalArgumentException( "Unsupported tag " + node.getLocalName() );
+
                     }
             }
         }

@@ -21,14 +21,11 @@ class SiteBuilder
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
-            int eventType = node.next();
-            switch ( eventType )
+            switch ( node.next() )
             {
                 case XMLStreamReader2.START_ELEMENT:
-                    String localName = node.getLocalName();
-                    switch ( localName )
+                    switch ( node.getLocalName() )
                     {
-
                         case "id":
                             id = this.leafBuilder.build( node );
                             break;
@@ -39,7 +36,7 @@ class SiteBuilder
                             name = leafBuilder.build( node );
                             break;
                         default:
-                            throw new RuntimeException( "Unsupported child tag " + localName );
+                            throw new RuntimeException( "Unsupported child tag " + node.getLocalName() );
                     }
             }
         }

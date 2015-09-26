@@ -4,22 +4,20 @@ import org.codehaus.stax2.XMLStreamReader2;
 
 import javax.xml.stream.XMLStreamException;
 
-class LeafBuilder
+final class LeafBuilder
     implements ItemBuilder<String>
 {
 
     public static LeafBuilder INSTANCE = new LeafBuilder();
 
-    public String build( XMLStreamReader2 node )
+    public final String build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
         String text = null;
-
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
-            int eventType = node.next();
-            switch ( eventType )
+            switch ( node.next() )
             {
                 case XMLStreamReader2.START_ELEMENT:
                     break;
@@ -30,7 +28,6 @@ class LeafBuilder
                     break;
             }
         }
-
         return text;
     }
 

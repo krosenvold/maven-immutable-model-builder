@@ -22,12 +22,10 @@ class DistributionManagementBuilder
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
-            int eventType = node.next();
-            switch ( eventType )
+            switch ( node.next() )
             {
                 case XMLStreamReader2.START_ELEMENT:
-                    String localName = node.getLocalName();
-                    switch ( localName )
+                    switch ( node.getLocalName() )
                     {
 
                         case "site":
@@ -37,7 +35,7 @@ class DistributionManagementBuilder
                             downloadUrl = leafBuilder.build( node );
                             break;
                         default:
-                            throw new RuntimeException( "Unsupported child tag " + localName );
+                            throw new RuntimeException( "Unsupported child tag " + node.getLocalName() );
                     }
             }
         }

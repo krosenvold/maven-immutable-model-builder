@@ -23,18 +23,16 @@ class PluginManagementBuilder
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
-            int eventType = node.next();
-            switch ( eventType )
+            switch ( node.next() )
             {
                 case XMLStreamReader2.START_ELEMENT:
-                    String localName = node.getLocalName();
                     if ( "plugins".equals( node.getLocalName() ) )
                     {
                         return pluginBuilder.build( node );
                     }
                     else
                     {
-                        throw new IllegalArgumentException( "Unsupported tag " + localName );
+                        throw new IllegalArgumentException( "Unsupported tag " + node.getLocalName() );
                     }
 
             }

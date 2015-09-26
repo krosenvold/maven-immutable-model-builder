@@ -33,12 +33,10 @@ class DependencyBuilder
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
-            int eventType = node.next();
-            switch ( eventType )
+            switch ( node.next() )
             {
                 case XMLStreamReader2.START_ELEMENT:
-                    String localName = node.getLocalName();
-                    switch ( localName )
+                    switch ( node.getLocalName() )
                     {
                         case "groupId":
                             groupId = new ImmGroupId( groupIdBuilder.build( node ) );
@@ -64,6 +62,11 @@ class DependencyBuilder
                         case "optional":
                             optional = versionBuilder.build( node );
                             break;
+                        case "exclusions":
+                            // todo: fix
+                            break;
+                        //   default:
+                        //      throw new RuntimeException( "Unsupported child tag" + node.getLocalName() );
                     }
             }
         }

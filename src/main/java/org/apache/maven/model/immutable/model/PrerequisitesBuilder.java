@@ -20,16 +20,13 @@ public class PrerequisitesBuilder
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
-            int eventType = node.next();
-            switch ( eventType )
+            switch ( node.next() )
             {
                 case XMLStreamReader2.START_ELEMENT:
-                    String localName = node.getLocalName();
                     final String groupId1 = propVal.build( node );
-                    props.put( localName, groupId1 );
+                    props.put( node.getLocalName(), groupId1 );
             }
         }
-
         return props;
     }
 }

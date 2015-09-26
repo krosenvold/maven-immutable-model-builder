@@ -21,21 +21,19 @@ class ParentBuilder
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
-            int eventType = node.next();
-            switch ( eventType )
+            switch ( node.next() )
             {
                 case XMLStreamReader2.START_ELEMENT:
                     if ( !gavFieldBuilder.build( node, gavState ) )
                     {
-                        String localName = node.getLocalName();
 
-                        switch ( localName )
+                        switch ( node.getLocalName() )
                         {
                             case "relativePath":
                                 relativePath = rp.build( node );
                                 break;
                             default:
-                                throw new IllegalArgumentException( "Unsupported tag " + localName );
+                                throw new IllegalArgumentException( "Unsupported tag " + node.getLocalName() );
                         }
                     }
             }
