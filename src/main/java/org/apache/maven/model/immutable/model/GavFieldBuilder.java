@@ -4,14 +4,8 @@ import org.codehaus.stax2.XMLStreamReader2;
 
 import javax.xml.stream.XMLStreamException;
 
-class GavBuilder
+class GavFieldBuilder
 {
-    private ImmGroupId groupId = null;
-
-    private ImmArtifactId artifactId = null;
-
-    private ImmVersion version = null;
-
     private final LeafBuilder groupIdBuilder = new LeafBuilder();
 
     private final LeafBuilder artifactIdBuilder = new LeafBuilder();
@@ -19,30 +13,23 @@ class GavBuilder
     private final LeafBuilder versionBuilder = new LeafBuilder();
 
 
-    public boolean build( XMLStreamReader2 node )
+    public boolean build( XMLStreamReader2 node, GavState gavState )
         throws XMLStreamException
     {
         String localName = node.getLocalName();
         switch ( localName )
         {
             case "groupId":
-                groupId = new ImmGroupId( groupIdBuilder.singleTextValue( node ) );
+                gavState.groupId = new ImmGroupId( groupIdBuilder.singleTextValue( node ) );
                 return true;
             case "artifactId":
-                artifactId = new ImmArtifactId( artifactIdBuilder.singleTextValue( node ) );
+                gavState.artifactId = new ImmArtifactId( artifactIdBuilder.singleTextValue( node ) );
                 return true;
             case "version":
-                version = new ImmVersion( versionBuilder.singleTextValue( node ) );
+                gavState.version = new ImmVersion( versionBuilder.singleTextValue( node ) );
                 return true;
             default:
                 return false;
         }
     }
-
-    public Gav gav()
-    {
-        return new Gav( groupId, artifactId, version );
-    }
-
-
 }

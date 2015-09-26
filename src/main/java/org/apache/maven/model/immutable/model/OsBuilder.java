@@ -27,8 +27,6 @@ public class OsBuilder
                     String localName = node.getLocalName();
                     switch ( localName )
                     {
-                        //         <os><arch>i386</arch><family>debian</family><name>raspian</name><version>1.0</version></os>
-
                         case "arch":
                             arch = leafBuilder.singleTextValue( node );
                             break;
@@ -48,6 +46,6 @@ public class OsBuilder
             }
         }
 
-        return new ImmOs( family, name, arch, version);
+        return new ImmOs( family, name, arch, version );
     }
 }

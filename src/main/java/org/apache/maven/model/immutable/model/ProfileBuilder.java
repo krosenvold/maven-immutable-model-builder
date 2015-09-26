@@ -3,6 +3,7 @@ package org.apache.maven.model.immutable.model;
 import org.codehaus.stax2.XMLStreamReader2;
 
 import javax.xml.stream.XMLStreamException;
+import java.util.List;
 
 class ProfileBuilder
 {
@@ -14,6 +15,13 @@ class ProfileBuilder
     private final ReportingBuilder reportingBuilder;
 
     private final ActivationBuilder activationBuilder = new ActivationBuilder();
+
+    private final DependenciesBuilder dependenciesBuilder = new DependenciesBuilder();
+
+    private final ModelBaseFieldBuilder modelBaseFieldBuilder = new ModelBaseFieldBuilder();
+
+    private final DependencyManagementBuilder dependencyManagementBuilder =
+        new DependencyManagementBuilder( dependenciesBuilder );
 
     public ProfileBuilder( BuildBuilder build, ReportingBuilder reportingBuilder )
     {
@@ -30,6 +38,11 @@ class ProfileBuilder
         String id = null;
         ImmReporting reporting = null;
         ImmActivation activation = null;
+        List<ImmDependency> dependencyManagement = null;
+        List<ImmDependency> dependencies = null;
+
+        ModelBaseState mbState = new ModelBaseState();
+
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
@@ -38,26 +51,36 @@ class ProfileBuilder
             {
                 case XMLStreamReader2.START_ELEMENT:
                     String localName = node.getLocalName();
-                    switch ( localName )
+                    if ( !modelBaseFieldBuilder.build( node, mbState ) )
                     {
-                        case "id":
-                            id = groupIdBuilder.singleTextValue( node );
-                            break;
-                        case "build":
-                            build = buildBuilder.build( node );
-                            break;
-                        case "reporting":
-                            reporting = reportingBuilder.build( node );
-                            break;
-                        case "activation":
-                            activation = activationBuilder.build( node );
-                            break;
-                        default:
-                            throw new RuntimeException( "Unsupported child tag " + localName );
+                        switch ( localName )
+                        {
+                            case "id":
+                                id = groupIdBuilder.singleTextValue( node );
+                                break;
+                            case "build":
+                                build = buildBuilder.build( node );
+                                break;
+                            case "reporting":
+                                reporting = reportingBuilder.build( node );
+                                break;
+                            case "activation":
+                                activation = activationBuilder.build( node );
+                                break;
+                            case "dependencyManagement":
+                                dependencyManagement = dependencyManagementBuilder.build( node );
+                                break;
+                            case "dependencies":
+                                dependencies = dependenciesBuilder.build( node );
+                                break;
+
+                            default:
+                                throw new RuntimeException( "Unsupported child tag " + localName );
+                        }
                     }
             }
         }
 
-        return new ImmProfile( id, build, reporting );
+        return new ImmProfile( mbState, id, activation, build, reporting, dependencies, dependencyManagement );
     }
 }

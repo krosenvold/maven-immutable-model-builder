@@ -9,7 +9,7 @@ public class FileBuilder
     private final LeafBuilder leafBuilder = new LeafBuilder();
 
 
-    public File build( XMLStreamReader2 node )
+    public ImmFile build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
@@ -38,6 +38,6 @@ public class FileBuilder
             }
         }
 
-        return new File( exists, missing);
+        return new ImmFile( exists, missing );
     }
 }

@@ -1,10 +1,15 @@
 package org.apache.maven.model.immutable.model;
 
-import org.apache.maven.model.immutable.ModelElement;
+import java.util.List;
+import java.util.Properties;
 
 public class ImmProject
-    extends ModelElement
+    extends ImmModelBase
 {
+
+    private final ModelBaseState modelBaseState;
+
+    private final GavState gavState;
 
     private final ImmBuild build;
 
@@ -16,14 +21,60 @@ public class ImmProject
 
     private final ImmVersion version;
 
-    public ImmProject( ImmBuild build, ImmModelVersion2 modelVersion, ImmGroupId groupId, ImmArtifactId artifactId,
-                       ImmVersion version )
+    private final Properties prerequisites;
+
+    private final List<Contributor> contributors;
+
+    private final CiManagement ciManagement;
+
+    private final ImmIssueManagement issueManagement;
+
+    private final ImmScm scm;
+
+    private final String year;
+
+    private final String packaging;
+
+    private final ImmMailingLists mailingLists;
+
+    private final ImmParent parent;
+
+    private final ImmProjectName name;
+
+    private final ImmProjectDescription description;
+
+    private final ImmProjectUrl url;
+
+    private final List<ImmProfile> profiles;
+
+    public ImmProject( ModelBaseState modelBaseState, GavState gavState, ImmBuild build, ImmModelVersion2 modelVersion,
+                       ImmGroupId groupId, ImmArtifactId artifactId, ImmVersion version, Properties prerequisites,
+                       List<Contributor> contributors, CiManagement ciManagement, ImmIssueManagement issueManagement,
+                       ImmScm scm, String year, String packaging, ImmMailingLists mailingLists, ImmParent parent,
+                       ImmProjectName name, ImmProjectDescription description, ImmProjectUrl url,
+                       List<ImmProfile> profiles )
     {
+        super( modelBaseState );
+        this.modelBaseState = modelBaseState;
+        this.gavState = gavState;
         this.build = build;
         this.modelVersion = modelVersion;
-        this.groupId = groupId;
-        this.artifactId = artifactId;
-        this.version = version;
+        this.groupId = gavState.groupId;
+        this.artifactId = gavState.artifactId;
+        this.version = gavState.version;
+        this.prerequisites = prerequisites;
+        this.contributors = contributors;
+        this.ciManagement = ciManagement;
+        this.issueManagement = issueManagement;
+        this.scm = scm;
+        this.year = year;
+        this.packaging = packaging;
+        this.mailingLists = mailingLists;
+        this.parent = parent;
+        this.name = name;
+        this.description = description;
+        this.url = url;
+        this.profiles = profiles;
     }
 
     public ImmBuild getBuild()

@@ -3,11 +3,10 @@ package org.apache.maven.model.immutable.model;
 import org.codehaus.stax2.XMLStreamReader2;
 
 import javax.xml.stream.XMLStreamException;
-import java.util.Properties;
 
 class ActivationBuilder
 {
-    private final PropertiesBuilder propertiesBuilder = new PropertiesBuilder();
+    private final ActivationPropertiesBuilder propertiesBuilder = new ActivationPropertiesBuilder();
 
     private final LeafBuilder leafBuilder = new LeafBuilder();
 
@@ -19,9 +18,9 @@ class ActivationBuilder
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
-        Properties properties = null;
+        ImmActivationProperty properties = null;
         String jdk = null;
-        File file = null;
+        ImmFile file = null;
         ImmOs os = null;
         String activeByDefault = null;
 
@@ -41,9 +40,6 @@ class ActivationBuilder
                             jdk = leafBuilder.singleTextValue( node );
                             break;
                         case "activeByDefault":
-                            activeByDefault = leafBuilder.singleTextValue( node );
-                            break;
-                        case "ac":
                             activeByDefault = leafBuilder.singleTextValue( node );
                             break;
                         case "os":

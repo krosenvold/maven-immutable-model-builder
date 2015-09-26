@@ -14,8 +14,10 @@ class SiteBuilder
     {
         int startLevel = node.getDepth();
 
-        String connection = null;
+        String id = null;
         String url = null;
+        String name = null;
+
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
@@ -28,17 +30,20 @@ class SiteBuilder
                     {
 
                         case "id":
-                            connection = this.leafBuilder.singleTextValue( node );
+                            id = this.leafBuilder.singleTextValue( node );
                             break;
                         case "url":
                             url = leafBuilder.singleTextValue( node );
+                            break;
+                        case "name":
+                            name = leafBuilder.singleTextValue( node );
                             break;
                         default:
                             throw new RuntimeException( "Unsupported child tag " + localName );
                     }
             }
         }
-        return new ImmSite( connection, url );
+        return new ImmSite( id, url, name );
 
     }
 }

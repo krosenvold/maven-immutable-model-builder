@@ -12,7 +12,7 @@ class DistributionManagementBuilder
     private final SiteBuilder siteBuilder = new SiteBuilder();
 
 
-    public DistributionManagement build( XMLStreamReader2 node )
+    public ImmDistributionManagement build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
@@ -41,7 +41,7 @@ class DistributionManagementBuilder
                     }
             }
         }
-        return new DistributionManagement( site, downloadUrl );
+        return new ImmDistributionManagement( site, downloadUrl );
 
     }
 }

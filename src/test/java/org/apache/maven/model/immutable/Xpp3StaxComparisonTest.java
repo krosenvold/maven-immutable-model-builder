@@ -33,6 +33,11 @@ public class Xpp3StaxComparisonTest
     private final URL simpleTest = this.getClass()
                                        .getResource( "/immutable/simpletest.xml" );
 
+    private final URL m3core = this.getClass().getResource( "/immutable/maven-core.xml" );
+
+    private final int NUM_READS = 1000;
+
+
     @Test
     public void simpleBM()
         throws IOException, XMLStreamException, XmlPullParserException
@@ -277,9 +282,9 @@ public class Xpp3StaxComparisonTest
         long hc;
         start = System.currentTimeMillis();
         hc = 0;
-        for ( int i = 0; i < 1000; i++ )
+        for ( int i = 0; i < NUM_READS; i++ )
         {
-            Model model = readModelXpp3( simpleTest );
+            Model model = readModelXpp3( m3core );
             hc += model.hashCode();
         }
         System.out.println( "xpp3 = " + ( System.currentTimeMillis() - start ) + "hc = " + hc );
@@ -292,9 +297,9 @@ public class Xpp3StaxComparisonTest
     {
         long start = System.currentTimeMillis();
         long hc = 0;
-        for ( int i = 0; i < 1000; i++ )
+        for ( int i = 0; i < NUM_READS; i++ )
         {
-            ImmProject project = imb.readProject( simpleTest );
+            ImmProject project = imb.readProject( m3core );
             hc += project.hashCode();
         }
         System.out.println( "stax = " + ( System.currentTimeMillis() - start ) + "hc = " + hc );

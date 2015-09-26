@@ -8,13 +8,16 @@ class ParentBuilder
 {
     private final LeafBuilder rp = new LeafBuilder();
 
+    private final GavFieldBuilder gavFieldBuilder = new GavFieldBuilder();
+
+
     public ImmParent build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
         String relativePath = null;
 
-        GavBuilder gavBuilder = new GavBuilder();
+        GavState gavState = new GavState();
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
@@ -22,7 +25,7 @@ class ParentBuilder
             switch ( eventType )
             {
                 case XMLStreamReader2.START_ELEMENT:
-                    if (!gavBuilder.build(  node ))
+                    if ( !gavFieldBuilder.build( node, gavState ) )
                     {
                         String localName = node.getLocalName();
 
@@ -38,6 +41,6 @@ class ParentBuilder
             }
 
         }
-        return new ImmParent( relativePath, gavBuilder.gav() );
+        return new ImmParent( relativePath, gavState.gav() );
     }
 }

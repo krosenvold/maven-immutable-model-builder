@@ -15,7 +15,7 @@ class PluginBuilder
     XmlBuilder xmlBuilder = new XmlBuilder();
 
 
-    public ImmPlugin2 build( XMLStreamReader2 node )
+    public ImmPlugin build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
@@ -54,6 +54,6 @@ class PluginBuilder
             }
         }
 
-        return new ImmPlugin2( artifactId, groupId, version, configuration, reportSets );
+        return new ImmPlugin( artifactId, groupId, version, configuration, reportSets );
     }
 }

@@ -2,7 +2,7 @@ package org.apache.maven.model.immutable;
 
 import org.apache.maven.model.InputSource;
 import org.apache.maven.model.Model;
-import org.apache.maven.model.immutable.model.ImmPlugin2;
+import org.apache.maven.model.immutable.model.ImmPlugin;
 import org.apache.maven.model.immutable.model.ImmProject;
 import org.apache.maven.model.io.xpp3.MavenXpp3ReaderEx;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
@@ -28,8 +28,8 @@ public class ImmutableModelBuilderTest
     {
         ImmutableModelBuilder imb = new ImmutableModelBuilder();
         ImmProject project = imb.readProject( "/immutable/simpletest.xml" );
-        ImmPlugin2 pluginA = project.getBuild().getPlugins().getPlugins().get( 0 );
-        ImmPlugin2 pluginB = project.getBuild().getPlugins().getPlugins().get( 1 );
+        ImmPlugin pluginA = project.getBuild().getPlugins().getPlugins().get( 0 );
+        ImmPlugin pluginB = project.getBuild().getPlugins().getPlugins().get( 1 );
         assertEquals( "A-G:A:1.0", pluginA.toString() );
         assertEquals( "B-G:B:2.0", pluginB.toString() );
         assertEquals( "4.0.0", project.getModelVersion().getVersion() );
@@ -54,8 +54,8 @@ public class ImmutableModelBuilderTest
     {
         ImmutableModelBuilder imb = new ImmutableModelBuilder();
         ImmProject project = imb.readProject( "/immutable/simple-malformed-plugins.xml" );
-        ImmPlugin2 pluginA = project.getBuild().getPlugins().getPlugins().get( 0 );
-        ImmPlugin2 pluginB = project.getBuild().getPlugins().getPlugins().get( 1 );
+        ImmPlugin pluginA = project.getBuild().getPlugins().getPlugins().get( 0 );
+        ImmPlugin pluginB = project.getBuild().getPlugins().getPlugins().get( 1 );
         assertEquals( "A-G:A:1.0", pluginA.toString() );
         assertEquals( "B-G:B:2.0", pluginB.toString() );
         assertEquals( "4.0.0", project.getModelVersion().getVersion() );
