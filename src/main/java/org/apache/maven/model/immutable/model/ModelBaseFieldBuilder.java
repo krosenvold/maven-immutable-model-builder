@@ -18,6 +18,11 @@ class ModelBaseFieldBuilder
 
     private final DistributionManagementBuilder distributionManagementBuilder = new DistributionManagementBuilder();
 
+    private final GenericListBuilder<ImmRepository> pluginRep =
+        new GenericListBuilder<>( "pluginRepository", new RepositoryBuilder() );
+
+    private final RepositoriesBuilder repositoryBuilder = new RepositoriesBuilder();
+
     private final DependencyManagementBuilder dependencyManagementBuilder =
         new DependencyManagementBuilder( dependenciesBuilder );
 
@@ -50,8 +55,12 @@ class ModelBaseFieldBuilder
                     case "distributionManagement":
                         modelBaseState.distributionManagement = distributionManagementBuilder.build( node );
                         return true;
-                    // TODO Repositories
-                    // TODO pluginRepositories
+                    case "repositories":
+                        modelBaseState.repositories = repositoryBuilder.build( node );
+                        return true;
+                    case "pluginRepositories":
+                        modelBaseState.pluginRepositories = pluginRep.build( node );
+                        return true;
                 }
         }
         return false;

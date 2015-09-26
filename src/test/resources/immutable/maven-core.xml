@@ -36,6 +36,43 @@
   <url>http://maven.apache.org/ref/${project.version}/</url>
   <inceptionYear>2001</inceptionYear>
 
+  <repositories>
+    <repository>
+      <releases>
+        <enabled>false</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+        <checksumPolicy>fail</checksumPolicy>
+      </snapshots>
+      <id>codehausSnapshots</id>
+      <name>Codehaus Snapshots</name>
+      <url>http://snapshots.maven.codehaus.org/maven2</url>
+      <layout>default</layout>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>foo</id>
+      <name>zzSa</name>
+      <url>http://snapshots.maven.nonehaus.org/maven2</url>
+      <layout>nonexistant</layout>
+      <releases>
+        <checksumPolicy>strict</checksumPolicy>
+        <enabled>true</enabled>
+        <updatePolicy>yes</updatePolicy>
+      </releases>
+      <snapshots>
+        <checksumPolicy>strict</checksumPolicy>
+        <enabled>true</enabled>
+        <updatePolicy>yes</updatePolicy>
+      </snapshots>
+
+    </pluginRepository>
+  </pluginRepositories>
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>

@@ -21,4 +21,8 @@ public class ModelBaseState
     List<ImmDependency> dependencies = null;
 
     List<ImmProfile> profiles = null;
+
+    public List<ImmRepository> repositories;
+
+    public List<ImmRepository> pluginRepositories;
 }
