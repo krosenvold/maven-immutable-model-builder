@@ -17,7 +17,8 @@ class ProfileBuilder
 
     private final ActivationBuilder activationBuilder = new ActivationBuilder();
 
-    private final DependenciesBuilder dependenciesBuilder = new DependenciesBuilder();
+    private final GenericListBuilder<ImmDependency> dependenciesBuilder =
+        new GenericListBuilder<>( "dependency", new DependencyBuilder() );
 
     private final ModelBaseFieldBuilder modelBaseFieldBuilder = new ModelBaseFieldBuilder();
 

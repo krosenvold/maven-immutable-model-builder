@@ -8,7 +8,7 @@ public class ImmReporting
 {
     private final List<ImmPlugin> plugins;
 
-    public ImmReporting( List<ImmPlugin> plugins )
+    public ImmReporting( List<ImmPlugin> plugins, String outputDirectory )
     {
         this.plugins = plugins;
     }

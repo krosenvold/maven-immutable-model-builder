@@ -11,9 +11,9 @@ import java.util.List;
 class DependencyManagementBuilder
 {
 
-    private final DependenciesBuilder dependenciesBuilder;
+    private final GenericListBuilder<ImmDependency> dependenciesBuilder;
 
-    public DependencyManagementBuilder( DependenciesBuilder dependenciesBuilder )
+    public DependencyManagementBuilder( GenericListBuilder<ImmDependency> dependenciesBuilder )
     {
         this.dependenciesBuilder = dependenciesBuilder;
     }

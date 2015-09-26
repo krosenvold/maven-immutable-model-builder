@@ -11,6 +11,8 @@ class ReportingBuilder
     private final GenericListBuilder<ImmPlugin> pluginsBuilder =
         new GenericListBuilder( "plugin", new PluginBuilder() );
 
+    private final LeafBuilder leafBuilder = new LeafBuilder();
+
     public ImmReporting build( XMLStreamReader2 node )
         throws XMLStreamException
     {
@@ -18,6 +20,7 @@ class ReportingBuilder
 
         List<ImmPlugin> build = null;
 
+        String outputDirectory = null;
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
             int eventType = node.next();
@@ -25,18 +28,21 @@ class ReportingBuilder
             {
                 case XMLStreamReader2.START_ELEMENT:
                     String localName = node.getLocalName();
-                    if ( "plugins".equals( node.getLocalName() ) )
+                    switch ( localName )
                     {
-                        build = pluginsBuilder.build( node );
-                    }
-                    else
-                    {
-                        throw new IllegalArgumentException( "Unsupported tag " + localName );
-                    }
+                        case "plugins":
+                            build = pluginsBuilder.build( node );
+                            break;
 
+                        case "outputDirectory":
+                            outputDirectory = leafBuilder.build( node );
+                            break;
+                        default:
+                            throw new IllegalArgumentException( "Unsupported tag " + localName );
+                    }
             }
         }
-        return new ImmReporting( build );
+        return new ImmReporting( build, outputDirectory );
     }
 
 }

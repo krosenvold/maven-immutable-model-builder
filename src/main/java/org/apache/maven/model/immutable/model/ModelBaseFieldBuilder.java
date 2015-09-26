@@ -14,7 +14,8 @@ class ModelBaseFieldBuilder
 
     private final GenericListBuilder<String> modulesBuilder = new GenericListBuilder<>( "module", new LeafBuilder() );
 
-    private final DependenciesBuilder dependenciesBuilder = new DependenciesBuilder();
+    private final GenericListBuilder<ImmDependency> dependenciesBuilder =
+        new GenericListBuilder<>( "dependency", new DependencyBuilder() );
 
     private final DistributionManagementBuilder distributionManagementBuilder = new DistributionManagementBuilder();
 

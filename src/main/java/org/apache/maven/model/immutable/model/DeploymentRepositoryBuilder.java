@@ -5,6 +5,7 @@ import org.codehaus.stax2.XMLStreamReader2;
 import javax.xml.stream.XMLStreamException;
 
 class DeploymentRepositoryBuilder
+    implements ItemBuilder<ImmDeploymentRepository>
 {
     private final LeafBuilder leafBuilder = new LeafBuilder();
 
