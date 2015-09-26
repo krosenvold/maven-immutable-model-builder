@@ -1,48 +1,35 @@
 package org.apache.maven.model.immutable.model;
 
 import org.apache.maven.model.BuildBase;
-import org.apache.maven.model.Plugin;
 import org.apache.maven.model.immutable.ModelElement;
 
 import java.util.List;
 
-/**
- * Created by kristian on 20.09.15.
- */
 public class ImmBuild
     extends ModelElement
 
 {
-    private final ImmPlugins plugins;
+    private final List<ImmPlugin> plugins;
 
-    private final ImmPlugins pluginManagement;
+    private final List<ImmPlugin> pluginManagement;
 
-    public ImmBuild( ImmPlugins plugins, ImmPlugins pluginManagement )
+    public ImmBuild( List<ImmPlugin> plugins, List<ImmPlugin> pluginManagement )
     {
         this.plugins = plugins;
         this.pluginManagement = pluginManagement;
     }
 
-    public ImmPlugins getPlugins()
+    public List<ImmPlugin> getPlugins()
     {
         return plugins;
     }
 
     public BuildBase toBuild()
     {
-        BuildBase buildBase = new BuildBase();
-        buildBase.setPlugins( plugins.toPlugins() );
-        buildBase.setPluginManagement( pluginManagement.toPluginManagement() );
-        return null;
+        BuildBase result = new BuildBase();
+        result.setPlugins( ImmPlugin.toPlugins( plugins ) );
+        result.setPluginManagement( ImmPlugin.toPluginManagement( pluginManagement ) );
+        return result;
     }
 
-    public List<Plugin> toPlugins()
-    {
-        return plugins.toPlugins();
-    }
-
-    public List<Plugin> toPluginManagement()
-    {
-        return pluginManagement.toPlugins();
-    }
 }

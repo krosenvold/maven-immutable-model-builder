@@ -2,20 +2,20 @@ package org.apache.maven.model.immutable.model;
 
 import org.apache.maven.model.Reporting;
 
-/**
- * Created by kristian on 24.09.15.
- */
+import java.util.List;
+
 public class ImmReporting
 {
-    private final ImmPlugins plugins;
+    private final List<ImmPlugin> plugins;
 
-    public ImmReporting( ImmPlugins plugins )
+    public ImmReporting( List<ImmPlugin> plugins )
     {
         this.plugins = plugins;
     }
 
     public Reporting toReporting()
     {
+        // TODO: FIX
         return null;
     }
 }

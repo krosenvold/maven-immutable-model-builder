@@ -28,8 +28,8 @@ public class ImmutableModelBuilderTest
     {
         ImmutableModelBuilder imb = new ImmutableModelBuilder();
         ImmProject project = imb.readProject( "/immutable/simpletest.xml" );
-        ImmPlugin pluginA = project.getBuild().getPlugins().getPlugins().get( 0 );
-        ImmPlugin pluginB = project.getBuild().getPlugins().getPlugins().get( 1 );
+        ImmPlugin pluginA = project.getBuild().getPlugins().get( 0 );
+        ImmPlugin pluginB = project.getBuild().getPlugins().get( 1 );
         assertEquals( "A-G:A:1.0", pluginA.toString() );
         assertEquals( "B-G:B:2.0", pluginB.toString() );
         assertEquals( "4.0.0", project.getModelVersion().getVersion() );
@@ -54,8 +54,8 @@ public class ImmutableModelBuilderTest
     {
         ImmutableModelBuilder imb = new ImmutableModelBuilder();
         ImmProject project = imb.readProject( "/immutable/simple-malformed-plugins.xml" );
-        ImmPlugin pluginA = project.getBuild().getPlugins().getPlugins().get( 0 );
-        ImmPlugin pluginB = project.getBuild().getPlugins().getPlugins().get( 1 );
+        ImmPlugin pluginA = project.getBuild().getPlugins().get( 0 );
+        ImmPlugin pluginB = project.getBuild().getPlugins().get( 1 );
         assertEquals( "A-G:A:1.0", pluginA.toString() );
         assertEquals( "B-G:B:2.0", pluginB.toString() );
         assertEquals( "4.0.0", project.getModelVersion().getVersion() );

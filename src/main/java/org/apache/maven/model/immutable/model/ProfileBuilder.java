@@ -6,6 +6,7 @@ import javax.xml.stream.XMLStreamException;
 import java.util.List;
 
 class ProfileBuilder
+    implements ItemBuilder<ImmProfile>
 {
     private final LeafBuilder groupIdBuilder = new LeafBuilder();
 

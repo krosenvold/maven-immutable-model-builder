@@ -5,6 +5,7 @@ import org.codehaus.stax2.XMLStreamReader2;
 import javax.xml.stream.XMLStreamException;
 
 class PluginBuilder
+    implements ItemBuilder<ImmPlugin>
 {
     private final LeafBuilder groupIdBuilder = new LeafBuilder();
 

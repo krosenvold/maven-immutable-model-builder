@@ -3,19 +3,20 @@ package org.apache.maven.model.immutable.model;
 import org.codehaus.stax2.XMLStreamReader2;
 
 import javax.xml.stream.XMLStreamException;
+import java.util.List;
 
 class PluginManagementBuilder
 {
 
-    private final PluginsBuilder pluginBuilder;
+    private final GenericListBuilder<ImmPlugin> pluginBuilder;
 
-    public PluginManagementBuilder( PluginsBuilder pluginsBuilder )
+    public PluginManagementBuilder( GenericListBuilder<ImmPlugin> pluginsBuilder )
     {
         this.pluginBuilder = pluginsBuilder;
     }
 
 
-    public ImmPlugins build( XMLStreamReader2 node )
+    public List<ImmPlugin> build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();

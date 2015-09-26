@@ -35,7 +35,10 @@ class ProjectBuilder
 
     private final ReportingBuilder reportingBuilder = new ReportingBuilder();
 
-    private final ProfilesBuilder profilesBuilder = new ProfilesBuilder( build, reportingBuilder );
+    private final ProfileBuilder profileBuilder = new ProfileBuilder( build, reportingBuilder );
+
+    private final GenericListBuilder<ImmProfile> profilesBuilder =
+        new GenericListBuilder<>( "profile", profileBuilder );
 
     public ImmProject build( XMLStreamReader2 node )
         throws XMLStreamException

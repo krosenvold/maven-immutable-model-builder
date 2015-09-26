@@ -1,12 +1,15 @@
 package org.apache.maven.model.immutable.model;
 
 import org.apache.maven.model.Plugin;
+import org.apache.maven.model.PluginManagement;
 import org.apache.maven.model.immutable.ModelElement;
 import org.codehaus.plexus.util.StringInputStream;
 import org.codehaus.plexus.util.xml.Xpp3DomBuilder;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ImmPlugin
     extends ModelElement
@@ -69,4 +72,26 @@ public class ImmPlugin
         }
         return plugin;
     }
+
+    public static List<Plugin> toPlugins( List<ImmPlugin> plugins )
+    {
+        if ( plugins == null )
+        {
+            return null;
+        }
+        List<Plugin> result = new ArrayList<>();
+        for ( ImmPlugin plugin : plugins )
+        {
+            result.add( plugin.toPlugin() );
+        }
+        return result;
+    }
+
+    public static PluginManagement toPluginManagement( List<ImmPlugin> plugins )
+    {
+        PluginManagement pluginManagement = new PluginManagement();
+        pluginManagement.setPlugins( toPlugins( plugins ) );
+        return pluginManagement;
+    }
+
 }

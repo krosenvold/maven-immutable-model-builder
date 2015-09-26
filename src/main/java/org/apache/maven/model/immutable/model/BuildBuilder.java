@@ -3,10 +3,13 @@ package org.apache.maven.model.immutable.model;
 import org.codehaus.stax2.XMLStreamReader2;
 
 import javax.xml.stream.XMLStreamException;
+import java.util.List;
 
 class BuildBuilder
 {
-    private final PluginsBuilder pluginsBuilder = new PluginsBuilder();
+
+    private final GenericListBuilder<ImmPlugin> pluginsBuilder =
+        new GenericListBuilder( "plugin", new PluginBuilder() );
 
     private final PluginManagementBuilder pluginManagementBuilder = new PluginManagementBuilder( pluginsBuilder );
 
@@ -15,8 +18,8 @@ class BuildBuilder
     {
         int startLevel = node.getDepth();
 
-        ImmPlugins plugins = null;
-        ImmPlugins pluginManagement = null;
+        List<ImmPlugin> plugins = null;
+        List<ImmPlugin> pluginManagement = null;
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
