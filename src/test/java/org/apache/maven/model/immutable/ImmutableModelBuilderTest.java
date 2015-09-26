@@ -27,7 +27,7 @@ public class ImmutableModelBuilderTest
         throws Exception
     {
         ImmutableModelBuilder imb = new ImmutableModelBuilder();
-        ImmProject project = imb.readProject( "/immutable/simpletest.xml" );
+        ImmProject project = imb.readProject( simpleTest );
         ImmPlugin pluginA = project.getBuild().getPlugins().get( 0 );
         ImmPlugin pluginB = project.getBuild().getPlugins().get( 1 );
         assertEquals( "A-G:A:1.0", pluginA.toString() );
@@ -87,52 +87,12 @@ public class ImmutableModelBuilderTest
     // TOOD: Test Case sensitvity of tagnames ?
     // TODO: Test more malformed poms
 
-    private void xpp3read()
-        throws IOException, XmlPullParserException
-    {
-        long start;
-        long hc;
-        start = System.currentTimeMillis();
-        hc = 0;
-        for ( int i = 0; i < 1000; i++ )
-        {
-            Model model = readModelXpp3( simpleTest );
-            hc += model.hashCode();
-        }
-        System.out.println( "xpp3 = " + ( System.currentTimeMillis() - start ) + "hc = " + hc );
-    }
-
-    ImmutableModelBuilder imb = new ImmutableModelBuilder();
-
-    private void staxRead()
-        throws XMLStreamException, IOException
-    {
-        long start = System.currentTimeMillis();
-        long hc = 0;
-        for ( int i = 0; i < 1000; i++ )
-        {
-            ImmProject project = imb.readProject( simpleTest );
-            hc += project.hashCode();
-        }
-        System.out.println( "stax = " + ( System.currentTimeMillis() - start ) + "hc = " + hc );
-    }
-
 
     private Model readModelXpp3( String name )
         throws IOException, XmlPullParserException
     {
         MavenXpp3ReaderEx org = new MavenXpp3ReaderEx();
         try ( InputStream resourceAsStream = this.getClass().getResourceAsStream( name ) )
-        {
-            return org.read( resourceAsStream, true, new InputSource() );
-        }
-    }
-
-    private Model readModelXpp3( URL name )
-        throws IOException, XmlPullParserException
-    {
-        MavenXpp3ReaderEx org = new MavenXpp3ReaderEx();
-        try ( InputStream resourceAsStream = name.openStream() )
         {
             return org.read( resourceAsStream, true, new InputSource() );
         }
