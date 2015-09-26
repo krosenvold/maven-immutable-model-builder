@@ -43,16 +43,16 @@ class RepositoryBuilder
                             snapshots = repositoryPolicyBuilder.build( node );
                             break;
                         case "id":
-                            id = leafBuilder.singleTextValue( node );
+                            id = leafBuilder.build( node );
                             break;
                         case "name":
-                            name = leafBuilder.singleTextValue( node );
+                            name = leafBuilder.build( node );
                             break;
                         case "url":
-                            url = leafBuilder.singleTextValue( node );
+                            url = leafBuilder.build( node );
                             break;
                         case "layout":
-                            layout = leafBuilder.singleTextValue( node );
+                            layout = leafBuilder.build( node );
                             break;
                     }
             }

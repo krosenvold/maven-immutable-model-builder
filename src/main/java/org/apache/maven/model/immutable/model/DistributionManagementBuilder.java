@@ -34,7 +34,7 @@ class DistributionManagementBuilder
                             site = this.siteBuilder.build( node );
                             break;
                         case "downloadUrl":
-                            downloadUrl = leafBuilder.singleTextValue( node );
+                            downloadUrl = leafBuilder.build( node );
                             break;
                         default:
                             throw new RuntimeException( "Unsupported child tag " + localName );

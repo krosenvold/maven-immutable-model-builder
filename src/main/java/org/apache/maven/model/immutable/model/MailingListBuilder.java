@@ -28,16 +28,16 @@ class MailingListBuilder
                     switch ( localName )
                     {
                         case "name":
-                            name = leafBuilder.singleTextValue( node );
+                            name = leafBuilder.build( node );
                             break;
                         case "post":
-                            post = leafBuilder.singleTextValue( node );
+                            post = leafBuilder.build( node );
                             break;
                         case "subscribe":
-                            subscribe = leafBuilder.singleTextValue( node );
+                            subscribe = leafBuilder.build( node );
                             break;
                         case "unsubscribe":
-                            unsubscribe = leafBuilder.singleTextValue( node );
+                            unsubscribe = leafBuilder.build( node );
                             break;
                     }
             }

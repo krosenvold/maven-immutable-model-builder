@@ -56,7 +56,7 @@ class ProfileBuilder
                         switch ( localName )
                         {
                             case "id":
-                                id = groupIdBuilder.singleTextValue( node );
+                                id = groupIdBuilder.build( node );
                                 break;
                             case "build":
                                 build = buildBuilder.build( node );

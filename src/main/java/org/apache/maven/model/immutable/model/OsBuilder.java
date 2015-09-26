@@ -28,16 +28,16 @@ public class OsBuilder
                     switch ( localName )
                     {
                         case "arch":
-                            arch = leafBuilder.singleTextValue( node );
+                            arch = leafBuilder.build( node );
                             break;
                         case "family":
-                            family = leafBuilder.singleTextValue( node );
+                            family = leafBuilder.build( node );
                             break;
                         case "name":
-                            name = leafBuilder.singleTextValue( node );
+                            name = leafBuilder.build( node );
                             break;
                         case "version":
-                            version = leafBuilder.singleTextValue( node );
+                            version = leafBuilder.build( node );
                             break;
                         default:
                             throw new RuntimeException( "Unsupported child tag " + localName );

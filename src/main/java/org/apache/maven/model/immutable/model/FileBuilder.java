@@ -26,10 +26,10 @@ public class FileBuilder
                     switch ( localName )
                     {
                         case "missing":
-                            missing = leafBuilder.singleTextValue( node );
+                            missing = leafBuilder.build( node );
                             break;
                         case "exists":
-                            exists = leafBuilder.singleTextValue( node );
+                            exists = leafBuilder.build( node );
                             break;
                         default:
                             throw new RuntimeException( "Unsupported child tag " + localName );

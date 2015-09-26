@@ -30,13 +30,13 @@ class RepositoryPolicyBuilder
                     switch ( localName )
                     {
                         case "enabled":
-                            enabled = leafBuilder.singleTextValue( node );
+                            enabled = leafBuilder.build( node );
                             break;
                         case "updatePolicy":
-                            updatePolicy = leafBuilder.singleTextValue( node );
+                            updatePolicy = leafBuilder.build( node );
                             break;
                         case "checksumPolicy":
-                            checksumPolicy = leafBuilder.singleTextValue( node );
+                            checksumPolicy = leafBuilder.build( node );
                             break;
                     }
             }

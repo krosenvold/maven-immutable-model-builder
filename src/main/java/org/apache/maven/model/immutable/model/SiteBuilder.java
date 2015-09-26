@@ -30,13 +30,13 @@ class SiteBuilder
                     {
 
                         case "id":
-                            id = this.leafBuilder.singleTextValue( node );
+                            id = this.leafBuilder.build( node );
                             break;
                         case "url":
-                            url = leafBuilder.singleTextValue( node );
+                            url = leafBuilder.build( node );
                             break;
                         case "name":
-                            name = leafBuilder.singleTextValue( node );
+                            name = leafBuilder.build( node );
                             break;
                         default:
                             throw new RuntimeException( "Unsupported child tag " + localName );

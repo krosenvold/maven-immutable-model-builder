@@ -43,28 +43,28 @@ class DependencyBuilder
                     switch ( localName )
                     {
                         case "groupId":
-                            groupId = new ImmGroupId( groupIdBuilder.singleTextValue( node ) );
+                            groupId = new ImmGroupId( groupIdBuilder.build( node ) );
                             break;
                         case "artifactId":
-                            artifactId = new ImmArtifactId( artifactIdBuilder.singleTextValue( node ) );
+                            artifactId = new ImmArtifactId( artifactIdBuilder.build( node ) );
                             break;
                         case "version":
-                            version = new ImmVersion( versionBuilder.singleTextValue( node ) );
+                            version = new ImmVersion( versionBuilder.build( node ) );
                             break;
                         case "type":
-                            type = versionBuilder.singleTextValue( node );
+                            type = versionBuilder.build( node );
                             break;
                         case "scope":
-                            scope = versionBuilder.singleTextValue( node );
+                            scope = versionBuilder.build( node );
                             break;
                         case "classifier":
-                            classifier = versionBuilder.singleTextValue( node );
+                            classifier = versionBuilder.build( node );
                             break;
                         case "systemPath":
-                            systemPath = versionBuilder.singleTextValue( node );
+                            systemPath = versionBuilder.build( node );
                             break;
                         case "optional":
-                            optional = versionBuilder.singleTextValue( node );
+                            optional = versionBuilder.build( node );
                             break;
                     }
             }

@@ -12,7 +12,7 @@ class ModelBaseFieldBuilder
 
     private final PropertiesBuilder propertiesBuilder = new PropertiesBuilder();
 
-    private final ModulesBuilder modulesBuilder = new ModulesBuilder();
+    private final GenericListBuilder<String> modulesBuilder = new GenericListBuilder<>( "module", new LeafBuilder() );
 
     private final DependenciesBuilder dependenciesBuilder = new DependenciesBuilder();
 

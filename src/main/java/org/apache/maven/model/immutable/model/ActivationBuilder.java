@@ -37,10 +37,10 @@ class ActivationBuilder
                             properties = propertiesBuilder.build( node );
                             break;
                         case "jdk":
-                            jdk = leafBuilder.singleTextValue( node );
+                            jdk = leafBuilder.build( node );
                             break;
                         case "activeByDefault":
-                            activeByDefault = leafBuilder.singleTextValue( node );
+                            activeByDefault = leafBuilder.build( node );
                             break;
                         case "os":
                             os = osBuilder.build( node );

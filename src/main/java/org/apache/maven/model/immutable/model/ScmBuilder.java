@@ -31,16 +31,16 @@ class ScmBuilder
                     {
 
                         case "connection":
-                            connection = this.leafBuilder.singleTextValue( node );
+                            connection = this.leafBuilder.build( node );
                             break;
                         case "developerConnection":
-                            developerConnection = leafBuilder.singleTextValue( node );
+                            developerConnection = leafBuilder.build( node );
                             break;
                         case "url":
-                            url = leafBuilder.singleTextValue( node );
+                            url = leafBuilder.build( node );
                             break;
                         case "tag":
-                            tag = leafBuilder.singleTextValue( node );
+                            tag = leafBuilder.build( node );
                             break;
                         default:
                             throw new RuntimeException( "Unsupported child tag " + localName );

@@ -24,7 +24,8 @@ class ProjectBuilder
 
     private final CiManagementBuilder ciManagementBuilder = new CiManagementBuilder();
 
-    private final ContributorsBuilder contributorsBuilder = new ContributorsBuilder();
+    private final GenericListBuilder<Contributor> contributorsBuilder =
+        new GenericListBuilder<>( "contributor", new ContributorBuilder() );
 
     private final PrerequisitesBuilder prerequisitesBuilder = new PrerequisitesBuilder();
 
@@ -80,25 +81,25 @@ class ProjectBuilder
                                 build = this.build.build( node );
                                 break;
                             case "modelVersion":
-                                modelVersion = new ImmModelVersion2( leafBuilder.singleTextValue( node ) );
+                                modelVersion = new ImmModelVersion2( leafBuilder.build( node ) );
                                 break;
                             case "groupId":
-                                groupId = new ImmGroupId( leafBuilder.singleTextValue( node ) );
+                                groupId = new ImmGroupId( leafBuilder.build( node ) );
                                 break;
                             case "artifactId":
-                                artifactId = new ImmArtifactId( leafBuilder.singleTextValue( node ) );
+                                artifactId = new ImmArtifactId( leafBuilder.build( node ) );
                                 break;
                             case "version":
-                                version = new ImmVersion( leafBuilder.singleTextValue( node ) );
+                                version = new ImmVersion( leafBuilder.build( node ) );
                                 break;
                             case "name":
-                                name = new ImmProjectName( leafBuilder.singleTextValue( node ) );
+                                name = new ImmProjectName( leafBuilder.build( node ) );
                                 break;
                             case "description":
-                                description = new ImmProjectDescription( leafBuilder.singleTextValue( node ) );
+                                description = new ImmProjectDescription( leafBuilder.build( node ) );
                                 break;
                             case "url":
-                                url = new ImmProjectUrl( leafBuilder.singleTextValue( node ) );
+                                url = new ImmProjectUrl( leafBuilder.build( node ) );
                                 break;
                             case "mailingLists":
                                 mailingLists = mailingListsBuilder.build( node );
@@ -107,10 +108,10 @@ class ProjectBuilder
                                 parent = parentBuilder.build( node );
                                 break;
                             case "packaging":
-                                packaging = leafBuilder.singleTextValue( node );
+                                packaging = leafBuilder.build( node );
                                 break;
                             case "inceptionYear":
-                                inceptionYear = leafBuilder.singleTextValue( node );
+                                inceptionYear = leafBuilder.build( node );
                                 break;
                             case "scm":
                                 scm = scmBuilder.build( node );

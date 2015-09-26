@@ -32,7 +32,7 @@ class ParentBuilder
                         switch ( localName )
                         {
                             case "relativePath":
-                                relativePath = rp.singleTextValue( node );
+                                relativePath = rp.build( node );
                                 break;
                             default:
                                 throw new IllegalArgumentException( "Unsupported tag " + localName );

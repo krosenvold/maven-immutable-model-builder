@@ -5,7 +5,7 @@ import org.codehaus.stax2.XMLStreamReader2;
 import javax.xml.stream.XMLStreamException;
 
 class ContributorBuilder
-    extends BaseBuilder
+    implements ItemBuilder<Contributor>
 {
     private final LeafBuilder leafBuilder = new LeafBuilder();
 
@@ -41,21 +41,21 @@ class ContributorBuilder
                     {
 
                         case "name":
-                            name = this.leafBuilder.singleTextValue( node );
+                            name = this.leafBuilder.build( node );
                             break;
                         case "email":
-                            email = leafBuilder.singleTextValue( node ) ;
+                            email = leafBuilder.build( node );
                         case "url":
-                            url = leafBuilder.singleTextValue( node ) ;
+                            url = leafBuilder.build( node );
                             break;
                         case "organization":
-                            organization = leafBuilder.singleTextValue( node ) ;
+                            organization = leafBuilder.build( node );
                             break;
                         case "organizationUrl":
-                            organizationUrl = leafBuilder.singleTextValue( node ) ;
+                            organizationUrl = leafBuilder.build( node );
                             break;
                         case "timezone":
-                            timeZone = leafBuilder.singleTextValue( node ) ;
+                            timeZone = leafBuilder.build( node );
                             break;
                         default:
                             throw new RuntimeException( "Unsupported child tag " + localName );

@@ -5,10 +5,12 @@ import org.codehaus.stax2.XMLStreamReader2;
 import javax.xml.stream.XMLStreamException;
 
 class LeafBuilder
+    implements ItemBuilder<String>
 {
 
     public static LeafBuilder INSTANCE = new LeafBuilder();
-    protected String singleTextValue( XMLStreamReader2 node )
+
+    public String build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();

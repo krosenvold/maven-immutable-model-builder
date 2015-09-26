@@ -25,7 +25,7 @@ public class PrerequisitesBuilder
             {
                 case XMLStreamReader2.START_ELEMENT:
                     String localName = node.getLocalName();
-                    final String groupId1 = propVal.singleTextValue( node );
+                    final String groupId1 = propVal.build( node );
                     props.put( localName, groupId1 );
             }
         }
