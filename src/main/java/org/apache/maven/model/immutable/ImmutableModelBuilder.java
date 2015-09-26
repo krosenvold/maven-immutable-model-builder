@@ -7,6 +7,7 @@ import org.codehaus.stax2.XMLStreamReader2;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -38,7 +39,7 @@ class ImmutableModelBuilder
     {
         try ( InputStream resourceAsStream2 = name.openStream() )
         {
-            ImmProject project = buildModel( resourceAsStream2 );
+            ImmProject project = buildModel( new BufferedInputStream( resourceAsStream2 ) );
             return project;
         }
     }

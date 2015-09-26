@@ -18,6 +18,7 @@ import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.junit.Test;
 
 import javax.xml.stream.XMLStreamException;
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -44,13 +45,21 @@ public class Xpp3StaxComparisonTest
     {
         for ( int i = 0; i < 10; i++ )
         {
-            xpp3read();
+            xpp3read( NUM_READS );
         }
         System.gc();
         for ( int i = 0; i < 10; i++ )
         {
-            staxRead();
+            staxRead( NUM_READS );
         }
+        final_test();
+    }
+
+    private void final_test()
+        throws IOException, XmlPullParserException, XMLStreamException
+    {
+        xpp3read( NUM_READS + 11 );
+        staxRead( NUM_READS + 11 );
     }
 
     @Test
@@ -261,14 +270,14 @@ public class Xpp3StaxComparisonTest
     // TOOD: Test Case sensitvity of tagnames ?
     // TODO: Test more malformed poms
 
-    private void xpp3read()
+    private void xpp3read( int num_reads )
         throws IOException, XmlPullParserException
     {
         long start;
         long hc;
         start = System.currentTimeMillis();
         hc = 0;
-        for ( int i = 0; i < NUM_READS; i++ )
+        for ( int i = 0; i < num_reads; i++ )
         {
             Model model = readModelXpp3( m3core );
             hc += model.hashCode();
@@ -278,12 +287,12 @@ public class Xpp3StaxComparisonTest
 
     ImmutableModelBuilder imb = new ImmutableModelBuilder();
 
-    private void staxRead()
+    private void staxRead( int num_reads )
         throws XMLStreamException, IOException
     {
         long start = System.currentTimeMillis();
         long hc = 0;
-        for ( int i = 0; i < NUM_READS; i++ )
+        for ( int i = 0; i < num_reads; i++ )
         {
             ImmProject project = imb.readProject( m3core );
             hc += project.hashCode();
@@ -309,7 +318,7 @@ public class Xpp3StaxComparisonTest
         MavenXpp3ReaderEx org = new MavenXpp3ReaderEx();
         try (InputStream resourceAsStream = name.openStream())
         {
-            return org.read( resourceAsStream, true, new InputSource() );
+            return org.read( new BufferedInputStream( resourceAsStream ), true, new InputSource() );
         }
     }
 
