@@ -23,7 +23,7 @@ final class GenericListBuilder<T>
     {
         int startLevel = node.getDepth();
 
-        List<T> result = new ArrayList<>();
+        List<T> result = new ArrayList<>( 20 );
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {

@@ -72,7 +72,8 @@ class ProjectBuilder
                 case XMLStreamReader2.START_ELEMENT:
                     if ( !modelBaseFieldBuilder.build( node, mbState ) && !gavFieldBuilder.build( node, gavState ) )
                     {
-                        switch ( node.getLocalName() )
+                        String localName = node.getLocalName();
+                        switch ( localName )
                         {
                             case "build":
                                 build = this.build.build( node );

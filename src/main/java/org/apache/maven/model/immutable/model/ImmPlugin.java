@@ -56,11 +56,7 @@ public class ImmPlugin
             plugin.setConfiguration(
                 Xpp3DomBuilder.build( new StringInputStream( configuration.toString() ), "UTF-8" ) );
         }
-        catch ( XmlPullParserException e )
-        {
-            throw new RuntimeException( e );
-        }
-        catch ( IOException e )
+        catch ( XmlPullParserException | IOException e )
         {
             throw new RuntimeException( e );
         }
