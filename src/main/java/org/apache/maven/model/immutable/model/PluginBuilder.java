@@ -7,11 +7,7 @@ import javax.xml.stream.XMLStreamException;
 class PluginBuilder
     implements ItemBuilder<ImmPlugin>
 {
-    private final LeafBuilder groupIdBuilder = new LeafBuilder();
-
-    private final LeafBuilder artifactIdBuilder = new LeafBuilder();
-
-    private final LeafBuilder versionBuilder = new LeafBuilder();
+    private final GavFieldBuilder gavFieldBuilder = new GavFieldBuilder();
 
     XmlBuilder xmlBuilder = new XmlBuilder();
 
@@ -20,39 +16,30 @@ class PluginBuilder
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
-        ImmGroupId groupId = null;
-        ImmArtifactId artifactId = null;
-        ImmVersion version = null;
         String configuration = null;
         String reportSets = null;
 
-
+        GavState gavState = new GavState();
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
             switch ( node.next() )
             {
                 case XMLStreamReader2.START_ELEMENT:
-                    switch ( node.getLocalName() )
+                    if ( !gavFieldBuilder.build( node, gavState ) )
                     {
-                        case "groupId":
-                            groupId = new ImmGroupId( groupIdBuilder.build( node ) );
-                            break;
-                        case "artifactId":
-                            artifactId = new ImmArtifactId( artifactIdBuilder.build( node ) );
-                            break;
-                        case "version":
-                            version = new ImmVersion( versionBuilder.build( node ) );
-                            break;
-                        case "configuration":
-                            configuration = xmlBuilder.build( node ) ;
-                            break;
-                        case "reportSets":
-                            reportSets = xmlBuilder.build( node ) ;
-                            break;
+                        switch ( node.getLocalName() )
+                        {
+                            case "configuration":
+                                configuration = xmlBuilder.build( node );
+                                break;
+                            case "reportSets":
+                                reportSets = xmlBuilder.build( node );
+                                break;
+                        }
                     }
             }
         }
 
-        return new ImmPlugin( artifactId, groupId, version, configuration, reportSets );
+        return new ImmPlugin( gavState.gav(), configuration, reportSets );
     }
 }

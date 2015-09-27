@@ -5,11 +5,11 @@ package org.apache.maven.model.immutable.model;
  */
 public class GavState
 {
-    ImmGroupId groupId;
+    String groupId;
 
-    ImmArtifactId artifactId;
+    String artifactId;
 
-    ImmVersion version;
+    String version;
 
     public Gav gav()
     {

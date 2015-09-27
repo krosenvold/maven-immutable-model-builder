@@ -9,17 +9,11 @@ public class ImmProject
 
     private final ModelBaseState modelBaseState;
 
-    private final GavState gavState;
+    private final Gav gavState;
 
     private final ImmBuild build;
 
     private final ImmModelVersion2 modelVersion;
-
-    private final ImmGroupId groupId;
-
-    private final ImmArtifactId artifactId;
-
-    private final ImmVersion version;
 
     private final Properties prerequisites;
 
@@ -47,8 +41,8 @@ public class ImmProject
 
     private final List<ImmProfile> profiles;
 
-    public ImmProject( ModelBaseState modelBaseState, GavState gavState, ImmBuild build, ImmModelVersion2 modelVersion,
-                       ImmGroupId groupId, ImmArtifactId artifactId, ImmVersion version, Properties prerequisites,
+    public ImmProject( ModelBaseState modelBaseState, Gav gavState, ImmBuild build, ImmModelVersion2 modelVersion,
+                       Properties prerequisites,
                        List<ImmContributor> contributors, ImmCiManagement ciManagement,
                        ImmIssueManagement issueManagement,
                        ImmScm scm, String year, String packaging, List<ImmMailingList> mailingLists, ImmParent parent,
@@ -60,9 +54,6 @@ public class ImmProject
         this.gavState = gavState;
         this.build = build;
         this.modelVersion = modelVersion;
-        this.groupId = gavState.groupId;
-        this.artifactId = gavState.artifactId;
-        this.version = gavState.version;
         this.prerequisites = prerequisites;
         this.contributors = contributors;
         this.ciManagement = ciManagement;
@@ -88,18 +79,18 @@ public class ImmProject
         return modelVersion;
     }
 
-    public ImmGroupId getGroupId()
+    public String getGroupId()
     {
-        return groupId;
+        return gavState.groupId;
     }
 
-    public ImmArtifactId getArtifactId()
+    public String getArtifactId()
     {
-        return artifactId;
+        return gavState.artifactId;
     }
 
-    public ImmVersion getVersion()
+    public String getVersion()
     {
-        return version;
+        return gavState.version;
     }
 }

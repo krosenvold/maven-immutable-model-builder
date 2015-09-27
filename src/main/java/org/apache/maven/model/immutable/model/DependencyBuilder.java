@@ -18,9 +18,9 @@ class DependencyBuilder
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
-        ImmGroupId groupId = null;
-        ImmArtifactId artifactId = null;
-        ImmVersion version = null;
+        String groupId = null;
+        String artifactId = null;
+        String version = null;
         String classifier = null;
         String scope = null;
         String systemPath = null;
@@ -40,13 +40,13 @@ class DependencyBuilder
                     switch ( localName )
                     {
                         case "groupId":
-                            groupId = new ImmGroupId( groupIdBuilder.build( node ) );
+                            groupId = groupIdBuilder.build( node );
                             break;
                         case "artifactId":
-                            artifactId = new ImmArtifactId( artifactIdBuilder.build( node ) );
+                            artifactId = artifactIdBuilder.build( node );
                             break;
                         case "version":
-                            version = new ImmVersion( versionBuilder.build( node ) );
+                            version = versionBuilder.build( node );
                             break;
                         case "type":
                             type = versionBuilder.build( node );

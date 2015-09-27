@@ -37,7 +37,7 @@ public class XmlBuilder {
 					sb.append("</").append(elems.size() > 0 ? elems.pop() : "BugubU").append(">\n");
 					break;
 				case XMLStreamReader2.CHARACTERS:
-					sb.append(org.codehaus.plexus.util.StringUtils.trim(node.getText()));
+					sb.append( node.getText() );
 					break;
 			}
 			eventType = node.next();

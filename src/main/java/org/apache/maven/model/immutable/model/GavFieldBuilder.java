@@ -20,13 +20,13 @@ class GavFieldBuilder
         switch ( localName )
         {
             case "groupId":
-                gavState.groupId = new ImmGroupId( groupIdBuilder.build( node ) );
+                gavState.groupId = groupIdBuilder.build( node );
                 return true;
             case "artifactId":
-                gavState.artifactId = new ImmArtifactId( artifactIdBuilder.build( node ) );
+                gavState.artifactId = artifactIdBuilder.build( node );
                 return true;
             case "version":
-                gavState.version = new ImmVersion( versionBuilder.build( node ) );
+                gavState.version = versionBuilder.build( node );
                 return true;
             default:
                 return false;

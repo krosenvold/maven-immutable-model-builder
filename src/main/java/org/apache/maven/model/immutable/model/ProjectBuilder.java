@@ -40,6 +40,7 @@ class ProjectBuilder
     private final GenericListBuilder<ImmProfile> profilesBuilder =
         new GenericListBuilder<>( "profile", profileBuilder );
 
+
     public final ImmProject build( XMLStreamReader2 node )
         throws XMLStreamException
     {
@@ -47,9 +48,6 @@ class ProjectBuilder
 
         ImmBuild build = null;
         ImmModelVersion2 modelVersion = null;
-        ImmGroupId groupId = null;
-        ImmArtifactId artifactId = null;
-        ImmVersion version = null;
         ImmProjectName name = null;
         ImmProjectDescription description = null;
         ImmProjectUrl url = null;
@@ -81,15 +79,6 @@ class ProjectBuilder
                                 break;
                             case "modelVersion":
                                 modelVersion = new ImmModelVersion2( leafBuilder.build( node ) );
-                                break;
-                            case "groupId":
-                                groupId = new ImmGroupId( leafBuilder.build( node ) );
-                                break;
-                            case "artifactId":
-                                artifactId = new ImmArtifactId( leafBuilder.build( node ) );
-                                break;
-                            case "version":
-                                version = new ImmVersion( leafBuilder.build( node ) );
                                 break;
                             case "name":
                                 name = new ImmProjectName( leafBuilder.build( node ) );
@@ -136,7 +125,7 @@ class ProjectBuilder
                     }
             }
         }
-        return new ImmProject( mbState, gavState, build, modelVersion, groupId, artifactId, version, prerequisites,
+        return new ImmProject( mbState, gavState.gav(), build, modelVersion, prerequisites,
                                contributors, ciManagement, issueManagement, scm, inceptionYear, packaging, mailingLists,
                                parent, name, description, url, profiles );
 

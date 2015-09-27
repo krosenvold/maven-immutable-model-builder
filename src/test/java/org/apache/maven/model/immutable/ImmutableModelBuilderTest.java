@@ -33,9 +33,9 @@ public class ImmutableModelBuilderTest
         assertEquals( "A-G:A:1.0", pluginA.toString() );
         assertEquals( "B-G:B:2.0", pluginB.toString() );
         assertEquals( "4.0.0", project.getModelVersion().getVersion() );
-        assertEquals( "gid", project.getGroupId().getGroupId() );
-        assertEquals( "art", project.getArtifactId().getArtifactId() );
-        assertEquals( "101-SNAPSHOT", project.getVersion().getVersion() );
+        assertEquals( "gid", project.getGroupId() );
+        assertEquals( "art", project.getArtifactId() );
+        assertEquals( "101-SNAPSHOT", project.getVersion() );
     }
 
     @Test( expected = java.io.EOFException.class )
@@ -59,9 +59,9 @@ public class ImmutableModelBuilderTest
         assertEquals( "A-G:A:1.0", pluginA.toString() );
         assertEquals( "B-G:B:2.0", pluginB.toString() );
         assertEquals( "4.0.0", project.getModelVersion().getVersion() );
-        assertEquals( "gid", project.getGroupId().getGroupId() );
-        assertEquals( "art", project.getArtifactId().getArtifactId() );
-        assertEquals( "101-SNAPSHOT", project.getVersion().getVersion() );
+        assertEquals( "gid", project.getGroupId() );
+        assertEquals( "art", project.getArtifactId() );
+        assertEquals( "101-SNAPSHOT", project.getVersion() );
     }
 
 

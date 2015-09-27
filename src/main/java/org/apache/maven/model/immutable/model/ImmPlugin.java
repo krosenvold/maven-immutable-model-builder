@@ -14,23 +14,17 @@ import java.util.List;
 public class ImmPlugin
     extends ModelElement
 {
-    private final ImmGroupId groupId;
-
-    private final ImmArtifactId artifactId;
-
-    private final ImmVersion version;
+    private final Gav gav;
 
     private final String configuration;
 
     private final String reportSets;
 
 
-    public ImmPlugin( ImmArtifactId artifactId, ImmGroupId groupId, ImmVersion version, String configuration,
+    public ImmPlugin( Gav gav, String configuration,
                       String reportSets )
     {
-        this.artifactId = artifactId;
-        this.groupId = groupId;
-        this.version = version;
+        this.gav = gav;
         this.configuration = configuration;
         this.reportSets = reportSets;
     }
@@ -38,23 +32,23 @@ public class ImmPlugin
     @Override
     public String toString()
     {
-        return groupId.getGroupId() + ":" + artifactId.getArtifactId() + ":" + version.getVersion();
+        return gav.toString();
     }
 
     public Plugin toPlugin()
     {
         Plugin plugin = new Plugin();
-        if ( groupId != null )
+        if ( gav.groupId != null )
         {
-            plugin.setGroupId( groupId.getGroupId() );
+            plugin.setGroupId( gav.groupId );
         }
-        if ( artifactId != null )
+        if ( gav.artifactId != null )
         {
-            plugin.setArtifactId( artifactId.getArtifactId() );
+            plugin.setArtifactId( gav.artifactId );
         }
-        if ( version != null )
+        if ( gav.version != null )
         {
-            plugin.setVersion( version.getVersion() );
+            plugin.setVersion( gav.version );
         }
         // plugin.setExtensions(  ); TODO
         // plugin.reportSets TODO

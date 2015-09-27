@@ -7,11 +7,11 @@ import java.util.List;
 
 public class ImmDependency
 {
-    private final ImmGroupId groupId;
+    private final String groupId;
 
-    private final ImmArtifactId artifactId;
+    private final String artifactId;
 
-    private final ImmVersion version;
+    private final String version;
 
     private final String classifier;
 
@@ -23,7 +23,7 @@ public class ImmDependency
 
     private final String scope;
 
-    public ImmDependency( ImmGroupId groupId, ImmArtifactId artifactId, ImmVersion version, String classifier,
+    public ImmDependency( String groupId, String artifactId, String version, String classifier,
                           String type, String systemPath, String optional, String scope )
     {
         this.groupId = groupId;
@@ -39,9 +39,9 @@ public class ImmDependency
     public Dependency toDependency()
     {
         Dependency result = new Dependency();
-        result.setGroupId( groupId.getGroupId() );
-        result.setArtifactId( artifactId.getArtifactId() );
-        result.setVersion( version.getVersion() );
+        result.setGroupId( groupId );
+        result.setArtifactId( artifactId );
+        result.setVersion( version );
         result.setType( type );
         result.setClassifier( classifier );
         result.setScope( scope );

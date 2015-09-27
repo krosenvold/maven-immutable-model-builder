@@ -3,16 +3,22 @@ package org.apache.maven.model.immutable.model;
 class Gav
 {
 
-    final ImmGroupId groupId;
+    final String groupId;
 
-    final ImmArtifactId artifactId;
+    final String artifactId;
 
-    final ImmVersion version;
+    final String version;
 
-    Gav( ImmGroupId groupId, ImmArtifactId artifactId, ImmVersion version )
+    Gav( String groupId, String artifactId, String version )
     {
         this.groupId = groupId;
         this.artifactId = artifactId;
         this.version = version;
     }
+
+    public String toString()
+    {
+        return groupId + ":" + artifactId + ":" + version;
+    }
+
 }
