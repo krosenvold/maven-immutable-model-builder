@@ -10,7 +10,7 @@ class DeploymentRepositoryBuilder
     private final LeafBuilder leafBuilder = new LeafBuilder();
 
 
-    public ImmDeploymentRepository build( XMLStreamReader2 node )
+    public final ImmDeploymentRepository build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();

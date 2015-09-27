@@ -10,7 +10,7 @@ class ScmBuilder
     private final LeafBuilder leafBuilder = new LeafBuilder();
 
 
-    public ImmScm build( XMLStreamReader2 node )
+    public final ImmScm build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();

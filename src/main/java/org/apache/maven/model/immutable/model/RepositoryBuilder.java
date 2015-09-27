@@ -12,7 +12,7 @@ class RepositoryBuilder
     private final RepositoryPolicyBuilder repositoryPolicyBuilder = new RepositoryPolicyBuilder();
 
 
-    public ImmRepository build( XMLStreamReader2 node )
+    public final ImmRepository build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();

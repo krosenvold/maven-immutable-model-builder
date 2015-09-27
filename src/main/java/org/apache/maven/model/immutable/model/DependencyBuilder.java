@@ -14,7 +14,7 @@ class DependencyBuilder
     private final LeafBuilder versionBuilder = new LeafBuilder();
 
 
-    public ImmDependency build( XMLStreamReader2 node )
+    public final ImmDependency build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
@@ -36,7 +36,8 @@ class DependencyBuilder
             switch ( node.next() )
             {
                 case XMLStreamReader2.START_ELEMENT:
-                    switch ( node.getLocalName() )
+                    String localName = node.getLocalName();
+                    switch ( localName )
                     {
                         case "groupId":
                             groupId = new ImmGroupId( groupIdBuilder.build( node ) );

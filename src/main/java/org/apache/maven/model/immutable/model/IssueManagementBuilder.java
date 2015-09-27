@@ -10,7 +10,7 @@ class IssueManagementBuilder
     private final LeafBuilder leafBuilder = new LeafBuilder();
 
 
-    public ImmIssueManagement build( XMLStreamReader2 node )
+    public final ImmIssueManagement build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();

@@ -9,7 +9,7 @@ class SiteBuilder
 {
     private final LeafBuilder leafBuilder = LeafBuilder.INSTANCE;
 
-    public ImmSite build( XMLStreamReader2 node )
+    public final ImmSite build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();

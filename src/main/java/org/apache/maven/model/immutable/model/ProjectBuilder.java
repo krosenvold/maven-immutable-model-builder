@@ -40,7 +40,7 @@ class ProjectBuilder
     private final GenericListBuilder<ImmProfile> profilesBuilder =
         new GenericListBuilder<>( "profile", profileBuilder );
 
-    public ImmProject build( XMLStreamReader2 node )
+    public final ImmProject build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();

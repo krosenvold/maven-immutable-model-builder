@@ -18,7 +18,7 @@ class ContributorBuilder
 
      */
 
-    public ImmContributor build( XMLStreamReader2 node )
+    public final ImmContributor build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();

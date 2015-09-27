@@ -16,7 +16,7 @@ class PluginBuilder
     XmlBuilder xmlBuilder = new XmlBuilder();
 
 
-    public ImmPlugin build( XMLStreamReader2 node )
+    public final ImmPlugin build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
