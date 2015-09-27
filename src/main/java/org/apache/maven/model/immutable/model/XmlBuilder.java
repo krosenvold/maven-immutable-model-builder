@@ -7,10 +7,10 @@ import java.util.Stack;
 
 public class XmlBuilder {
 
-	public String build( XMLStreamReader2 node )
+	public StringBuilder build( XMLStreamReader2 node )
 			throws XMLStreamException
 	{
-		final StringBuilder sb = new StringBuilder();
+		final StringBuilder sb = new StringBuilder( 128 );
 		int startLevel = node.getDepth();
 		Stack<String> elems = new Stack<>();
 
@@ -42,7 +42,7 @@ public class XmlBuilder {
 			}
 			eventType = node.next();
 		} while( node.hasNext() && node.getDepth() >= startLevel );
-		return sb.toString();
+		return sb;
 	}
 
 }

@@ -16,8 +16,8 @@ class PluginBuilder
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
-        String configuration = null;
-        String reportSets = null;
+        StringBuilder configuration = null;
+        StringBuilder reportSets = null;
 
         GavState gavState = new GavState();
         while ( node.hasNext() && node.getDepth() >= startLevel )

@@ -45,7 +45,7 @@ public class Xpp3StaxComparisonTest
     {
         for ( int i = 0; i < 10; i++ )
         {
-            xpp3read( NUM_READS );
+            //    xpp3read( NUM_READS );
         }
         System.gc();
         for ( int i = 0; i < 10; i++ )

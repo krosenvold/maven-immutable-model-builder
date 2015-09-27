@@ -16,13 +16,12 @@ public class ImmPlugin
 {
     private final Gav gav;
 
-    private final String configuration;
+    private final StringBuilder configuration;
 
-    private final String reportSets;
+    private final StringBuilder reportSets;
 
 
-    public ImmPlugin( Gav gav, String configuration,
-                      String reportSets )
+    public ImmPlugin( Gav gav, StringBuilder configuration, StringBuilder reportSets )
     {
         this.gav = gav;
         this.configuration = configuration;
@@ -54,7 +53,8 @@ public class ImmPlugin
         // plugin.reportSets TODO
         try
         {
-            plugin.setConfiguration( Xpp3DomBuilder.build( new StringInputStream( configuration ), "UTF-8" ) );
+            plugin.setConfiguration(
+                Xpp3DomBuilder.build( new StringInputStream( configuration.toString() ), "UTF-8" ) );
         }
         catch ( XmlPullParserException e )
         {
