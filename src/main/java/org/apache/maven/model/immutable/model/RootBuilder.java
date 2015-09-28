@@ -6,14 +6,14 @@ import javax.xml.stream.XMLStreamException;
 
 public class RootBuilder
 {
-    private final ProjectBuilder projectBuilder = new ProjectBuilder();
+    private final ModelBuilder modelBuilder = new ModelBuilder();
 
-    public ImmProject build( XMLStreamReader2 node )
+    public ImmModel build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
 
-        ImmProject build1 = null;
+        ImmModel build1 = null;
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
             switch ( node.next() )
@@ -21,7 +21,7 @@ public class RootBuilder
                 case XMLStreamReader2.START_ELEMENT:
                     if ( "project".equals( node.getLocalName() ) )
                     {
-                        build1 = projectBuilder.build( node );
+                        build1 = modelBuilder.build( node );
                     }
                     else
                     {

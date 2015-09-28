@@ -23,8 +23,10 @@ public class ImmDependency
 
     private final String scope;
 
-    public ImmDependency( String groupId, String artifactId, String version, String classifier,
-                          String type, String systemPath, String optional, String scope )
+    private final List<ImmExclusion> exclusions;
+
+    public ImmDependency( String groupId, String artifactId, String version, String classifier, String type, String systemPath, String optional, String scope,
+                          List<ImmExclusion> exclusions )
     {
         this.groupId = groupId;
         this.artifactId = artifactId;
@@ -34,6 +36,7 @@ public class ImmDependency
         this.systemPath = systemPath;
         this.optional = optional;
         this.scope = scope;
+        this.exclusions = exclusions;
     }
 
     public Dependency toDependency()
@@ -47,6 +50,7 @@ public class ImmDependency
         result.setScope( scope );
         result.setSystemPath( systemPath );
         result.setOptional( Boolean.valueOf( optional ) );
+        if (exclusions != null) result.setExclusions( ImmExclusion.toList( exclusions ));
         return result;
     }
 

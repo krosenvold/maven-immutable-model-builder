@@ -5,7 +5,7 @@ import org.codehaus.stax2.XMLStreamReader2;
 import javax.xml.stream.XMLStreamException;
 import java.util.Properties;
 
-class PropertiesBuilder
+class PropertiesBuilder implements ItemBuilder<Properties>
 {
     private final LeafBuilder propVal = new LeafBuilder();
 

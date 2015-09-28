@@ -1,9 +1,11 @@
 package org.apache.maven.model.immutable.model;
 
+import org.apache.maven.model.Model;
+
 import java.util.List;
 import java.util.Properties;
 
-public class ImmProject
+public class ImmModel
     extends ImmModelBase
 {
 
@@ -13,7 +15,7 @@ public class ImmProject
 
     private final ImmBuild build;
 
-    private final ImmModelVersion2 modelVersion;
+    private final String modelVersion;
 
     private final Properties prerequisites;
 
@@ -41,13 +43,14 @@ public class ImmProject
 
     private final List<ImmProfile> profiles;
 
-    public ImmProject( ModelBaseState modelBaseState, Gav gavState, ImmBuild build, ImmModelVersion2 modelVersion,
-                       Properties prerequisites,
-                       List<ImmContributor> contributors, ImmCiManagement ciManagement,
-                       ImmIssueManagement issueManagement,
-                       ImmScm scm, String year, String packaging, List<ImmMailingList> mailingLists, ImmParent parent,
-                       ImmProjectName name, ImmProjectDescription description, ImmProjectUrl url,
-                       List<ImmProfile> profiles )
+    private final List<ImmDeveloper> developers;
+
+    public ImmModel( ModelBaseState modelBaseState, Gav gavState, ImmBuild build, String modelVersion,
+                     Properties prerequisites, List<ImmContributor> contributors, ImmCiManagement ciManagement,
+                     ImmIssueManagement issueManagement, ImmScm scm, String year, String packaging,
+                     List<ImmMailingList> mailingLists, ImmParent parent, ImmProjectName name,
+                     ImmProjectDescription description, ImmProjectUrl url, List<ImmProfile> profiles,
+                     List<ImmDeveloper> developers )
     {
         super( modelBaseState );
         this.modelBaseState = modelBaseState;
@@ -67,6 +70,7 @@ public class ImmProject
         this.description = description;
         this.url = url;
         this.profiles = profiles;
+        this.developers = developers;
     }
 
     public ImmBuild getBuild()
@@ -74,7 +78,7 @@ public class ImmProject
         return build;
     }
 
-    public ImmModelVersion2 getModelVersion()
+    public String getModelVersion()
     {
         return modelVersion;
     }
@@ -93,4 +97,18 @@ public class ImmProject
     {
         return gavState.version;
     }
+
+    public Model toModel(){
+        Model result = new Model();
+        result.setModelVersion( modelVersion );
+        gavState.setModelAttrs( result);
+        modelBaseState.setModelBaseAttributes( result );
+        result.setDevelopers( ImmDeveloper.asDeveloperList( developers ) );
+        result.setContributors( ImmContributor.asContributorList( contributors ) );
+        result.setCiManagement( ciManagement.toCiManagement() );
+        // todo: a bunch of attrs
+        return result;
+
+    }
+
 }

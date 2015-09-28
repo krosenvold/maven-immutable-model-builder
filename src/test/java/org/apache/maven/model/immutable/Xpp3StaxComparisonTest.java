@@ -11,7 +11,7 @@ import org.apache.maven.model.Parent;
 import org.apache.maven.model.PluginExecution;
 import org.apache.maven.model.PluginManagement;
 import org.apache.maven.model.Profile;
-import org.apache.maven.model.immutable.model.ImmProject;
+import org.apache.maven.model.immutable.model.ImmModel;
 import org.apache.maven.model.io.xpp3.MavenXpp3ReaderEx;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
@@ -64,11 +64,19 @@ public class Xpp3StaxComparisonTest
     }
 
     @Test
+    public void read_a_few_times()
+        throws IOException, XmlPullParserException, XMLStreamException
+    {
+        //      xpp3read( NUM_READS + 11 );
+        staxRead( 301);
+    }
+
+    @Test
     public void mavencorePom()
         throws IOException, XMLStreamException
     {
         ImmutableModelBuilder imb = new ImmutableModelBuilder();
-        ImmProject project = imb.readProject( "/immutable/maven-core.xml" );
+        ImmModel project = imb.readProject( "/immutable/maven-core.xml" );
         assertNotNull( project );
     }
 
@@ -295,7 +303,7 @@ public class Xpp3StaxComparisonTest
         long hc = 0;
         for ( int i = 0; i < num_reads; i++ )
         {
-            ImmProject project = imb.readProject( m3core );
+            ImmModel project = imb.readProject( m3core );
             hc += project.hashCode();
         }
         System.out.println( "stax = " + ( System.currentTimeMillis() - start ) + "hc = " + hc );

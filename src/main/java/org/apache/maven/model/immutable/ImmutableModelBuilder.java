@@ -1,6 +1,6 @@
 package org.apache.maven.model.immutable;
 
-import org.apache.maven.model.immutable.model.ImmProject;
+import org.apache.maven.model.immutable.model.ImmModel;
 import org.apache.maven.model.immutable.model.RootBuilder;
 import org.codehaus.stax2.XMLInputFactory2;
 import org.codehaus.stax2.XMLStreamReader2;
@@ -17,7 +17,7 @@ class ImmutableModelBuilder
 
     XMLInputFactory2 xmlInputFactory = (XMLInputFactory2) XMLInputFactory.newInstance();
 
-    private ImmProject buildModel( InputStream source )
+    private ImmModel buildModel( InputStream source )
         throws XMLStreamException
     {
         XMLStreamReader2 streamReader = (XMLStreamReader2) xmlInputFactory.createXMLStreamReader( source );
@@ -25,21 +25,21 @@ class ImmutableModelBuilder
         return rb.build( streamReader );
     }
 
-    public ImmProject readProject( String name )
+    public ImmModel readProject( String name )
         throws XMLStreamException, IOException
     {
         InputStream resourceAsStream2 = this.getClass().getResourceAsStream( name );
-        ImmProject project = buildModel( resourceAsStream2 );
+        ImmModel project = buildModel( resourceAsStream2 );
         resourceAsStream2.close();
         return project;
     }
 
-    public ImmProject readProject( URL name )
+    public ImmModel readProject( URL name )
         throws XMLStreamException, IOException
     {
         try ( InputStream resourceAsStream2 = name.openStream() )
         {
-            ImmProject project = buildModel( new BufferedInputStream( resourceAsStream2 ) );
+            ImmModel project = buildModel( new BufferedInputStream( resourceAsStream2 ) );
             return project;
         }
     }

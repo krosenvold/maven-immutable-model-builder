@@ -6,8 +6,8 @@ import javax.xml.stream.XMLStreamException;
 import java.util.List;
 import java.util.Properties;
 
-class ProjectBuilder
-    implements ItemBuilder<ImmProject>
+class ModelBuilder
+    implements ItemBuilder<ImmModel>
 {
     private final BuilderBuild build = new BuilderBuild();
 
@@ -27,6 +27,9 @@ class ProjectBuilder
     private final GenericListBuilder<ImmContributor> contributorsBuilder =
         new GenericListBuilder<>( "contributor", new ContributorBuilder() );
 
+    private final GenericListBuilder<ImmDeveloper> developersBuilder =
+        new GenericListBuilder<>( "developer", new DeveloperBuilder() );
+
     private final PrerequisitesBuilder prerequisitesBuilder = new PrerequisitesBuilder();
 
     private final ModelBaseFieldBuilder modelBaseFieldBuilder = new ModelBaseFieldBuilder();
@@ -41,13 +44,13 @@ class ProjectBuilder
         new GenericListBuilder<>( "profile", profileBuilder );
 
 
-    public final ImmProject build( XMLStreamReader2 node )
+    public final ImmModel build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
 
         ImmBuild build = null;
-        ImmModelVersion2 modelVersion = null;
+        String modelVersion = null;
         ImmProjectName name = null;
         ImmProjectDescription description = null;
         ImmProjectUrl url = null;
@@ -65,6 +68,7 @@ class ProjectBuilder
         ModelBaseState mbState = new ModelBaseState();
         GavState gavState = new GavState();
 
+        List<ImmDeveloper> developers = null;
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
             switch ( node.next() )
@@ -79,7 +83,7 @@ class ProjectBuilder
                                 build = this.build.build( node );
                                 break;
                             case "modelVersion":
-                                modelVersion = new ImmModelVersion2( leafBuilder.build( node ) );
+                                modelVersion = leafBuilder.build( node );
                                 break;
                             case "name":
                                 name = new ImmProjectName( leafBuilder.build( node ) );
@@ -114,6 +118,9 @@ class ProjectBuilder
                             case "contributors":
                                 contributors = contributorsBuilder.build( node );
                                 break;
+                            case "developers":
+                                developers = developersBuilder.build( node );
+                                break;
                             case "prerequisites":
                                 prerequisites = prerequisitesBuilder.build( node );
                                 break;
@@ -126,9 +133,9 @@ class ProjectBuilder
                     }
             }
         }
-        return new ImmProject( mbState, gavState.gav(), build, modelVersion, prerequisites,
-                               contributors, ciManagement, issueManagement, scm, inceptionYear, packaging, mailingLists,
-                               parent, name, description, url, profiles );
+        return new ImmModel( mbState, gavState.gav(), build, modelVersion, prerequisites, contributors, ciManagement,
+                             issueManagement, scm, inceptionYear, packaging, mailingLists, parent, name, description,
+                             url, profiles, developers );
 
     }
 }

@@ -1,5 +1,7 @@
 package org.apache.maven.model.immutable.model;
 
+import org.apache.maven.model.Model;
+
 class Gav
 {
 
@@ -14,6 +16,12 @@ class Gav
         this.groupId = groupId;
         this.artifactId = artifactId;
         this.version = version;
+    }
+
+    void setModelAttrs(Model model){
+        model.setGroupId( groupId );
+        model.setArtifactId(  artifactId );
+        model.setVersion(  version );
     }
 
     public String toString()

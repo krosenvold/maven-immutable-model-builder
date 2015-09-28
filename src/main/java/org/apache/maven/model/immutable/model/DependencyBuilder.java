@@ -3,6 +3,7 @@ package org.apache.maven.model.immutable.model;
 import org.codehaus.stax2.XMLStreamReader2;
 
 import javax.xml.stream.XMLStreamException;
+import java.util.List;
 
 class DependencyBuilder
     implements ItemBuilder<ImmDependency>
@@ -12,6 +13,9 @@ class DependencyBuilder
     private final LeafBuilder artifactIdBuilder = new LeafBuilder();
 
     private final LeafBuilder versionBuilder = new LeafBuilder();
+
+    private final GenericListBuilder<ImmExclusion> exclusionsBuilder =
+        new GenericListBuilder<>( "exclusion", new BuilderExclusion() );
 
 
     public final ImmDependency build( XMLStreamReader2 node )
@@ -26,10 +30,7 @@ class DependencyBuilder
         String systemPath = null;
         String optional = null;
         String type = null;
-        /*
-    private List<Exclusion> exclusions;
-    private Map<Object, InputLocation> locations;
-         */
+        List<ImmExclusion> exclusions = null;
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
@@ -64,14 +65,14 @@ class DependencyBuilder
                             optional = versionBuilder.build( node );
                             break;
                         case "exclusions":
-                            // todo: fix
+                            exclusions = exclusionsBuilder.build( node );
                             break;
-                        //   default:
-                        //      throw new RuntimeException( "Unsupported child tag" + node.getLocalName() );
+                           default:
+                              throw new RuntimeException( "Unsupported child tag" + node.getLocalName() );
                     }
             }
         }
 
-        return new ImmDependency( groupId, artifactId, version, classifier, type, systemPath, optional, scope );
+        return new ImmDependency( groupId, artifactId, version, classifier, type, systemPath, optional, scope, exclusions );
     }
 }

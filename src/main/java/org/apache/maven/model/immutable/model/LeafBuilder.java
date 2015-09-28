@@ -7,7 +7,6 @@ import javax.xml.stream.XMLStreamException;
 final class LeafBuilder
     implements ItemBuilder<String>
 {
-
     public static LeafBuilder INSTANCE = new LeafBuilder();
 
     public final String build( XMLStreamReader2 node )

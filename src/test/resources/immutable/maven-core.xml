@@ -132,6 +132,16 @@
   <ciManagement>
     <system>Jenkins</system>
     <url>https://builds.apache.org/job/maven-3.x/</url>
+      <notifiers>
+        <notifier>
+          <type>mail</type>
+          <sendOnError>true</sendOnError>
+          <sendOnFailure>true</sendOnFailure>
+          <sendOnSuccess>false</sendOnSuccess>
+          <sendOnWarning>false</sendOnWarning>
+          <configuration><address>continuum@127.0.0.1</address></configuration>
+        </notifier>
+      </notifiers>
   </ciManagement>
   <distributionManagement>
     <downloadUrl>http://maven.apache.org/download.html</downloadUrl>
@@ -140,6 +150,25 @@
       <url>scm:svn:https://svn.apache.org/repos/infra/websites/production/maven/components/${maven.site.path}</url>
     </site>
   </distributionManagement>
+
+  <developers>
+    <developer>
+      <id>jdoe</id>
+      <name>John Doe</name>
+      <email>jdoe@example.com</email>
+      <url>http://www.example.com/jdoe</url>
+      <organization>ACME</organization>
+      <organizationUrl>http://www.example.com</organizationUrl>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
+      <timezone>America/New_York</timezone>
+      <properties>
+        <picUrl>http://www.example.com/jdoe/pic</picUrl>
+      </properties>
+    </developer>
+  </developers>
 
   <contributors>
     <contributor>

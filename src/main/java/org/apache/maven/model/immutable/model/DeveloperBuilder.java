@@ -6,8 +6,8 @@ import javax.xml.stream.XMLStreamException;
 import java.util.List;
 import java.util.Properties;
 
-class ContributorBuilder
-    implements ItemBuilder<ImmContributor>
+class DeveloperBuilder
+    implements ItemBuilder<ImmDeveloper>
 {
     private final LeafBuilder leafBuilder = new LeafBuilder();
 
@@ -16,7 +16,7 @@ class ContributorBuilder
 
     private final PropertiesBuilder propertiesBuilder = new PropertiesBuilder();
 
-    public final ImmContributor build( XMLStreamReader2 node )
+    public final ImmDeveloper build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();
@@ -29,7 +29,10 @@ class ContributorBuilder
         String timeZone = null;
         List<String> roles = null;
 
+
+        // todo: Duplicated code with contirbutorbuilder
         Properties properties = null;
+        String id = null;
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
             switch ( node.next() )
@@ -38,6 +41,9 @@ class ContributorBuilder
                     switch ( node.getLocalName() )
                     {
 
+                        case "id":
+                            id = this.leafBuilder.build( node );
+                            break;
                         case "name":
                             name = this.leafBuilder.build( node );
                             break;
@@ -66,7 +72,7 @@ class ContributorBuilder
                     }
             }
         }
-        return new ImmContributor( name, email, url, organization, organizationUrl, timeZone, roles, properties );
+        return new ImmDeveloper( name, email, url, organization, organizationUrl, timeZone, roles, properties, id );
 
     }
 }
