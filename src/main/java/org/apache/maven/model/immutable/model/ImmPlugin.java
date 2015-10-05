@@ -1,5 +1,6 @@
 package org.apache.maven.model.immutable.model;
 
+import org.apache.maven.model.Extension;
 import org.apache.maven.model.Plugin;
 import org.apache.maven.model.PluginManagement;
 import org.apache.maven.model.immutable.ModelElement;
@@ -10,6 +11,7 @@ import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public class ImmPlugin
     extends ModelElement
@@ -53,6 +55,7 @@ public class ImmPlugin
         // plugin.reportSets TODO
         try
         {
+            if (configuration != null)
             plugin.setConfiguration(
                 Xpp3DomBuilder.build( new StringInputStream( configuration.toString() ), "UTF-8" ) );
         }
@@ -77,11 +80,20 @@ public class ImmPlugin
         return result;
     }
 
-    public static PluginManagement toPluginManagement( List<ImmPlugin> plugins )
+    public static PluginManagement toPluginManagement( ImmList<ImmPlugin> plugins )
     {
         PluginManagement pluginManagement = new PluginManagement();
-        pluginManagement.setPlugins( toPlugins( plugins ) );
+        pluginManagement.setPlugins( plugins.toList(  mapper) );
         return pluginManagement;
     }
+
+    static final Function<ImmPlugin, Plugin> mapper = new Function<ImmPlugin, Plugin>()
+    {
+        @Override
+        public Plugin apply( ImmPlugin immPlugin )
+        {
+            return immPlugin.toPlugin();
+        }
+    };
 
 }

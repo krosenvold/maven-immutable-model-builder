@@ -19,7 +19,7 @@ public class ImmModel
 
     private final Properties prerequisites;
 
-    private final List<ImmContributor> contributors;
+    private final ImmList<ImmContributor> contributors;
 
     private final ImmCiManagement ciManagement;
 
@@ -31,7 +31,7 @@ public class ImmModel
 
     private final String packaging;
 
-    private final List<ImmMailingList> mailingLists;
+    private final ImmList<ImmMailingList> mailingLists;
 
     private final ImmParent parent;
 
@@ -41,16 +41,16 @@ public class ImmModel
 
     private final ImmProjectUrl url;
 
-    private final List<ImmProfile> profiles;
+    private final ImmList<ImmProfile> profiles;
 
-    private final List<ImmDeveloper> developers;
+    private final ImmList<ImmDeveloper> developers;
 
     public ImmModel( ModelBaseState modelBaseState, Gav gavState, ImmBuild build, String modelVersion,
-                     Properties prerequisites, List<ImmContributor> contributors, ImmCiManagement ciManagement,
+                     Properties prerequisites, ImmList<ImmContributor> contributors, ImmCiManagement ciManagement,
                      ImmIssueManagement issueManagement, ImmScm scm, String year, String packaging,
-                     List<ImmMailingList> mailingLists, ImmParent parent, ImmProjectName name,
-                     ImmProjectDescription description, ImmProjectUrl url, List<ImmProfile> profiles,
-                     List<ImmDeveloper> developers )
+                     ImmList<ImmMailingList> mailingLists, ImmParent parent, ImmProjectName name,
+                     ImmProjectDescription description, ImmProjectUrl url, ImmList<ImmProfile> profiles,
+                     ImmList<ImmDeveloper> developers )
     {
         super( modelBaseState );
         this.modelBaseState = modelBaseState;
@@ -103,9 +103,11 @@ public class ImmModel
         result.setModelVersion( modelVersion );
         gavState.setModelAttrs( result);
         modelBaseState.setModelBaseAttributes( result );
-        result.setDevelopers( ImmDeveloper.asDeveloperList( developers ) );
-        result.setContributors( ImmContributor.asContributorList( contributors ) );
+        result.setDevelopers( developers.toList( ImmDeveloper.mapper ) );
+        result.setContributors( contributors.toList( ImmContributor.mapper));
         result.setCiManagement( ciManagement.toCiManagement() );
+        result.setUrl( url.getUrl() );
+        result.setBuild( build.toBuild() );
         // todo: a bunch of attrs
         return result;
 

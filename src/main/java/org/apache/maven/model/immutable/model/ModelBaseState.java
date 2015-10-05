@@ -38,6 +38,6 @@ public class ModelBaseState
         }
         modelBase.setModules( modules );
         modelBase.setDistributionManagement( distributionManagement.toDistributionManagement() );
-        modelBase.setReporting( reporting.toReporting() );
+        if (reporting != null) modelBase.setReporting( reporting.toReporting() );
     }
 }

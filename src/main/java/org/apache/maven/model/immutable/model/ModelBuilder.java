@@ -54,21 +54,21 @@ class ModelBuilder
         ImmProjectName name = null;
         ImmProjectDescription description = null;
         ImmProjectUrl url = null;
-        List<ImmMailingList> mailingLists = null;
+        ImmList<ImmMailingList> mailingLists = null;
         ImmParent parent = null;
         String packaging = null;
         String inceptionYear = null;
         ImmScm scm = null;
         ImmIssueManagement issueManagement = null;
         ImmCiManagement ciManagement = null;
-        List<ImmContributor> contributors = null;
+        ImmList<ImmContributor> contributors = null;
         Properties prerequisites = null;
-        List<ImmProfile> profiles = null;
+        ImmList<ImmProfile> profiles = null;
 
         ModelBaseState mbState = new ModelBaseState();
         GavState gavState = new GavState();
 
-        List<ImmDeveloper> developers = null;
+        ImmList<ImmDeveloper> developers = null;
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {
             switch ( node.next() )
@@ -95,7 +95,7 @@ class ModelBuilder
                                 url = new ImmProjectUrl( leafBuilder.build( node ) );
                                 break;
                             case "mailingLists":
-                                mailingLists = mailingListsBuilder.build( node );
+                                mailingLists = ImmList.of( mailingListsBuilder.build( node ));
                                 break;
                             case "parent":
                                 parent = parentBuilder.build( node );
@@ -116,16 +116,16 @@ class ModelBuilder
                                 ciManagement = ciManagementBuilder.build( node );
                                 break;
                             case "contributors":
-                                contributors = contributorsBuilder.build( node );
+                                contributors = ImmList.of( contributorsBuilder.build( node ));
                                 break;
                             case "developers":
-                                developers = developersBuilder.build( node );
+                                developers = ImmList.of( developersBuilder.build( node ));
                                 break;
                             case "prerequisites":
                                 prerequisites = prerequisitesBuilder.build( node );
                                 break;
                             case "profiles":
-                                profiles = profilesBuilder.build( node );
+                                profiles = ImmList.of( profilesBuilder.build( node ));
                                 break;
                             default:
                                 throw new RuntimeException( "Unsupported child tag " + node.getLocalName() );
