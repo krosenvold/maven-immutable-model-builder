@@ -1,10 +1,10 @@
 package org.apache.maven.model.immutable.model;
 
-import org.apache.maven.model.Extension;
 import org.apache.maven.model.Plugin;
 import org.apache.maven.model.PluginManagement;
 import org.apache.maven.model.immutable.ModelElement;
 import org.codehaus.plexus.util.StringInputStream;
+import org.codehaus.plexus.util.StringUtils;
 import org.codehaus.plexus.util.xml.Xpp3DomBuilder;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
@@ -56,8 +56,10 @@ public class ImmPlugin
         try
         {
             if (configuration != null)
-            plugin.setConfiguration(
-                Xpp3DomBuilder.build( new StringInputStream( configuration.toString() ), "UTF-8" ) );
+            {
+                String payload = configuration.toString();
+                if ( !StringUtils.isEmpty( payload ) ) plugin.setConfiguration( Xpp3DomBuilder.build( new StringInputStream( payload ), "UTF-8" ) );
+            }
         }
         catch ( XmlPullParserException | IOException e )
         {

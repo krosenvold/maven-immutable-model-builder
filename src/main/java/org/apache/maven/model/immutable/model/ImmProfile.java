@@ -14,8 +14,8 @@ public class ImmProfile
     private final ImmBuild build;
 
     public ImmProfile( ModelBaseState mbState, String id, ImmActivation activation, ImmBuild build,
-                       ImmReporting reporting, List<ImmDependency> dependencies,
-                       List<ImmDependency> dependencyManagement )
+                       ImmReporting reporting, ImmList<ImmDependency> dependencies,
+                       ImmList<ImmDependency> dependencyManagement )
     {
 
         super( mbState );

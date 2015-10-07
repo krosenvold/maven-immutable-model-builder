@@ -11,15 +11,15 @@ import java.util.List;
 class DependencyManagementBuilder
 {
 
-    private final GenericListBuilder<ImmDependency> dependenciesBuilder;
+    private final GenericImmListBuilder<ImmDependency> dependenciesBuilder;
 
-    public DependencyManagementBuilder( GenericListBuilder<ImmDependency> dependenciesBuilder )
+    public DependencyManagementBuilder( GenericImmListBuilder<ImmDependency> dependenciesBuilder )
     {
         this.dependenciesBuilder = dependenciesBuilder;
     }
 
 
-    public List<ImmDependency> build( XMLStreamReader2 node )
+    public ImmList<ImmDependency> build( XMLStreamReader2 node )
         throws XMLStreamException
     {
         int startLevel = node.getDepth();

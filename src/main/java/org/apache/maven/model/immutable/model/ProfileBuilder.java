@@ -3,7 +3,6 @@ package org.apache.maven.model.immutable.model;
 import org.codehaus.stax2.XMLStreamReader2;
 
 import javax.xml.stream.XMLStreamException;
-import java.util.List;
 
 class ProfileBuilder
     implements ItemBuilder<ImmProfile>
@@ -17,8 +16,8 @@ class ProfileBuilder
 
     private final BuilderActivation activationBuilder = new BuilderActivation();
 
-    private final GenericListBuilder<ImmDependency> dependenciesBuilder =
-        new GenericListBuilder<>( "dependency", new DependencyBuilder() );
+    private final GenericImmListBuilder<ImmDependency> dependenciesBuilder =
+        new GenericImmListBuilder<>( "dependency", new DependencyBuilder() );
 
     private final ModelBaseFieldBuilder modelBaseFieldBuilder = new ModelBaseFieldBuilder();
 
@@ -40,8 +39,8 @@ class ProfileBuilder
         String id = null;
         ImmReporting reporting = null;
         ImmActivation activation = null;
-        List<ImmDependency> dependencyManagement = null;
-        List<ImmDependency> dependencies = null;
+        ImmList<ImmDependency> dependencyManagement = null;
+        ImmList<ImmDependency> dependencies = null;
 
         ModelBaseState mbState = new ModelBaseState();
 

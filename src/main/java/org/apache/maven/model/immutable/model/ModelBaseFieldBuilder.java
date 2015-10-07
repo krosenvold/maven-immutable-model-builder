@@ -11,18 +11,18 @@ class ModelBaseFieldBuilder
 
     private final PropertiesBuilder propertiesBuilder = new PropertiesBuilder();
 
-    private final GenericListBuilder<String> modulesBuilder = new GenericListBuilder<>( "module", new LeafBuilder() );
+    private final GenericImmListBuilder<String> modulesBuilder = new GenericImmListBuilder<>( "module", new LeafBuilder() );
 
-    private final GenericListBuilder<ImmDependency> dependenciesBuilder =
-        new GenericListBuilder<>( "dependency", new DependencyBuilder() );
+    private final GenericImmListBuilder<ImmDependency> dependenciesBuilder =
+        new GenericImmListBuilder<>( "dependency", new DependencyBuilder() );
 
     private final DistributionManagementBuilder distributionManagementBuilder = new DistributionManagementBuilder();
 
     private final RepositoryBuilder rp = new RepositoryBuilder();
 
-    private final GenericListBuilder<ImmRepository> pluginRep = new GenericListBuilder<>( "pluginRepository", rp );
+    private final GenericImmListBuilder<ImmRepository> pluginRep = new GenericImmListBuilder<>( "pluginRepository", rp );
 
-    private final GenericListBuilder<ImmRepository> repositoryBuilder = new GenericListBuilder<>( "repository", rp );
+    private final GenericImmListBuilder<ImmRepository> repositoryBuilder = new GenericImmListBuilder<>( "repository", rp );
 
     private final DependencyManagementBuilder dependencyManagementBuilder =
         new DependencyManagementBuilder( dependenciesBuilder );

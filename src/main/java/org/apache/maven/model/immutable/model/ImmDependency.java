@@ -1,9 +1,11 @@
 package org.apache.maven.model.immutable.model;
 
+import org.apache.maven.model.Contributor;
 import org.apache.maven.model.Dependency;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public class ImmDependency
 {
@@ -24,6 +26,15 @@ public class ImmDependency
     private final String scope;
 
     private final List<ImmExclusion> exclusions;
+
+    static final Function<ImmDependency, Dependency> mapper = new Function<ImmDependency, Dependency>()
+    {
+        @Override
+        public Dependency apply( ImmDependency contributor )
+        {
+            return contributor.toDependency();
+        }
+    };
 
     public ImmDependency( String groupId, String artifactId, String version, String classifier, String type, String systemPath, String optional, String scope,
                           List<ImmExclusion> exclusions )
@@ -63,4 +74,6 @@ public class ImmDependency
         }
         return result;
     }
+
+
 }

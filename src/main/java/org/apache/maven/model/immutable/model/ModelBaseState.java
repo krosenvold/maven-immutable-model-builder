@@ -3,7 +3,6 @@ package org.apache.maven.model.immutable.model;
 import org.apache.maven.model.DependencyManagement;
 import org.apache.maven.model.ModelBase;
 
-import java.util.List;
 import java.util.Properties;
 
 /**
@@ -15,28 +14,28 @@ public class ModelBaseState
 
     Properties properties = null;
 
-    List<String> modules = null;
+    ImmList<String> modules = null;
 
     ImmDistributionManagement distributionManagement;
 
-    List<ImmDependency> dependencyManagement = null;
+    ImmList<ImmDependency> dependencyManagement = null;
 
-    List<ImmDependency> dependencies = null;
+    ImmList<ImmDependency> dependencies = null;
 
-    public List<ImmRepository> repositories;
+    public ImmList<ImmRepository> repositories;
 
-    public List<ImmRepository> pluginRepositories;
+    public ImmList<ImmRepository> pluginRepositories;
 
     protected void setModelBaseAttributes( ModelBase modelBase){
         modelBase.setProperties( properties );
-        modelBase.setDependencies( ImmDependency.asList(  dependencies ));
+        modelBase.setDependencies( dependencies.toList( ImmDependency.mapper ) );
         if (dependencyManagement != null)
         {
             DependencyManagement dependencyManagement = new DependencyManagement();
-            dependencyManagement.setDependencies( ImmDependency.asList( this.dependencyManagement ) );
+            dependencyManagement.setDependencies( this.dependencyManagement.toList( ImmDependency.mapper ) );
             modelBase.setDependencyManagement( dependencyManagement );
         }
-        modelBase.setModules( modules );
+        modelBase.setModules( modules.toList( ImmList.stringMapper ) );
         modelBase.setDistributionManagement( distributionManagement.toDistributionManagement() );
         if (reporting != null) modelBase.setReporting( reporting.toReporting() );
     }
