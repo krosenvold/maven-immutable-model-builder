@@ -55,7 +55,7 @@ public class ImmPlugin
         // plugin.reportSets TODO
         try
         {
-            if (configuration != null)
+            if (configuration != null && false)
             {
                 String payload = configuration.toString();
                 if ( !StringUtils.isEmpty( payload ) ) plugin.setConfiguration( Xpp3DomBuilder.build( new StringInputStream( payload ), "UTF-8" ) );
@@ -66,20 +66,6 @@ public class ImmPlugin
             throw new RuntimeException( e );
         }
         return plugin;
-    }
-
-    public static List<Plugin> toPlugins( List<ImmPlugin> plugins )
-    {
-        if ( plugins == null )
-        {
-            return null;
-        }
-        List<Plugin> result = new ArrayList<>();
-        for ( ImmPlugin plugin : plugins )
-        {
-            result.add( plugin.toPlugin() );
-        }
-        return result;
     }
 
     public static PluginManagement toPluginManagement( ImmList<ImmPlugin> plugins )

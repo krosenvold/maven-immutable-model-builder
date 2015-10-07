@@ -67,13 +67,4 @@ public class ImmContributor
         setContributorFields(  result );
         return result;
     }
-
-    public static List<Contributor> asContributorList( Iterable<ImmContributor> cont ){
-        List<Contributor> result = new ArrayList<>(  );
-        for ( ImmContributor immContributor : cont )
-        {
-            result.add( immContributor.toContributor());
-        }
-        return result;
-    }
 }

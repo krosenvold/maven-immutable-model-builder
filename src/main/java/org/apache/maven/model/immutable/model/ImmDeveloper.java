@@ -37,14 +37,4 @@ public class ImmDeveloper
         setContributorFields( result );
         return result;
     }
-
-    public static List<Developer> asDeveloperList(Iterable<ImmDeveloper> cont){
-        List<Developer> result = new ArrayList<>(  );
-        for ( ImmDeveloper immContributor : cont )
-        {
-            result.add( immContributor.toDeveloper());
-        }
-        return result;
-    }
-
 }

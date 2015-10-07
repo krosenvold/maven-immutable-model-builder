@@ -14,8 +14,8 @@ class DependencyBuilder
 
     private final LeafBuilder versionBuilder = new LeafBuilder();
 
-    private final GenericListBuilder<ImmExclusion> exclusionsBuilder =
-        new GenericListBuilder<>( "exclusion", new BuilderExclusion() );
+    private final GenericImmListBuilder<ImmExclusion> exclusionsBuilder =
+        new GenericImmListBuilder<>( "exclusion", new BuilderExclusion() );
 
 
     public final ImmDependency build( XMLStreamReader2 node )
@@ -30,7 +30,7 @@ class DependencyBuilder
         String systemPath = null;
         String optional = null;
         String type = null;
-        List<ImmExclusion> exclusions = null;
+        ImmList<ImmExclusion> exclusions = null;
 
         while ( node.hasNext() && node.getDepth() >= startLevel )
         {

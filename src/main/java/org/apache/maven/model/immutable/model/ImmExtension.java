@@ -38,14 +38,4 @@ public class ImmExtension
         result.setVersion( version );
         return result;
     }
-
-    static List<Extension> asList( List<ImmExtension> src )
-    {
-        List<Extension> result = new ArrayList<>();
-        for ( ImmExtension immDependency : src )
-        {
-            result.add( immDependency.toExtenstion() );
-        }
-        return result;
-    }
 }
